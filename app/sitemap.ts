@@ -20,6 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    {
+      url: `${site.canonicalUrl}/interview`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
     ...aiSystems.map((system) => ({
       url: `${site.canonicalUrl}${system.route}`,
       lastModified,

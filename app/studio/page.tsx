@@ -11,7 +11,7 @@ const { site, studio, aiSystems } = portfolio;
 export const metadata: Metadata = {
   title: `Demo studio — ${site.name}`,
   description:
-    "The three hosted systems, embedded live, with deep links and curl commands that were requested before they were published.",
+    "The four hosted systems, embedded live, with deep links and curl commands that were requested before they were published.",
   alternates: { canonical: `${site.canonicalUrl}/studio` },
 };
 
@@ -52,7 +52,7 @@ export default function StudioPage() {
             </nav>
 
             <p className="section-kicker">USE THE SYSTEMS, DO NOT TAKE MY WORD</p>
-            <h1>Three running systems, one page, no signup.</h1>
+            <h1>Four running systems, one page, no signup.</h1>
             <p className="system-pitch">{studio.intro}</p>
 
             <div className="hero-note">
@@ -147,12 +147,13 @@ export default function StudioPage() {
             <div className="roadmap-heading">
               <div>
                 <p className="section-kicker">NOT HOSTED, AND NOT PRETENDING TO BE</p>
-                <h3>Two systems clone and run. Neither gets a fake link.</h3>
+                <h3>One system still clones. It does not get a fake link.</h3>
               </div>
               <p>
-                Both candidate hostnames were requested on {site.lastVerified} and returned 404.
-                They are recorded as absent so a future refresh has to observe a 200 before either
-                can be published as hosted.
+                Candidate hostnames for Production RAG were requested on {site.lastVerified} and
+                returned 404. They are recorded as absent so a future refresh has to observe a 200
+                before this card can become an embed. production-rag.vercel.app is another product
+                and is never cited.
               </p>
             </div>
 

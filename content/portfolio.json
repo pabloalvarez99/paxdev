@@ -20,9 +20,9 @@
       "detail": "No key, billed call, or signup for the core demos"
     },
     {
-      "value": "3",
+      "value": "4",
       "label": "hosted demos",
-      "detail": "P2, P4, and P5 answer over HTTP with no clone and no key; each states its own fixture or gateway-only boundary"
+      "detail": "P2, P3, P4, and P5 answer over HTTP with no clone and no key; each states its own fixture, free-path, or gateway-only boundary"
     },
     {
       "value": "CI",
@@ -317,8 +317,8 @@
       "name": "Multi-Agent Orchestration",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag e2687ca) · main 78b3910 · CI green",
-      "summary": "An orchestrator and specialist agents with explicit handoffs, global budgets, failure isolation, and auditable multi-agent timelines.",
+      "phase": "v0.2.0 (tag 8155274) · main 8155274 · CI green",
+      "summary": "An orchestrator and specialist agents with explicit handoffs, global budgets, failure isolation, auditable multi-agent timelines, and a credential-free hosted console.",
       "outcome": "Coordinate specialists",
       "stack": [
         "Python",
@@ -343,6 +343,14 @@
         {
           "label": "Published v0.1.0 release",
           "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.1.0"
+        },
+        {
+          "label": "Hosted free-path console at 8155274 / v0.2.0",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/8155274/docs/SHIP.md"
+        },
+        {
+          "label": "Published v0.2.0 release",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.2.0"
         }
       ],
       "links": [
@@ -351,26 +359,34 @@
           "url": "https://github.com/pabloalvarez99/multi-agent-orchestration"
         },
         {
-          "label": "v0.1.0",
-          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.1.0"
+          "label": "v0.2.0",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.2.0"
+        },
+        {
+          "label": "Hosted demo",
+          "url": "https://pax-orchestration.vercel.app"
         }
       ],
-      "hosted": null,
+      "hosted": {
+        "url": "https://pax-orchestration.vercel.app",
+        "label": "Hosted demo",
+        "note": "The same free path with no clone and no key: GET /health is open, GET /metrics returns Prometheus text, and POST /v1/tasks runs the deterministic specialists. Specialists are fakes, so the hosted console proves routing, budgets, handoffs, and degradation — not answer quality and not multi-model uplift."
+      },
       "capture": {
         "src": "/multi-agent-trace.png",
         "alt": "Multi-agent orchestration trace timeline showing handoffs between orchestrator and specialists",
         "width": 1080,
-        "height": 3321,
+        "height": 3613,
         "caption": "The handoff timeline, step by step, with per-agent budget.",
-        "sourceUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/78b3910/docs/assets/ui-trace.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/8155274/docs/assets/ui-trace.png"
       },
       "secondaryCapture": {
         "src": "/multi-agent-budget.png",
         "alt": "Multi-agent orchestration run ending in budget_exhausted with the handoff budget shown as a state field",
         "width": 1440,
-        "height": 2462,
+        "height": 2755,
         "caption": "budget_exhausted is a terminal state with a number behind it, not a stalled run.",
-        "sourceUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/78b3910/docs/assets/ui-budget.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/8155274/docs/assets/ui-budget.png"
       },
       "route": "/systems/multi-agent",
       "page": {
@@ -384,21 +400,22 @@
           "Degraded outcomes on specialist failure — a crashing Critic and an impersonation attempt both have tests (ADR 0003).",
           "An ordered, JSON-safe multi-agent timeline with completeness, ordering, privacy, and budget-stop tests, downloadable as JSON.",
           "A 12-task golden evaluation across three slices, including an HTTP-absent slice that makes zero network calls.",
-          "An accessible trace UI, request IDs, Prometheus text metrics, and per-specialist elapsed timings behind a debug flag."
+          "Hosted console and API on the free path with no key: GET /health and GET /metrics returned 200, and POST /v1/tasks completed with status done on 2026-08-14.",
+          "Versioned run replay traces and typed chaos isolation contracts shipped at v0.2.0 / main 8155274."
         ],
         "planned": [
           "No claim that several agents outperform one. The 12-task evaluation is a routing contract on deterministic fakes.",
-          "No hosted demo. This system is clone-and-run: pax-multi-agent.vercel.app returned 404 on 2026-08-14 and is recorded as absent rather than linked.",
+          "The hosted specialists are deterministic fakes. The console proves control flow, budgets, and degradation — not answer quality.",
           "No hosted model default, shared memory, or arbitrary tools.",
-          "No remote-agent isolation, hosted quality score, or cost comparison.",
+          "No remote-agent isolation beyond the typed chaos contracts, no hosted quality score, and no cost comparison.",
           "No silent promotion of target architecture into LIVE documentation."
         ],
         "cta": {
-          "kind": "clone",
-          "label": "Clone and run the free path",
-          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration",
-          "command": "git clone https://github.com/pabloalvarez99/multi-agent-orchestration",
-          "note": "CI runs with the OpenAI and P2 URL settings empty, so the free path is the path CI proves."
+          "kind": "hosted",
+          "label": "Open the hosted specialist console",
+          "url": "https://pax-orchestration.vercel.app",
+          "command": "curl https://pax-orchestration.vercel.app/health",
+          "note": "No clone, no key. Health returned {\"status\":\"ok\"} on 2026-08-14. Submit a task in the console, or POST /v1/tasks, and read the ordered trace."
         },
         "interview": [
           {
@@ -440,7 +457,7 @@
       "name": "RepoMind",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 327a949) · main 0f91b7c · CI green",
+      "phase": "v0.1.0 (tag 327a949) · main bffc329 · CI green",
       "summary": "Repository intelligence built around safe repository walking, AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
       "outcome": "Understand codebases",
       "stack": [
@@ -493,7 +510,7 @@
         "width": 1280,
         "height": 1255,
         "caption": "RepoMind reading its own repository, answering with path:line evidence.",
-        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/0f91b7c/docs/assets/ui-dogfood-hit.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/bffc329/docs/assets/ui-dogfood-hit.png"
       },
       "secondaryCapture": {
         "src": "/repomind-mini-refuse.png",
@@ -501,7 +518,7 @@
         "width": 1280,
         "height": 1125,
         "caption": "No evidence found, zero citations. The refusal is the same code path as the answer.",
-        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/0f91b7c/docs/assets/ui-mini-refuse.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/bffc329/docs/assets/ui-mini-refuse.png"
       },
       "route": "/systems/repomind",
       "page": {
@@ -512,7 +529,7 @@
         "live": [
           "AST chunks keyed by path::qualname with exact line ranges, and a deterministic lexical index where exact symbol match dominates token overlap.",
           "POST /v1/code/ask and POST /v1/code/symbols, plus a GET /ask console whose questions are deep-linkable.",
-          "Catalog sandboxing: the API takes a repo_id matching ^[a-z0-9-]+$ and never a caller filesystem path.",
+          "Catalog sandboxing: the API takes a catalog repo_id and never a caller filesystem path (bffc329 lets the catalog decide which ids are valid).",
           "A 14-case mini evaluation and an 8-case production_rag dogfood snapshot, both with a deterministic provider, a null judge, and a $0 bill.",
           "A capture staleness gate: CI records a sha256 per committed PNG and per file that decides what a capture shows, and fails when either drifts.",
           "Hosted console and API on the same fixtures with no key, verified over HTTP on 2026-08-14."
@@ -520,15 +537,15 @@
         "planned": [
           "The hosted instance indexes the committed mini and production_rag fixtures and nothing else. It cannot answer about an arbitrary repository.",
           "The evaluation measures citation plumbing on a fixture. It is not a SOTA claim over real codebases.",
-          "The console offers a production_rag catalog whose id contains an underscore, which the JSON API's own repo_id pattern rejects; the deep link works, the equivalent curl needs repo_id=mini. That mismatch lives in P4's source and is reported here rather than papered over.",
-          "No authentication, no rate limiting, and no ingestion of a repository you supply."
+          "No authentication, no rate limiting, and no ingestion of a repository you supply.",
+          "The production_rag catalog is a frozen snapshot under fixtures, not a live checkout of the sibling project — it does not update itself when that repository moves."
         ],
         "cta": {
           "kind": "hosted",
           "label": "Ask the hosted console",
           "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=mini",
           "command": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"mini\"}'",
-          "note": "That request returned app/main.py lines 6-9 on 2026-08-14. Ask something the fixture cannot know and the same endpoint answers with zero citations."
+          "note": "That request returned app/main.py lines 6-9 on 2026-08-14. POST with repo_id=production_rag also returns 200 after bffc329 (catalog decides valid ids). Ask something the fixture cannot know and the same endpoint answers with zero citations."
         },
         "interview": [
           {
@@ -881,7 +898,7 @@
     }
   ],
   "studio": {
-    "intro": "Three of the five systems answer over HTTP with no clone and no key. They are embedded below, live, exactly as they run. The other two are clone cards, because inventing a host for them would be the one thing this portfolio is built to avoid.",
+    "intro": "Four of the five systems answer over HTTP with no clone and no key. They are embedded below, live, exactly as they run. Production RAG stays a clone card: hybrid retrieval needs a local Qdrant, and inventing a host for it would be the one thing this portfolio is built to avoid.",
     "embeds": [
       {
         "slug": "agentic-rag-research",
@@ -902,6 +919,26 @@
         ],
         "curl": "curl https://pax-agentic-rag.vercel.app/health",
         "boundary": "The research form posts to /ui/research, so a question is not deep-linkable. Use the embed, or POST /v1/research."
+      },
+      {
+        "slug": "multi-agent-orchestration",
+        "embedUrl": "https://pax-orchestration.vercel.app",
+        "embedTitle": "Multi-Agent Orchestration hosted console",
+        "howTo": "Submit a task in the console and read the ordered handoff timeline. Then hit the health and metrics endpoints: both returned 200 with no header before this page linked them.",
+        "deepLinks": [
+          {
+            "label": "Health, open with no header",
+            "url": "https://pax-orchestration.vercel.app/health",
+            "expect": 200
+          },
+          {
+            "label": "Prometheus metrics",
+            "url": "https://pax-orchestration.vercel.app/metrics",
+            "expect": 200
+          }
+        ],
+        "curl": "curl https://pax-orchestration.vercel.app/health",
+        "boundary": "Specialists are deterministic fakes. The hosted console proves routing, budgets, handoffs, and degradation — not answer quality and not multi-model uplift."
       },
       {
         "slug": "repomind",
@@ -926,7 +963,7 @@
           }
         ],
         "curl": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"mini\"}'",
-        "boundary": "The console's production_rag catalog id contains an underscore, which the JSON API's repo_id pattern rejects. The deep link works; the curl equivalent uses repo_id=mini."
+        "boundary": "Indexes only the committed mini and production_rag fixtures. The production_rag catalog is a frozen snapshot, not a live sibling checkout."
       },
       {
         "slug": "ai-platform",
@@ -957,16 +994,246 @@
     "cloneCards": [
       {
         "slug": "production-rag",
-        "why": "Hybrid retrieval needs a local Qdrant, so there is nothing to host without standing up a vector database per visitor.",
+        "why": "Hybrid retrieval needs a local Qdrant, so there is nothing to host without standing up a vector database per visitor. production-rag.vercel.app is another product (Ipsura) and is never cited here.",
         "absentUrl": "https://pax-production-rag.vercel.app",
         "command": "git clone https://github.com/pabloalvarez99/production-rag"
-      },
-      {
-        "slug": "multi-agent-orchestration",
-        "why": "No hosted demo is a stated non-goal for v0.1.0, and the repository says so in its own release notes.",
-        "absentUrl": "https://pax-multi-agent.vercel.app",
-        "command": "git clone https://github.com/pabloalvarez99/multi-agent-orchestration"
       }
     ]
+  },
+  "interviewKit": {
+    "title": "Forty-five minutes, five systems",
+    "intro": "This is the demo-day script from the flagship repository, re-cut for the way the portfolio actually runs today. The original is written for five localhost ports, because when it was published nothing was deployed. Four systems are hosted now, so four of these five beats are a link a reviewer can open on their own machine and one still needs a clone. Both facts are on the page.",
+    "source": {
+      "label": "The original script — DEMO-DAY.md at 1cd8e4b",
+      "url": "https://github.com/pabloalvarez99/production-rag/blob/1cd8e4b/docs/DEMO-DAY.md"
+    },
+    "rules": [
+      {
+        "title": "Nothing here reads a key",
+        "body": "Every command and every link on this page runs on the free path. If a step asks for a credential, the step is wrong, not the reviewer's setup."
+      },
+      {
+        "title": "Every beat ends in a result I did not choose",
+        "body": "A refusal, a budget_exhausted, a typed 401, four unconfigured upstreams. A demo that only shows success is a demo that has not been tested."
+      },
+      {
+        "title": "The boundary is volunteered, not extracted",
+        "body": "Each beat carries the sentence I say before a reviewer has to ask for it. Volunteering the limit is the difference between a portfolio and a pitch."
+      }
+    ],
+    "beats": [
+      {
+        "clock": "0–8",
+        "mode": "CLONE",
+        "system": "production-rag",
+        "title": "Grounded, then refusing, then narrowed",
+        "say": "Open with the thesis in one breath: a retrieval system is only as good as the evidence it can show for its own behaviour. Then ask three questions in an order that carries the argument. A refusal shown first reads as a system that cannot answer; a refusal shown second reads as a system that chose not to.",
+        "steps": [
+          {
+            "kind": "command",
+            "value": "git clone https://github.com/pabloalvarez99/production-rag && cd production-rag && ./scripts/demo_setup.sh",
+            "note": "One command starts Qdrant, rebuilds the demo collection with the deterministic embedder, and serves the UI on :8000. Prepared before the call, not inside the forty-five minutes."
+          },
+          {
+            "kind": "ask",
+            "value": "Why does hybrid search use reciprocal rank fusion?",
+            "note": "Click a citation marker. It resolves to the exact chunk that was in the prompt context."
+          },
+          {
+            "kind": "ask",
+            "value": "Who won the Antarctic underwater chess championship?",
+            "note": "An explicit refusal that states its reason, with no invented supporting text."
+          },
+          {
+            "kind": "ask",
+            "value": "How does filtering work in Qdrant? — asked twice, the second time with the metadata filter set to title = Filtering",
+            "note": "The result footer carries a Filtered: title = Filtering chip. One question asked twice, so the narrowing is visible rather than taken on trust."
+          },
+          {
+            "kind": "link",
+            "value": "Study Production RAG before the call",
+            "url": "/systems/production-rag",
+            "note": "The page states what this system does not do, including that it has no auth and no rate limiting."
+          }
+        ],
+        "watch": "Do not present the deterministic run as retrieval or answer quality — the embedder, the LLM, and the reranker are fakes. Do not present the field allowlist as access control: it bounds which fields a query may filter on, never which documents a caller may see."
+      },
+      {
+        "clock": "8–18",
+        "mode": "HOSTED",
+        "system": "agentic-rag-research",
+        "title": "A loop that stops for a stated reason",
+        "say": "The interesting output of an agent is not the answer. It is the record of why it stopped. A budget that only exists in a prompt is a suggestion; this one is enforced in the loop and reported in the trace. Ask a question the corpus supports, then one it does not, and read stop_reason as a field rather than a mood.",
+        "steps": [
+          {
+            "kind": "link",
+            "value": "Open the hosted research agent",
+            "url": "https://pax-agentic-rag.vercel.app",
+            "note": "No clone and no key. Ask, then expand the trace: plan_created, tool_call, tool_result, critique, synthesize, stop."
+          },
+          {
+            "kind": "ask",
+            "value": "What does hybrid retrieval buy over dense retrieval alone?",
+            "note": "The loop completes. Read the steps used against the configured maximum."
+          },
+          {
+            "kind": "ask",
+            "value": "What were the quarterly revenues in Patagonia?",
+            "note": "The loop refuses: empty citations and populated gaps naming what was looked for and not found."
+          },
+          {
+            "kind": "command",
+            "value": "curl https://pax-agentic-rag.vercel.app/metrics",
+            "note": "Prometheus text: process_up, requests_total, research_total, research_steps_used_total. Verified 200."
+          }
+        ],
+        "watch": "Do not claim the agent beats a single retrieval pass; the scorecard measures contract conformance, not uplift. Do not imply the P1 HTTP retriever is running — the hosted instance sets no PRODUCTION_RAG_URL, so that path answers capability_missing on purpose."
+      },
+      {
+        "clock": "18–28",
+        "mode": "HOSTED",
+        "system": "multi-agent-orchestration",
+        "title": "Writer-only, and degraded on purpose — now in the browser",
+        "say": "A multi-agent system without budgets is a system that can bill you forever. Every handoff is counted, every retry is capped, and a specialist that fails makes the result degraded and says so. The orchestrator has no path that hides a failure. Open the hosted console; the specialists are fakes on purpose.",
+        "steps": [
+          {
+            "kind": "link",
+            "value": "Open the hosted specialist console",
+            "url": "https://pax-orchestration.vercel.app",
+            "note": "No clone and no key. Submit a task and read the ordered handoff timeline aloud."
+          },
+          {
+            "kind": "command",
+            "value": "curl https://pax-orchestration.vercel.app/health",
+            "note": "Open with no header: 200 and {\"status\":\"ok\"}. Verified 2026-08-14."
+          },
+          {
+            "kind": "command",
+            "value": "curl -s -X POST https://pax-orchestration.vercel.app/v1/tasks -H \"content-type: application/json\" -d '{\"task\":\"Audit retrieval risk\",\"budget\":{\"max_handoffs\":8}}'",
+            "note": "Read status, stop_reason, and agents_involved. A completed free-path run ends in writer_final with the Writer as result_author."
+          },
+          {
+            "kind": "link",
+            "value": "Study Multi-Agent Orchestration",
+            "url": "/systems/multi-agent",
+            "note": "Its own non-goals are on the page, starting with the one that matters: no claim that several agents outperform one."
+          }
+        ],
+        "watch": "Do not claim answer quality or multi-model uplift; the specialists are deterministic fakes. Do not claim the optional remote research integration is live unless AGENTIC_RAG_URL is set — the free path does not need it."
+      },
+      {
+        "clock": "28–38",
+        "mode": "HOSTED",
+        "system": "repomind",
+        "title": "path:line, and the snapshot caveat",
+        "say": "Citations as path:start-end, not prose references. Open one — it is a real range in a real file. Then say the honesty beat before anyone asks: the production_rag catalog is a frozen snapshot committed under fixtures, not a live checkout of the sibling project. It proves navigation and citation correctness on committed bytes. It does not prove the tool works on your repository.",
+        "steps": [
+          {
+            "kind": "link",
+            "value": "A hit: where is create_app defined?",
+            "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=mini",
+            "note": "Answers app/main.py lines 6-9. The console asks with GET, so this link is the demo."
+          },
+          {
+            "kind": "link",
+            "value": "The series reading its own flagship",
+            "url": "https://pax-repomind.vercel.app/ask?question=How+does+hybrid+retrieval+fuse+rankings%3F&repo_id=production_rag",
+            "note": "Cites production_rag/retrieval/rrf.py:54-113 — the same RRF implementation demonstrated in the first beat. Name that out loud."
+          },
+          {
+            "kind": "link",
+            "value": "The refusal",
+            "url": "https://pax-repomind.vercel.app/ask?question=Who+won+the+2019+Antarctic+chess+championship%3F&repo_id=mini",
+            "note": "No evidence found, zero citations. Same code path as the answer."
+          },
+          {
+            "kind": "command",
+            "value": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"mini\"}'",
+            "note": "The API's repo_id pattern is ^[a-z0-9-]+$, which rejects the console's production_rag id. Use the deep link for that catalog and mini for curl, and say why rather than hiding the seam."
+          }
+        ],
+        "watch": "Do not describe the dogfood gate as evidence of general code comprehension. Do not imply the snapshot tracks the sibling repository — it does not update itself. Do not quote eval counts as a score."
+      },
+      {
+        "clock": "38–45",
+        "mode": "HOSTED",
+        "system": "ai-platform",
+        "title": "Rejected, then unconfigured",
+        "say": "This is a gateway, and there is nothing behind it right now. The four upstream URLs are empty, so the console says unconfigured rather than pretending. What I am showing you is that the edge behaves. What I am not showing you is a platform in production.",
+        "steps": [
+          {
+            "kind": "command",
+            "value": "curl https://pax-ai-gateway.vercel.app/health",
+            "note": "Open with no header: 200 and {\"status\":\"ok\",\"service\":\"gateway\"}."
+          },
+          {
+            "kind": "link",
+            "value": "The same route without a key — a typed 401",
+            "url": "https://pax-ai-gateway.vercel.app/v1/platform/status",
+            "note": "The error names the failure type and carries a request id, and it leaks nothing about what is behind the edge."
+          },
+          {
+            "kind": "command",
+            "value": "curl -H \"X-API-Key: dev-local\" https://pax-ai-gateway.vercel.app/v1/platform/status",
+            "note": "200, gateway up, and rag / research / mao / repomind all unconfigured. dev-local is a public fixture committed to the repository, not a credential — say that plainly."
+          },
+          {
+            "kind": "link",
+            "value": "Open the status console and close on it",
+            "url": "https://pax-ai-gateway.vercel.app",
+            "note": "Four upstreams, all unconfigured. The honest close of the whole demo."
+          }
+        ],
+        "watch": "Do not say P5 hosts, runs, or serves P1 through P4. Do not call dev-local a key, a secret, or a credential. The rate limiter is an in-process fixed window per isolate on serverless, so do not present its advertised limit as a global guarantee."
+      }
+    ],
+    "close": [
+      "Every system runs for free, deterministically, without a credential — which is why CI can run the whole path and a reviewer can reproduce it.",
+      "Every system can return a result its author would not have chosen: a refusal, a degraded outcome, a no_evidence stop, an unconfigured upstream.",
+      "Every number published anywhere in the series carries what produced it, and where a number would flatter without support, the repository says so instead."
+    ],
+    "divergence": "DEMO-DAY.md at 1cd8e4b still opens by saying nothing in the series is deployed and every URL is localhost. That was true when it was written and is no longer true for P2, P3, P4, and P5. This page is the re-cut, not a correction of that file: the script lives in the flagship repository, and changing it there is P1's commit to make, not this site's."
+  },
+  "architecturePoster": {
+    "title": "Five-system ladder",
+    "subtitle": "Exact roles. Honest hosted vs clone. Verified 2026-08-14.",
+    "layers": [
+      {
+        "number": "01",
+        "name": "Production RAG",
+        "role": "RETRIEVE",
+        "chip": "CLONE",
+        "oneLiner": "Hybrid retrieval, grounded citations, allowlisted filters, refusal as a product state."
+      },
+      {
+        "number": "02",
+        "name": "Agentic Research",
+        "role": "ACT",
+        "chip": "HOSTED",
+        "oneLiner": "Plan → retrieve → critique under a state-level budget with a full stop trace."
+      },
+      {
+        "number": "03",
+        "name": "Multi-Agent Orchestration",
+        "role": "COORDINATE",
+        "chip": "HOSTED",
+        "oneLiner": "Typed handoffs, writer-only final text, budgets, degraded outcomes, ordered timeline."
+      },
+      {
+        "number": "04",
+        "name": "RepoMind",
+        "role": "UNDERSTAND",
+        "chip": "HOSTED",
+        "oneLiner": "AST chunks, catalog-scoped Q&A, path:line citations, fixture-backed refusal."
+      },
+      {
+        "number": "05",
+        "name": "AI Platform",
+        "role": "OPERATE",
+        "chip": "HOSTED",
+        "oneLiner": "Gateway edge only: API key, rate limit, health aggregation. Does not run P1–P4."
+      }
+    ],
+    "footer": "HOSTED means a URL in content/verified-urls.json returned the claimed status on lastVerified. CLONE means no such URL exists. production-rag.vercel.app is Ipsura and is never on this poster."
   }
 }

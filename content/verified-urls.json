@@ -21,7 +21,35 @@
       "method": "GET",
       "expect": 200,
       "observed": 200,
-      "note": "{\"status\":\"ok\",\"service\":\"agentic-rag-research\",\"version\":\"0.1.0\"}"
+      "note": "Health returns status ok for agentic-rag-research 0.1.0."
+    },
+    {
+      "url": "https://pax-agentic-rag.vercel.app/metrics",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Prometheus text: process_up, requests_total, research_total, research_steps_used_total."
+    },
+    {
+      "url": "https://pax-orchestration.vercel.app",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "P3 hosted UI. Specialist console with bounded handoffs and ordered execution trace."
+    },
+    {
+      "url": "https://pax-orchestration.vercel.app/health",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Open health JSON status ok. Curled 2026-08-14 before publishing the hosted claim."
+    },
+    {
+      "url": "https://pax-orchestration.vercel.app/metrics",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Prometheus text: mao_process_up, mao_requests_total, and related counters."
     },
     {
       "url": "https://pax-repomind.vercel.app",
@@ -35,56 +63,7 @@
       "method": "GET",
       "expect": 200,
       "observed": 200,
-      "note": "{\"status\":\"ok\",\"service\":\"repomind\",\"version\":\"0.1.0\"}"
-    },
-    {
-      "url": "https://pax-ai-gateway.vercel.app",
-      "method": "GET",
-      "expect": 200,
-      "observed": 200,
-      "note": "P5 hosted status console."
-    },
-    {
-      "url": "https://pax-ai-gateway.vercel.app/health",
-      "method": "GET",
-      "expect": 200,
-      "observed": 200,
-      "note": "{\"status\":\"ok\",\"service\":\"gateway\"} - open, no header."
-    },
-    {
-      "url": "https://pax-ai-gateway.vercel.app/v1/platform/status",
-      "method": "GET",
-      "expect": 401,
-      "observed": 401,
-      "note": "Authenticated route. 401 without a header is the contract; the public demo header documented in the ai-platform README returns 200 and reports the four upstreams as unconfigured."
-    },
-    {
-      "url": "https://farmacia-compare-web.vercel.app",
-      "method": "GET",
-      "expect": 200,
-      "observed": 200,
-      "note": "Selected work: FarmaciaCompare."
-    },
-    {
-      "url": "https://prescribo.vercel.app",
-      "method": "GET",
-      "expect": 200,
-      "observed": 200,
-      "note": "Selected work: Prescribo prototype."
-    },
-    {
-      "url": "https://pax-agentic-rag.vercel.app/metrics",
-      "method": "GET",
-      "expect": 200,
-      "observed": 200,
-      "note": "Prometheus text: process_up, requests_total, research_total, research_steps_used_total."
-    },
-    {
-      "url": "https://pax-ai-gateway.vercel.app/metrics",
-      "method": "GET",
-      "expect": 200,
-      "observed": 200,
-      "note": "Prometheus text, per isolate rather than per deployment."
+      "note": "Health returns status ok for repomind 0.1.0."
     },
     {
       "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=mini",
@@ -105,19 +84,66 @@
       "method": "GET",
       "expect": 200,
       "observed": 200,
-      "note": "Deep-linked refusal: renders 'No evidence found' with zero citations."
+      "note": "Deep-linked refusal: No evidence found with zero citations."
+    },
+    {
+      "url": "https://pax-ai-gateway.vercel.app",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "P5 hosted status console."
+    },
+    {
+      "url": "https://pax-ai-gateway.vercel.app/health",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Open health JSON status ok for gateway."
+    },
+    {
+      "url": "https://pax-ai-gateway.vercel.app/v1/platform/status",
+      "method": "GET",
+      "expect": 401,
+      "observed": 401,
+      "note": "Authenticated route. 401 without a header is the contract; X-API-Key dev-local returns 200 with four unconfigured upstreams."
+    },
+    {
+      "url": "https://pax-ai-gateway.vercel.app/metrics",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Prometheus text, per isolate rather than per deployment."
+    },
+    {
+      "url": "https://farmacia-compare-web.vercel.app",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Selected work: FarmaciaCompare."
+    },
+    {
+      "url": "https://prescribo.vercel.app",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Selected work: Prescribo prototype."
     }
   ],
   "absent": [
     {
       "url": "https://pax-production-rag.vercel.app",
       "observed": 404,
-      "note": "P1 has no hosted deployment. It stays a clone-only card until a URL returns 200 here."
+      "note": "P1 has no hosted deployment. It stays a clone-only card until a URL returns 200 here. Never cite production-rag.vercel.app (Ipsura)."
     },
     {
       "url": "https://pax-multi-agent.vercel.app",
       "observed": 404,
-      "note": "P3 has no hosted deployment. It stays a clone-only card until a URL returns 200 here."
+      "note": "Legacy candidate hostname for P3. Returned 404 on 2026-08-14; the live host is pax-orchestration.vercel.app."
+    },
+    {
+      "url": "https://pax-mao.vercel.app",
+      "observed": 404,
+      "note": "Another candidate hostname for P3. Returned 404; do not link."
     }
   ]
 }

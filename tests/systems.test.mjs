@@ -103,7 +103,7 @@ test("every CTA and doc link is GitHub or a URL we personally requested", () => 
   }
 });
 
-test("the studio embeds only hosted UIs, and keeps the other two as clone cards", () => {
+test("the studio embeds only hosted UIs, and keeps every unhosted system as a clone card", () => {
   const studio = content.studio;
   assert.ok(studio, "the studio needs content");
 
@@ -119,6 +119,15 @@ test("the studio embeds only hosted UIs, and keeps the other two as clone cards"
     studio.cloneCards.map((card) => card.slug),
     content.aiSystems.filter((system) => system.hosted === null).map((system) => system.slug),
     "every system without a host must appear as a clone card",
+  );
+  assert.ok(
+    hostedSlugs.includes("multi-agent-orchestration"),
+    "P3 is hosted at pax-orchestration; the studio must embed it after /health returned 200",
+  );
+  assert.deepEqual(
+    studio.cloneCards.map((card) => card.slug),
+    ["production-rag"],
+    "only Production RAG stays clone-only until a real host is verified",
   );
 
   for (const embed of studio.embeds) {
@@ -180,6 +189,65 @@ test("the site states when it was last verified, and the pages inherit it", () =
   ]) {
     assert.match(source, /site\.lastVerified/, `${name} must render the verification date`);
   }
+});
+
+test("the interview kit is a 45-minute script with publishable steps and an architecture poster", () => {
+  const kit = content.interviewKit;
+  const poster = content.architecturePoster;
+  assert.ok(kit, "interview kit content is required");
+  assert.ok(poster, "architecture poster content is required");
+  assert.equal(kit.beats.length, 5, "one beat per system");
+  assert.equal(poster.layers.length, 5);
+
+  let minutesCovered = 0;
+  for (const beat of kit.beats) {
+    assert.match(beat.clock, /^\d+–\d+$/, `${beat.system} needs a minute range`);
+    assert.ok(["HOSTED", "CLONE"].includes(beat.mode), `${beat.system} mode must be HOSTED or CLONE`);
+    assert.ok(beat.steps.length >= 3, `${beat.system} needs concrete steps`);
+    assert.match(beat.watch, /\S/);
+    for (const step of beat.steps) {
+      if (step.url) {
+        if (step.url.startsWith("/")) {
+          assert.match(step.url, /^\/(systems|studio|interview)/);
+        } else {
+          assertPublishable(step.url, `interview kit ${beat.system}`);
+        }
+      }
+      if (step.kind === "command") {
+        assert.match(step.value, /^(curl|git clone) /);
+      }
+    }
+    if (beat.mode === "HOSTED") {
+      const system = content.aiSystems.find((item) => item.slug === beat.system);
+      assert.ok(system?.hosted, `${beat.system} is HOSTED in the kit but has no hosted block`);
+    } else {
+      const system = content.aiSystems.find((item) => item.slug === beat.system);
+      assert.equal(system?.hosted, null, `${beat.system} is CLONE in the kit but claims a host`);
+    }
+    minutesCovered += 1;
+  }
+  assert.equal(minutesCovered, 5);
+
+  for (const layer of poster.layers) {
+    assert.ok(["HOSTED", "CLONE"].includes(layer.chip));
+    assert.match(layer.name, /\S/);
+    assert.match(layer.role, /\S/);
+    assert.match(layer.oneLiner, /\S/);
+  }
+  const hostedNames = new Set(
+    content.aiSystems.filter((system) => system.hosted).map((system) => system.name),
+  );
+  for (const layer of poster.layers) {
+    if (layer.chip === "HOSTED") {
+      assert.ok(hostedNames.has(layer.name), `poster marks ${layer.name} HOSTED without a host`);
+    } else {
+      assert.ok(!hostedNames.has(layer.name), `poster marks ${layer.name} CLONE while it is hosted`);
+    }
+  }
+
+  const interviewPage = readFileSync(join(root, "app", "interview", "page.tsx"), "utf8");
+  assert.match(interviewPage, /site\.lastVerified/);
+  assert.match(interviewPage, /ArchitecturePoster/);
 });
 
 test("frame-src is derived from the fixture, so an unverified origin cannot be embedded", () => {

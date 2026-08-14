@@ -22,6 +22,7 @@ export function SiteHeader({ home = false }: { home?: boolean }) {
         <nav className="desktop-nav" aria-label="Primary navigation">
           <a href={anchor("#systems")}>Systems</a>
           <Link href="/studio">Demo studio</Link>
+          <Link href="/interview">Interview kit</Link>
           <a href={anchor("#capabilities")}>Capabilities</a>
           <a href={anchor("#principles")}>Principles</a>
         </nav>

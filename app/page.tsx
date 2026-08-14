@@ -339,7 +339,8 @@ export default function Home() {
               <p>
                 Each image is the official capture stored in that repository at the verified
                 commit. Follow the caption link to see the same file on GitHub, or open the{" "}
-                <Link href="/studio">demo studio</Link> to use the three that are hosted.
+                <Link href="/studio">demo studio</Link> to use the four that are hosted, or the{" "}
+                <Link href="/interview">interview kit</Link> for the 45-minute script.
               </p>
             </div>
 
