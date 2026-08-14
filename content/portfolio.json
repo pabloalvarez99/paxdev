@@ -94,7 +94,7 @@
         "width": 1440,
         "height": 1962,
         "caption": "Grounded answer with citations, from the free local stack.",
-        "sourceUrl": "https://github.com/pabloalvarez99/production-rag/blob/129a46d/docs/assets/social-preview.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/production-rag/blob/129a46d/docs/assets/ui-grounded.png"
       }
     },
     {
@@ -103,7 +103,7 @@
       "name": "Agentic Research",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 18c1ff9) · main e83f03c · CI green",
+      "phase": "v0.1.0 (tag 18c1ff9) · main 57ce423 · CI green",
       "summary": "A bounded plan → retrieve → critique research loop with tools, explicit budgets, API/CLI/UI surfaces, cited synthesis, and deterministic traces.",
       "outcome": "Act with tools under budget",
       "stack": [
@@ -147,7 +147,7 @@
         "width": 1280,
         "height": 2292,
         "caption": "A completed research run: budget spent, stop reason, cited synthesis.",
-        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/e83f03c/docs/assets/ui-done.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/57ce423/docs/assets/ui-done.png"
       }
     },
     {
@@ -156,7 +156,7 @@
       "name": "Multi-Agent Orchestration",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag e2687ca) · main 7e94265 · CI green",
+      "phase": "v0.1.0 (tag e2687ca) · main 78b3910 · CI green",
       "summary": "An orchestrator and specialist agents with explicit handoffs, global budgets, failure isolation, and auditable multi-agent timelines.",
       "outcome": "Coordinate specialists",
       "stack": [
@@ -198,9 +198,9 @@
         "src": "/multi-agent-trace.png",
         "alt": "Multi-agent orchestration trace timeline showing handoffs between orchestrator and specialists",
         "width": 1080,
-        "height": 3105,
+        "height": 3321,
         "caption": "The handoff timeline, step by step, with per-agent budget.",
-        "sourceUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/7e94265/docs/assets/ui-trace.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/78b3910/docs/assets/ui-trace.png"
       }
     },
     {
@@ -209,7 +209,7 @@
       "name": "RepoMind",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 327a949) · main eeab5ef · CI green",
+      "phase": "v0.1.0 (tag 327a949) · main a9b0acb · CI green",
       "summary": "Repository intelligence built around safe repository walking, AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
       "outcome": "Understand codebases",
       "stack": [
@@ -251,9 +251,9 @@
         "src": "/repomind-dogfood-hit.png",
         "alt": "RepoMind answering a question about its own repository with path and line citations",
         "width": 1280,
-        "height": 1248,
+        "height": 1255,
         "caption": "RepoMind reading its own repository, answering with path:line evidence.",
-        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/eeab5ef/docs/assets/ui-dogfood-hit.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/a9b0acb/docs/assets/ui-dogfood-hit.png"
       }
     },
     {
@@ -262,7 +262,7 @@
       "name": "AI Platform",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 7978a00) · main 169e4dc · CI green",
+      "phase": "v0.1.0 (tag 7978a00) · main 4318531 · CI green",
       "summary": "A service gateway for the portfolio with API-key authentication, per-key rate limits, request-ID propagation, aggregate health, and compose-based operations.",
       "outcome": "Operate the system",
       "stack": [
@@ -318,7 +318,7 @@
         "width": 2200,
         "height": 1800,
         "caption": "The gateway is honest when nothing is behind it: four upstreams, unconfigured.",
-        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/169e4dc/docs/assets/ui-status-unconfigured.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/4318531/docs/assets/ui-status-unconfigured.png"
       }
     }
   ],
