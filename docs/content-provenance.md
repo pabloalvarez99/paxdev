@@ -8,11 +8,15 @@ site. Update this record whenever a public status changes.
 
 | Surface | Public evidence |
 |---|---|
-| Production RAG | `pabloalvarez99/production-rag` main `d882c9a`, README, SHIP, case study, CI, release `v0.1.0` |
-| Agentic Research | `pabloalvarez99/agentic-rag-research` `origin/main` `56b77cf`, tag `v0.1.0` at `18c1ff9`, UI, 17/17 evals, CI |
-| Multi-agent orchestration | `pabloalvarez99/multi-agent-orchestration` `8b9c96b`, M4 API/CLI/12 goldens, SHIP; release still planned |
-| RepoMind | `pabloalvarez99/repomind` `46e21e3`, M5 AST path:line, CLI, 14/14 fixture eval, CI |
-| AI Platform | No public repository; displayed as `PLANNED`, with no repository link |
+| Production RAG | `main` `d882c9a`; README, SHIP, case study, green CI, release `v0.1.0` |
+| Agentic Research | `main` `56b77cf`; API/CLI/UI, optional P1 HTTP, notes tool, 17-case eval contract, green CI, release `v0.1.0` |
+| Multi-Agent Orchestration | `main` `8b9c96b`; M4 API/CLI, bounded fake specialists, 12-task eval contract, green CI; no release |
+| RepoMind | M5 core at `46e21e3`; AST `path:line` Q&A, JSON CLI, 14-question fixture eval contract, green CI; no release |
+| AI Platform | No public `pabloalvarez99/ai-platform` repository; displayed as `PLANNED` with no evidence links |
+
+The first proof-strip count is four because P1–P4 are public repositories with documented
+credential-free demo paths. P5 is part of the five-system ladder but does not count as public
+or live until the repository, documented `/health`, and green CI exist.
 
 The Production RAG screenshot is copied from
 `production-rag/docs/assets/ui-grounded.png`. Its source repository documents the repeatable
@@ -31,6 +35,6 @@ capture command and the fake-provider boundary.
 
 - This site describes code and product surfaces; it does not claim commercial adoption,
   production traffic, model quality, or benchmark leadership.
-- Fixture evals are contract/plumbing evidence, not SOTA.
+- Fixture evals are contract and plumbing evidence, not quality leadership claims.
 - `PUBLIC BUILD`, `PROTOTYPE`, and `PUBLIC REPOSITORY` are not synonyms for production readiness.
 - Private repositories and vault notes are not linked or copied into the public site.

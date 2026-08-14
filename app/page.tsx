@@ -209,9 +209,9 @@ export default function Home() {
 
                 <ul className="evidence-list">
                   {flagship.evidence.map((item) => (
-                    <li key={item}>
+                    <li key={item.label}>
                       <CheckIcon />
-                      <span>{item}</span>
+                      <ExternalLink href={item.url}>{item.label}</ExternalLink>
                     </li>
                   ))}
                 </ul>
@@ -262,7 +262,7 @@ export default function Home() {
                 <p className="section-kicker">THE FIVE-SYSTEM LADDER</p>
                 <h3>Each project adds one layer of operational maturity.</h3>
               </div>
-              <p>LIVE and IN PROGRESS are linked to code. PLANNED means exactly that.</p>
+              <p>LIVE is linked to runnable evidence. PLANNED means exactly that.</p>
             </div>
 
             <div className="systems-grid">
@@ -280,10 +280,25 @@ export default function Home() {
                       <span key={item}>{item}</span>
                     ))}
                   </div>
+                  {system.evidence.length > 0 ? (
+                    <ul className="system-evidence" aria-label={`${system.name} evidence`}>
+                      {system.evidence.map((item) => (
+                        <li key={item.label}>
+                          <ExternalLink href={item.url}>{item.label}</ExternalLink>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                   <div className="card-footer">
                     <span>{system.phase}</span>
-                    {system.links[0] ? (
-                      <ExternalLink href={system.links[0].url}>Inspect</ExternalLink>
+                    {system.links.length > 0 ? (
+                      <span className="card-links">
+                        {system.links.map((link) => (
+                          <ExternalLink href={link.url} key={link.label}>
+                            {link.label}
+                          </ExternalLink>
+                        ))}
+                      </span>
                     ) : (
                       <span className="no-link">No repository yet</span>
                     )}

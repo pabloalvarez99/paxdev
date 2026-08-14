@@ -27,10 +27,29 @@ test("public status claims require public evidence", () => {
       assert.ok(system.links.length > 0, `${system.name} needs a public evidence link`);
       assert.ok(system.evidence.length > 0, `${system.name} needs concrete evidence`);
       assert.match(system.links[0].url, /^https:\/\/github\.com\/pabloalvarez99\//);
+      for (const item of system.evidence) {
+        assert.match(item.label, /\S/);
+        assert.match(item.url, /^https:\/\/github\.com\/pabloalvarez99\//);
+      }
     }
     if (system.status === "PLANNED") {
       assert.deepEqual(system.links, [], `${system.name} must not link an uncreated repository`);
       assert.deepEqual(system.evidence, [], `${system.name} must not present planned evidence as built`);
+    }
+  }
+});
+
+test("each live system links its repository and each claimed release", () => {
+  for (const system of content.aiSystems.filter((item) => item.status === "LIVE")) {
+    assert.ok(
+      system.links.some((link) => link.label === "Repository"),
+      `${system.name} needs a Repository link`,
+    );
+    if (/v\d+\.\d+\.\d+/.test(system.phase)) {
+      assert.ok(
+        system.links.some((link) => /v\d+\.\d+\.\d+/.test(link.label)),
+        `${system.name} claims a release but does not link it`,
+      );
     }
   }
 });

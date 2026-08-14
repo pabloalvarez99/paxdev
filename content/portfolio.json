@@ -11,8 +11,8 @@
   "proof": [
     {
       "value": "4",
-      "label": "LIVE AI systems",
-      "detail": "RAG, research agent, multi-agent, code Q&A — all free-path"
+      "label": "public free-path systems",
+      "detail": "Four public repos clone and demo at $0; one platform layer remains planned"
     },
     {
       "value": "$0",
@@ -37,15 +37,15 @@
       "name": "Production RAG",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "Flagship · v0.1.0",
+      "phase": "v0.1.0 · main d882c9a",
       "summary": "A production-shaped retrieval system that combines dense and sparse search, reranks candidates, and returns grounded answers with resolvable citations—or refuses.",
       "outcome": "Retrieve and answer honestly",
       "stack": ["Python", "FastAPI", "Qdrant", "LangGraph", "Docker", "GitHub Actions"],
       "evidence": [
-        "Hybrid dense + sparse retrieval with RRF",
-        "Cross-encoder reranking with fail-open behavior",
-        "Citation validation and first-class refusal",
-        "Two-tier offline evaluation and generated scorecards"
+        { "label": "Grounded answers, refusal, and free demo — SHIP", "url": "https://github.com/pabloalvarez99/production-rag/blob/main/docs/SHIP.md" },
+        { "label": "Offline golden evaluation contract", "url": "https://github.com/pabloalvarez99/production-rag/blob/main/data/eval/README.md" },
+        { "label": "Credential-free checks — CI", "url": "https://github.com/pabloalvarez99/production-rag/actions/workflows/ci.yml" },
+        { "label": "Published v0.1.0 release", "url": "https://github.com/pabloalvarez99/production-rag/releases/tag/v0.1.0" }
       ],
       "links": [
         { "label": "Repository", "url": "https://github.com/pabloalvarez99/production-rag" },
@@ -59,15 +59,15 @@
       "name": "Agentic Research",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 · M1–M6",
-      "summary": "A bounded plan → retrieve → critique research loop with explicit budgets, terminal states, cited synthesis, a free UI, and deterministic execution traces.",
+      "phase": "v0.1.0 · main 56b77cf",
+      "summary": "A bounded plan → retrieve → critique research loop with tools, explicit budgets, API/CLI/UI surfaces, cited synthesis, and deterministic traces.",
       "outcome": "Act with tools under budget",
-      "stack": ["Python", "Pydantic", "FastAPI", "HTTPX", "Typed protocols", "HTMX"],
+      "stack": ["Python", "Pydantic", "FastAPI", "HTTPX", "Typed tools"],
       "evidence": [
-        "Step budget enforced in state",
-        "Fake and optional P1 HTTP retrieval behind one port",
-        "Explicit stop reasons, notes tool, and evidence gaps",
-        "17/17 offline goldens and a trace UI — billed USD 0"
+        { "label": "API, CLI, UI, tools, and stop contracts — SHIP", "url": "https://github.com/pabloalvarez99/agentic-rag-research/blob/main/docs/SHIP.md" },
+        { "label": "17-case deterministic evaluation contract", "url": "https://github.com/pabloalvarez99/agentic-rag-research/blob/main/data/eval/README.md" },
+        { "label": "Credential-free checks — CI", "url": "https://github.com/pabloalvarez99/agentic-rag-research/actions/workflows/ci.yml" },
+        { "label": "Published v0.1.0 release", "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.1.0" }
       ],
       "links": [
         { "label": "Repository", "url": "https://github.com/pabloalvarez99/agentic-rag-research" },
@@ -80,19 +80,17 @@
       "name": "Multi-Agent Orchestration",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "M4 live · release next",
-      "summary": "An orchestrator and Research/Critic/Writer specialists with explicit handoffs, global budgets, failure isolation, and auditable multi-agent timelines.",
+      "phase": "M4 · main 8b9c96b",
+      "summary": "An orchestrator and specialist agents with explicit handoffs, global budgets, failure isolation, and auditable multi-agent timelines.",
       "outcome": "Coordinate specialists",
-      "stack": ["Agent protocols", "Handoff policy", "Trace timelines", "Failure isolation", "FastAPI"],
+      "stack": ["Python", "FastAPI", "Agent protocols", "Handoff policy", "Trace timelines"],
       "evidence": [
-        "Writer-only finals and typed degraded outcomes",
-        "Global handoff ceiling and critic retry budget",
-        "Ordered JSON-safe traces without full prompts",
-        "12-task offline routing scorecard at USD 0"
+        { "label": "Bounded roles, handoffs, API/CLI, and degraded mode — SHIP", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/main/docs/SHIP.md" },
+        { "label": "12-task offline routing evaluation contract", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/main/data/eval/README.md" },
+        { "label": "Credential-free checks — CI", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/actions/workflows/ci.yml" }
       ],
       "links": [
-        { "label": "Repository", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration" },
-        { "label": "SHIP", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/main/docs/SHIP.md" }
+        { "label": "Repository", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration" }
       ]
     },
     {
@@ -101,15 +99,14 @@
       "name": "RepoMind",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "M5 live · dogfood next",
-      "summary": "Repository intelligence built around AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
+      "phase": "M5 · core 46e21e3",
+      "summary": "Repository intelligence built around safe repository walking, AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
       "outcome": "Understand codebases",
-      "stack": ["Python AST", "Code retrieval", "Path:line evidence", "Golden fixtures", "FastAPI"],
+      "stack": ["Python AST", "FastAPI", "JSON CLI", "Path:line evidence", "Golden fixtures"],
       "evidence": [
-        "Gitignore-safe walk and AST class/function/method chunks",
-        "Deterministic lexical index with exact-symbol priority",
-        "Answers cite path:start-end or refuse with zero citations",
-        "14-question fixture gate — not a SOTA claim"
+        { "label": "AST chunks, code Q&A, CLI, and milestone truth — README", "url": "https://github.com/pabloalvarez99/repomind#readme" },
+        { "label": "14-question fixture evaluation contract", "url": "https://github.com/pabloalvarez99/repomind/blob/main/data/eval/README.md" },
+        { "label": "Credential-free checks — CI", "url": "https://github.com/pabloalvarez99/repomind/actions/workflows/ci.yml" }
       ],
       "links": [
         { "label": "Repository", "url": "https://github.com/pabloalvarez99/repomind" }
