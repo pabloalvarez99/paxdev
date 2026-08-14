@@ -20,9 +20,9 @@
       "detail": "No key, billed call, or signup for the core demos"
     },
     {
-      "value": "1",
-      "label": "hosted gateway",
-      "detail": "P5 answers over HTTP with no clone: open health, keyed status, four upstreams unconfigured"
+      "value": "3",
+      "label": "hosted demos",
+      "detail": "P2, P4, and P5 answer over HTTP with no clone and no key; each states its own fixture or gateway-only boundary"
     },
     {
       "value": "CI",
@@ -108,7 +108,7 @@
       "name": "Agentic Research",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 18c1ff9) · main 57ce423 · CI green",
+      "phase": "v0.1.0 (tag 18c1ff9) · main 8bde9c9 · CI green",
       "summary": "A bounded plan → retrieve → critique research loop with tools, explicit budgets, API/CLI/UI surfaces, cited synthesis, and deterministic traces.",
       "outcome": "Act with tools under budget",
       "stack": [
@@ -144,9 +144,17 @@
         {
           "label": "v0.1.0",
           "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.1.0"
+        },
+        {
+          "label": "Hosted demo",
+          "url": "https://pax-agentic-rag.vercel.app"
         }
       ],
-      "hosted": null,
+      "hosted": {
+        "url": "https://pax-agentic-rag.vercel.app",
+        "label": "Hosted demo",
+        "note": "Ask a question and read the report, citations, terminal status, steps used, and trace. The hosted copy runs the loop over the committed fixture retriever, so it proves the agent's contract and says nothing about retrieval or answer quality; it sets no PRODUCTION_RAG_URL, so the HTTP retriever fails there with capability_missing by design."
+      },
       "capture": {
         "src": "/agentic-research-run.png",
         "alt": "Agentic Research UI showing a completed run with its stop reason and cited synthesis",
@@ -216,7 +224,7 @@
       "name": "RepoMind",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 327a949) · main 1db33ab · CI green",
+      "phase": "v0.1.0 (tag 327a949) · main 0f91b7c · CI green",
       "summary": "Repository intelligence built around safe repository walking, AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
       "outcome": "Understand codebases",
       "stack": [
@@ -252,9 +260,17 @@
         {
           "label": "v0.1.0",
           "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.1.0"
+        },
+        {
+          "label": "Hosted demo",
+          "url": "https://pax-repomind.vercel.app"
         }
       ],
-      "hosted": null,
+      "hosted": {
+        "url": "https://pax-repomind.vercel.app",
+        "label": "Hosted demo",
+        "note": "The same free path with no clone and no key: GET /health is open and POST /v1/code/ask answers with path:line citations. It indexes the committed mini and production_rag fixtures and nothing else, so it cannot answer about an arbitrary repository."
+      },
       "capture": {
         "src": "/repomind-dogfood-hit.png",
         "alt": "RepoMind answering a question about its own repository with path and line citations",
@@ -335,7 +351,7 @@
       "hosted": {
         "url": "https://pax-ai-gateway.vercel.app",
         "label": "Hosted gateway",
-        "note": "Open the status console, or call it directly: GET /health is open, and GET /v1/platform/status needs the public demo header X-API-Key: dev-local. The hosted instance is the gateway only — it does not run P1-P4 for the visitor, so those four services report unconfigured."
+        "note": "Open the status console, or call it directly: GET /health is open, and GET /v1/platform/status needs the public demo header X-API-Key: dev-local. The hosted instance is the gateway only - it does not run P1-P4 for the visitor, so those four services report unconfigured."
       },
       "capture": {
         "src": "/ai-platform-status.png",

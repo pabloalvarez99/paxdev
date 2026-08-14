@@ -9,9 +9,9 @@ site. Update this record whenever a public status changes.
 | Surface | Public evidence |
 |---|---|
 | Production RAG | Release `v0.1.0` at `678c554`; `main` `62cc15f` with green CI; metadata filters merged with ADR 0011; `docs/DEMO-DAY.md`, demo GIF, and social preview committed |
-| Agentic Research | Release `v0.1.0` at `18c1ff9`; `main` `57ce423` with green CI; API/CLI/UI, optional P1 HTTP, notes tool, 17-case eval contract, three committed UI captures |
+| Agentic Research | Release `v0.1.0` at `18c1ff9`; `main` `8bde9c9` with green CI; API/CLI/UI, optional P1 HTTP, notes tool, 17-case eval contract, three committed UI captures |
 | Multi-Agent Orchestration | Release `v0.1.0` at `e2687ca`; `main` `78b3910` with green CI; done, budget, and trace captures committed |
-| RepoMind | Release `v0.1.0` at `327a949`; `main` `1db33ab` with green CI; mini-hit, mini-refuse, and dogfood-hit captures committed |
+| RepoMind | Release `v0.1.0` at `327a949`; `main` `0f91b7c` with green CI; mini-hit, mini-refuse, and dogfood-hit captures committed |
 | AI Platform | Release `v0.1.0` at `7978a00`; last all-green `main` `4318531`; hosted on Vercel from `main` `2fd74c7`, whose CI is lint-red; open `/health`, gateway/auth/rate-limit/status/guardrail tests, unconfigured-status capture committed |
 
 The tag and `main` SHAs differ where work continued after the release; both are cited so neither is
@@ -27,11 +27,17 @@ test step never runs. That commit is cited because it is what the hosted instanc
 last all-green `main`, `4318531`, is cited beside it. Both the site card and this record say so
 rather than pinning the green SHA and letting the reader assume the deployment matches it.
 
-The hosted gateway at <https://pax-ai-gateway.vercel.app> was verified on 2026-08-14 with three
-HTTP calls: `GET /health` returned `200` and `{"status":"ok","service":"gateway"}`, `GET
-/v1/platform/status` without a key returned `401`, and the same path with `X-API-Key: dev-local`
-returned `gateway: up` alongside `rag`, `research`, `mao`, and `repomind` as `unconfigured`. The
-proof strip counts one hosted gateway, not five hosted systems.
+Three systems are hosted, and each was verified over HTTP on 2026-08-14 before it was published
+here:
+
+| Hosted surface | Verification | Boundary stated on the card |
+|---|---|---|
+| <https://pax-ai-gateway.vercel.app> | `GET /health` returned `200` and `{"status":"ok","service":"gateway"}`; `GET /v1/platform/status` returned `401` without a key, and with `X-API-Key: dev-local` returned `gateway: up` alongside `rag`, `research`, `mao`, and `repomind` as `unconfigured` | The gateway only; it does not run P1–P4 for the visitor |
+| <https://pax-agentic-rag.vercel.app> | `GET /health` returned `200` and `{"status":"ok","service":"agentic-rag-research","version":"0.1.0"}` | Runs the loop over the committed fixture retriever, with no `PRODUCTION_RAG_URL`, so it proves the agent contract and claims nothing about answer quality |
+| <https://pax-repomind.vercel.app> | `GET /health` returned `200`; `POST /v1/code/ask` answered `create_app` with `app/main.py` lines 6-9 | Indexes the committed `mini` and `production_rag` fixtures only; it cannot answer about an arbitrary repository |
+
+The proof strip counts three hosted demos, not five hosted systems, and P1 and P3 remain
+clone-and-run.
 
 AI Platform is the only system whose free path does not exercise the others. Its gateway starts with
 every upstream URL empty, so P1–P4 report `unconfigured` rather than running for the visitor, and its

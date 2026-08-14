@@ -61,9 +61,9 @@ test("each live system links its repository and each claimed release", () => {
   }
 });
 
-test("a hosted system links the running deployment and stays inside its boundary", () => {
+test("hosted systems link the running deployment and state their boundary", () => {
   const hosted = content.aiSystems.filter((system) => system.hosted !== null);
-  const proof = content.proof.find((item) => item.label === "hosted gateway");
+  const proof = content.proof.find((item) => item.label === "hosted demos");
   assert.ok(proof);
   assert.equal(Number(proof.value), hosted.length);
 
@@ -75,12 +75,19 @@ test("a hosted system links the running deployment and stays inside its boundary
       system.links.some((link) => link.url === system.hosted.url),
       `${system.name} must link its hosted URL alongside its repository`,
     );
-    assert.match(
-      system.hosted.note,
-      /does not run P1-P4/,
-      `${system.name} must say what the hosted instance does not do`,
+    assert.ok(
+      system.hosted.note.length > 80,
+      `${system.name} must say what the hosted instance does not do, not only what it does`,
     );
   }
+
+  const gateway = content.aiSystems.find((system) => system.slug === "ai-platform");
+  assert.ok(gateway.hosted);
+  assert.match(
+    gateway.hosted.note,
+    /does not run P1-P4/,
+    "the hosted gateway must not read as a hosted P1-P4",
+  );
 });
 
 test("selected work links only to HTTPS public surfaces", () => {
