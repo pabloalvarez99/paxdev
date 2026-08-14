@@ -306,6 +306,47 @@ export default function Home() {
                 </article>
               ))}
             </div>
+
+            <div className="roadmap-heading" id="gallery">
+              <div>
+                <p className="section-kicker">SEE IT WITHOUT CLONING</p>
+                <h3>Five systems, five captures, all committed to their repositories.</h3>
+              </div>
+              <p>
+                Each image is the official capture stored in that repository at the verified
+                commit. Follow the caption link to see the same file on GitHub.
+              </p>
+            </div>
+
+            <div className="gallery-grid">
+              {aiSystems.map((system) => (
+                <figure className="product-frame gallery-frame" key={`capture-${system.slug}`}>
+                  <div className="product-frame-bar">
+                    <div className="window-dots" aria-hidden="true">
+                      <i />
+                      <i />
+                      <i />
+                    </div>
+                    <span>{system.slug}</span>
+                    <span className="frame-secure">{system.status}</span>
+                  </div>
+                  <div className="product-screen">
+                    <Image
+                      alt={system.capture.alt}
+                      height={system.capture.height}
+                      loading="lazy"
+                      sizes="(max-width: 900px) 100vw, 33vw"
+                      src={system.capture.src}
+                      width={system.capture.width}
+                    />
+                  </div>
+                  <figcaption>
+                    {system.capture.caption}{" "}
+                    <ExternalLink href={system.capture.sourceUrl}>Source file</ExternalLink>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </section>
 

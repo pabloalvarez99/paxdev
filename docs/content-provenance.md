@@ -8,11 +8,14 @@ site. Update this record whenever a public status changes.
 
 | Surface | Public evidence |
 |---|---|
-| Production RAG | Release `v0.1.0`; `main` `cb852ba` with green CI. The earlier `590045c` was red on the rendered-metric provenance guard; `cb852ba` is the docs fix that restored green. |
-| Agentic Research | Release `v0.1.0`; `main` `66aada2` with green CI; API/CLI/UI, optional P1 HTTP, notes tool, 17-case eval contract |
-| Multi-Agent Orchestration | Release `v0.1.0`; `main` `e2687ca` with green CI; the release tag points at the same commit |
-| RepoMind | Release `v0.1.0`; `main` `327a949` with green CI; the release tag points at the same commit |
-| AI Platform | Release `v0.1.0`; `main` `7978a00` with green CI; open `/health`, gateway/auth/rate-limit/status/guardrail tests |
+| Production RAG | Release `v0.1.0` at `678c554`; `main` `129a46d` with green CI; `docs/DEMO-DAY.md`, demo GIF, and social preview committed |
+| Agentic Research | Release `v0.1.0` at `18c1ff9`; `main` `e83f03c` with green CI; API/CLI/UI, optional P1 HTTP, notes tool, 17-case eval contract, three committed UI captures |
+| Multi-Agent Orchestration | Release `v0.1.0` at `e2687ca`; `main` `7e94265` with green CI; done, budget, and trace captures committed |
+| RepoMind | Release `v0.1.0` at `327a949`; `main` `eeab5ef` with green CI; mini-hit, mini-refuse, and dogfood-hit captures committed |
+| AI Platform | Release `v0.1.0` at `7978a00`; `main` `169e4dc` with green CI; open `/health`, gateway/auth/rate-limit/status/guardrail tests, unconfigured-status capture committed |
+
+The tag and `main` SHAs differ where work continued after the release; both are cited so neither is
+mistaken for the other. A tag commit is never presented as the current head.
 
 The first proof-strip count is five because all five systems now carry a published `v0.1.0` tag on a
 `main` whose latest CI run is green, plus a documented credential-free demo path. Every SHA cited on
@@ -23,9 +26,19 @@ every upstream URL empty, so P1–P4 report `unconfigured` rather than running f
 rate limiter is an in-process fixed window on a single instance, not a distributed limiter. The
 `dev-local` demo key is a public fixture in the repository, not a credential.
 
-The Production RAG screenshot is copied from
-`production-rag/docs/assets/ui-grounded.png`. Its source repository documents the repeatable
-capture command and the fake-provider boundary.
+Every image on the site is vendored into `public/` from the official capture committed in its own
+repository at the SHA above; nothing is a hand-built mockup, and each caption links back to the
+source file on GitHub.
+
+| Site file | Source of record |
+|---|---|
+| `production-rag-grounded.png` | `production-rag/docs/assets/ui-grounded.png` |
+| `agentic-research-run.png` | `agentic-rag-research/docs/assets/ui-done.png` at `e83f03c` |
+| `multi-agent-trace.png` | `multi-agent-orchestration/docs/assets/ui-trace.png` at `7e94265` |
+| `repomind-dogfood-hit.png` | `repomind/docs/assets/ui-dogfood-hit.png` at `eeab5ef` |
+| `ai-platform-status.png` | `ai-platform/docs/assets/ui-status-unconfigured.png` at `169e4dc` |
+
+Each source repository documents the repeatable capture command and its fake-provider boundary.
 
 ## Selected public work
 

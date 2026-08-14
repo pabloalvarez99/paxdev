@@ -37,21 +37,65 @@
       "name": "Production RAG",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 · main cb852ba · CI green",
+      "phase": "v0.1.0 (tag 678c554) · main 129a46d · CI green",
       "summary": "A production-shaped retrieval system that combines dense and sparse search, reranks candidates, and returns grounded answers with resolvable citations—or refuses.",
       "outcome": "Retrieve and answer honestly",
-      "stack": ["Python", "FastAPI", "Qdrant", "LangGraph", "Docker", "GitHub Actions"],
+      "stack": [
+        "Python",
+        "FastAPI",
+        "Qdrant",
+        "LangGraph",
+        "Docker",
+        "GitHub Actions"
+      ],
       "evidence": [
-        { "label": "Grounded answers, refusal, and free demo — SHIP", "url": "https://github.com/pabloalvarez99/production-rag/blob/main/docs/SHIP.md" },
-        { "label": "Offline golden evaluation contract", "url": "https://github.com/pabloalvarez99/production-rag/blob/main/data/eval/README.md" },
-        { "label": "Credential-free checks — CI", "url": "https://github.com/pabloalvarez99/production-rag/actions/workflows/ci.yml" },
-        { "label": "Published v0.1.0 release", "url": "https://github.com/pabloalvarez99/production-rag/releases/tag/v0.1.0" }
+        {
+          "label": "Grounded answers, refusal, and free demo — SHIP",
+          "url": "https://github.com/pabloalvarez99/production-rag/blob/main/docs/SHIP.md"
+        },
+        {
+          "label": "45-minute demo-day script — DEMO-DAY",
+          "url": "https://github.com/pabloalvarez99/production-rag/blob/main/docs/DEMO-DAY.md"
+        },
+        {
+          "label": "Offline golden evaluation contract",
+          "url": "https://github.com/pabloalvarez99/production-rag/blob/main/data/eval/README.md"
+        },
+        {
+          "label": "Credential-free checks — CI",
+          "url": "https://github.com/pabloalvarez99/production-rag/actions/workflows/ci.yml"
+        },
+        {
+          "label": "Published v0.1.0 release",
+          "url": "https://github.com/pabloalvarez99/production-rag/releases/tag/v0.1.0"
+        }
       ],
       "links": [
-        { "label": "Repository", "url": "https://github.com/pabloalvarez99/production-rag" },
-        { "label": "Case study", "url": "https://github.com/pabloalvarez99/production-rag/blob/main/docs/CASESTUDY.md" },
-        { "label": "v0.1.0", "url": "https://github.com/pabloalvarez99/production-rag/releases/tag/v0.1.0" }
-      ]
+        {
+          "label": "Repository",
+          "url": "https://github.com/pabloalvarez99/production-rag"
+        },
+        {
+          "label": "Case study",
+          "url": "https://github.com/pabloalvarez99/production-rag/blob/main/docs/CASESTUDY.md"
+        },
+        {
+          "label": "Demo-day script",
+          "url": "https://github.com/pabloalvarez99/production-rag/blob/main/docs/DEMO-DAY.md"
+        },
+        {
+          "label": "v0.1.0",
+          "url": "https://github.com/pabloalvarez99/production-rag/releases/tag/v0.1.0"
+        }
+      ],
+      "capture": {
+        "src": "/production-rag-grounded.png",
+        "alt": "Production RAG returning a grounded answer with resolvable citations and pipeline timings",
+        "width": 1440,
+        "height": 1962,
+        "caption": "Grounded answer with citations, from the free local stack.",
+        "sourceUrl": "https://github.com/pabloalvarez99/production-rag/blob/129a46d/docs/assets/social-preview.png"
+      }
     },
     {
       "number": "02",
@@ -59,20 +103,52 @@
       "name": "Agentic Research",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 · main 66aada2 · CI green",
+      "phase": "v0.1.0 (tag 18c1ff9) · main e83f03c · CI green",
       "summary": "A bounded plan → retrieve → critique research loop with tools, explicit budgets, API/CLI/UI surfaces, cited synthesis, and deterministic traces.",
       "outcome": "Act with tools under budget",
-      "stack": ["Python", "Pydantic", "FastAPI", "HTTPX", "Typed tools"],
+      "stack": [
+        "Python",
+        "Pydantic",
+        "FastAPI",
+        "HTTPX",
+        "Typed tools"
+      ],
       "evidence": [
-        { "label": "API, CLI, UI, tools, and stop contracts — SHIP", "url": "https://github.com/pabloalvarez99/agentic-rag-research/blob/main/docs/SHIP.md" },
-        { "label": "17-case deterministic evaluation contract", "url": "https://github.com/pabloalvarez99/agentic-rag-research/blob/main/data/eval/README.md" },
-        { "label": "Credential-free checks — CI", "url": "https://github.com/pabloalvarez99/agentic-rag-research/actions/workflows/ci.yml" },
-        { "label": "Published v0.1.0 release", "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.1.0" }
+        {
+          "label": "API, CLI, UI, tools, and stop contracts — SHIP",
+          "url": "https://github.com/pabloalvarez99/agentic-rag-research/blob/main/docs/SHIP.md"
+        },
+        {
+          "label": "17-case deterministic evaluation contract",
+          "url": "https://github.com/pabloalvarez99/agentic-rag-research/blob/main/data/eval/README.md"
+        },
+        {
+          "label": "Credential-free checks — CI",
+          "url": "https://github.com/pabloalvarez99/agentic-rag-research/actions/workflows/ci.yml"
+        },
+        {
+          "label": "Published v0.1.0 release",
+          "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.1.0"
+        }
       ],
       "links": [
-        { "label": "Repository", "url": "https://github.com/pabloalvarez99/agentic-rag-research" },
-        { "label": "v0.1.0", "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.1.0" }
-      ]
+        {
+          "label": "Repository",
+          "url": "https://github.com/pabloalvarez99/agentic-rag-research"
+        },
+        {
+          "label": "v0.1.0",
+          "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.1.0"
+        }
+      ],
+      "capture": {
+        "src": "/agentic-research-run.png",
+        "alt": "Agentic Research UI showing a completed run with its stop reason and cited synthesis",
+        "width": 1280,
+        "height": 2292,
+        "caption": "A completed research run: budget spent, stop reason, cited synthesis.",
+        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/e83f03c/docs/assets/ui-done.png"
+      }
     },
     {
       "number": "03",
@@ -80,20 +156,52 @@
       "name": "Multi-Agent Orchestration",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 · main e2687ca · CI green",
+      "phase": "v0.1.0 (tag e2687ca) · main 7e94265 · CI green",
       "summary": "An orchestrator and specialist agents with explicit handoffs, global budgets, failure isolation, and auditable multi-agent timelines.",
       "outcome": "Coordinate specialists",
-      "stack": ["Python", "FastAPI", "Agent protocols", "Handoff policy", "Trace timelines"],
+      "stack": [
+        "Python",
+        "FastAPI",
+        "Agent protocols",
+        "Handoff policy",
+        "Trace timelines"
+      ],
       "evidence": [
-        { "label": "Bounded roles, handoffs, API/CLI, and degraded mode — SHIP", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/main/docs/SHIP.md" },
-        { "label": "12-task offline routing evaluation contract — a routing contract, not a claim that agents beat one model", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/main/data/eval/README.md" },
-        { "label": "Credential-free checks — CI", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/actions/workflows/ci.yml" },
-        { "label": "Published v0.1.0 release", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.1.0" }
+        {
+          "label": "Bounded roles, handoffs, API/CLI, and degraded mode — SHIP",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/main/docs/SHIP.md"
+        },
+        {
+          "label": "12-task offline routing evaluation contract — a routing contract, not a claim that agents beat one model",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/main/data/eval/README.md"
+        },
+        {
+          "label": "Credential-free checks — CI",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/actions/workflows/ci.yml"
+        },
+        {
+          "label": "Published v0.1.0 release",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.1.0"
+        }
       ],
       "links": [
-        { "label": "Repository", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration" },
-        { "label": "v0.1.0", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.1.0" }
-      ]
+        {
+          "label": "Repository",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration"
+        },
+        {
+          "label": "v0.1.0",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.1.0"
+        }
+      ],
+      "capture": {
+        "src": "/multi-agent-trace.png",
+        "alt": "Multi-agent orchestration trace timeline showing handoffs between orchestrator and specialists",
+        "width": 1080,
+        "height": 3105,
+        "caption": "The handoff timeline, step by step, with per-agent budget.",
+        "sourceUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/7e94265/docs/assets/ui-trace.png"
+      }
     },
     {
       "number": "04",
@@ -101,20 +209,52 @@
       "name": "RepoMind",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 · main 327a949 · CI green",
+      "phase": "v0.1.0 (tag 327a949) · main eeab5ef · CI green",
       "summary": "Repository intelligence built around safe repository walking, AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
       "outcome": "Understand codebases",
-      "stack": ["Python AST", "FastAPI", "JSON CLI", "Path:line evidence", "Golden fixtures"],
+      "stack": [
+        "Python AST",
+        "FastAPI",
+        "JSON CLI",
+        "Path:line evidence",
+        "Golden fixtures"
+      ],
       "evidence": [
-        { "label": "AST chunks, code Q&A, CLI, and claim boundary — SHIP", "url": "https://github.com/pabloalvarez99/repomind/blob/main/docs/SHIP.md" },
-        { "label": "14-question fixture evaluation contract — citation plumbing on a fixture, not SOTA over arbitrary repositories", "url": "https://github.com/pabloalvarez99/repomind/blob/main/data/eval/README.md" },
-        { "label": "Credential-free checks — CI", "url": "https://github.com/pabloalvarez99/repomind/actions/workflows/ci.yml" },
-        { "label": "Published v0.1.0 release", "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.1.0" }
+        {
+          "label": "AST chunks, code Q&A, CLI, and claim boundary — SHIP",
+          "url": "https://github.com/pabloalvarez99/repomind/blob/main/docs/SHIP.md"
+        },
+        {
+          "label": "14-question fixture evaluation contract — citation plumbing on a fixture, not SOTA over arbitrary repositories",
+          "url": "https://github.com/pabloalvarez99/repomind/blob/main/data/eval/README.md"
+        },
+        {
+          "label": "Credential-free checks — CI",
+          "url": "https://github.com/pabloalvarez99/repomind/actions/workflows/ci.yml"
+        },
+        {
+          "label": "Published v0.1.0 release",
+          "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.1.0"
+        }
       ],
       "links": [
-        { "label": "Repository", "url": "https://github.com/pabloalvarez99/repomind" },
-        { "label": "v0.1.0", "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.1.0" }
-      ]
+        {
+          "label": "Repository",
+          "url": "https://github.com/pabloalvarez99/repomind"
+        },
+        {
+          "label": "v0.1.0",
+          "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.1.0"
+        }
+      ],
+      "capture": {
+        "src": "/repomind-dogfood-hit.png",
+        "alt": "RepoMind answering a question about its own repository with path and line citations",
+        "width": 1280,
+        "height": 1248,
+        "caption": "RepoMind reading its own repository, answering with path:line evidence.",
+        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/eeab5ef/docs/assets/ui-dogfood-hit.png"
+      }
     },
     {
       "number": "05",
@@ -122,23 +262,64 @@
       "name": "AI Platform",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 · main 7978a00 · CI green",
+      "phase": "v0.1.0 (tag 7978a00) · main 169e4dc · CI green",
       "summary": "A service gateway for the portfolio with API-key authentication, per-key rate limits, request-ID propagation, aggregate health, and compose-based operations.",
       "outcome": "Operate the system",
-      "stack": ["API gateway", "Auth", "Rate limiting", "Docker Compose", "Observability"],
+      "stack": [
+        "API gateway",
+        "Auth",
+        "Rate limiting",
+        "Docker Compose",
+        "Observability"
+      ],
       "evidence": [
-        { "label": "Open health, gateway contracts, and release boundary — SHIP", "url": "https://github.com/pabloalvarez99/ai-platform/blob/main/docs/SHIP.md" },
-        { "label": "Free path is the gateway only: it does not run P1–P4 for the visitor", "url": "https://github.com/pabloalvarez99/ai-platform#readme" },
-        { "label": "Upstream URLs are empty in CI, so the four services report unconfigured", "url": "https://github.com/pabloalvarez99/ai-platform/blob/main/docs/SHIP.md" },
-        { "label": "The dev-local demo key is a public fixture, not a credential", "url": "https://github.com/pabloalvarez99/ai-platform#readme" },
-        { "label": "Rate limiting is an in-process fixed window on one instance, not a distributed limiter", "url": "https://github.com/pabloalvarez99/ai-platform#readme" },
-        { "label": "Credential-free mocked checks — CI", "url": "https://github.com/pabloalvarez99/ai-platform/actions/workflows/ci.yml" },
-        { "label": "Published v0.1.0 release", "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.1.0" }
+        {
+          "label": "Open health, gateway contracts, and release boundary — SHIP",
+          "url": "https://github.com/pabloalvarez99/ai-platform/blob/main/docs/SHIP.md"
+        },
+        {
+          "label": "Free path is the gateway only: it does not run P1–P4 for the visitor",
+          "url": "https://github.com/pabloalvarez99/ai-platform#readme"
+        },
+        {
+          "label": "Upstream URLs are empty in CI, so the four services report unconfigured",
+          "url": "https://github.com/pabloalvarez99/ai-platform/blob/main/docs/SHIP.md"
+        },
+        {
+          "label": "The dev-local demo key is a public fixture, not a credential",
+          "url": "https://github.com/pabloalvarez99/ai-platform#readme"
+        },
+        {
+          "label": "Rate limiting is an in-process fixed window on one instance, not a distributed limiter",
+          "url": "https://github.com/pabloalvarez99/ai-platform#readme"
+        },
+        {
+          "label": "Credential-free mocked checks — CI",
+          "url": "https://github.com/pabloalvarez99/ai-platform/actions/workflows/ci.yml"
+        },
+        {
+          "label": "Published v0.1.0 release",
+          "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.1.0"
+        }
       ],
       "links": [
-        { "label": "Repository", "url": "https://github.com/pabloalvarez99/ai-platform" },
-        { "label": "v0.1.0", "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.1.0" }
-      ]
+        {
+          "label": "Repository",
+          "url": "https://github.com/pabloalvarez99/ai-platform"
+        },
+        {
+          "label": "v0.1.0",
+          "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.1.0"
+        }
+      ],
+      "capture": {
+        "src": "/ai-platform-status.png",
+        "alt": "AI Platform status page reporting the four upstream services as unconfigured",
+        "width": 2200,
+        "height": 1800,
+        "caption": "The gateway is honest when nothing is behind it: four upstreams, unconfigured.",
+        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/169e4dc/docs/assets/ui-status-unconfigured.png"
+      }
     }
   ],
   "selectedWork": [
@@ -148,7 +329,14 @@
       "statusTone": "live",
       "category": "Offline-first ERP",
       "summary": "An on-premise ERP/POS for Chilean small businesses: a Rust/Axum server, embedded SurrealKV, native Android client, Tauri desktop, and web operator.",
-      "stack": ["Rust", "Axum", "SurrealDB", "Kotlin", "Jetpack Compose", "Tauri"],
+      "stack": [
+        "Rust",
+        "Axum",
+        "SurrealDB",
+        "Kotlin",
+        "Jetpack Compose",
+        "Tauri"
+      ],
       "repo": "https://github.com/pabloalvarez99/pharma-server",
       "demo": null,
       "note": "Public source; proprietary product license."
@@ -159,7 +347,13 @@
       "statusTone": "progress",
       "category": "Health-commerce discovery",
       "summary": "A Chilean pharmacy price-comparison platform spanning a TypeScript web experience and Python-backed data and service workflows.",
-      "stack": ["TypeScript", "Next.js", "Python", "Turborepo", "Data pipelines"],
+      "stack": [
+        "TypeScript",
+        "Next.js",
+        "Python",
+        "Turborepo",
+        "Data pipelines"
+      ],
       "repo": "https://github.com/pabloalvarez99/FarmaciaCompare",
       "demo": "https://farmacia-compare-web.vercel.app",
       "note": "Public demo and repository."
@@ -170,7 +364,14 @@
       "statusTone": "planned",
       "category": "Digital medical documents",
       "summary": "A Next.js prototype for signed prescriptions, orders, certificates, QR verification, short links, and pharmacy-side validation.",
-      "stack": ["Next.js", "React", "TypeScript", "WorkOS", "Cloudflare", "Vercel"],
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "WorkOS",
+        "Cloudflare",
+        "Vercel"
+      ],
       "repo": "https://github.com/pabloalvarez99/prescribo",
       "demo": "https://prescribo.vercel.app",
       "note": "Prototype only; not for real PHI or legally valid FEA documents."
@@ -181,7 +382,14 @@
       "statusTone": "progress",
       "category": "Geo-intelligence product",
       "summary": "A cross-platform geo-intelligence codebase spanning TypeScript web, Kotlin Android, Rust desktop components, maps, and analytical surfaces.",
-      "stack": ["TypeScript", "Next.js", "Kotlin", "Rust", "Firebase", "Geospatial UI"],
+      "stack": [
+        "TypeScript",
+        "Next.js",
+        "Kotlin",
+        "Rust",
+        "Firebase",
+        "Geospatial UI"
+      ],
       "repo": "https://github.com/pabloalvarez99/GeoAgent-App",
       "demo": null,
       "note": "Public engineering repository."
@@ -192,28 +400,76 @@
       "index": "A",
       "title": "AI systems",
       "description": "Retrieval and agent behavior designed as inspectable systems, not prompt demos.",
-      "skills": ["Hybrid search", "BM25 / sparse", "RRF", "Cross-encoder rerank", "Grounding", "Citations", "Refusal", "Agent budgets", "Traces", "AST code Q&A", "Golden evals", "Scorecards"],
+      "skills": [
+        "Hybrid search",
+        "BM25 / sparse",
+        "RRF",
+        "Cross-encoder rerank",
+        "Grounding",
+        "Citations",
+        "Refusal",
+        "Agent budgets",
+        "Traces",
+        "AST code Q&A",
+        "Golden evals",
+        "Scorecards"
+      ],
       "evidenceUrl": "https://github.com/pabloalvarez99/production-rag"
     },
     {
       "index": "B",
       "title": "Backend & platform",
       "description": "Typed APIs and operational seams across Python and Rust services.",
-      "skills": ["FastAPI", "Axum", "Pydantic", "OpenAPI", "Qdrant", "SurrealDB", "Docker", "API gateway", "Rate limiting", "Structured logging", "Request IDs", "Fail-open design"],
+      "skills": [
+        "FastAPI",
+        "Axum",
+        "Pydantic",
+        "OpenAPI",
+        "Qdrant",
+        "SurrealDB",
+        "Docker",
+        "API gateway",
+        "Rate limiting",
+        "Structured logging",
+        "Request IDs",
+        "Fail-open design"
+      ],
       "evidenceUrl": "https://github.com/pabloalvarez99/pharma-server"
     },
     {
       "index": "C",
       "title": "Product surfaces",
       "description": "One engineering language per surface when that is the honest product trade-off.",
-      "skills": ["Next.js", "React", "TypeScript", "Kotlin", "Jetpack Compose", "Tauri", "PWA", "Vercel", "HTMX", "Server-rendered UI"],
+      "skills": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Kotlin",
+        "Jetpack Compose",
+        "Tauri",
+        "PWA",
+        "Vercel",
+        "HTMX",
+        "Server-rendered UI"
+      ],
       "evidenceUrl": "https://github.com/pabloalvarez99/FarmaciaCompare"
     },
     {
       "index": "D",
       "title": "Delivery & trust",
       "description": "Quality gates, explicit failure modes, and evidence that survives outside the author's laptop.",
-      "skills": ["GitHub Actions", "Deterministic tests", "mypy / ruff", "Security headers", "Secret hygiene", "ADRs", "Release engineering", "Offline-first", "Failure contracts", "Empty-key CI"],
+      "skills": [
+        "GitHub Actions",
+        "Deterministic tests",
+        "mypy / ruff",
+        "Security headers",
+        "Secret hygiene",
+        "ADRs",
+        "Release engineering",
+        "Offline-first",
+        "Failure contracts",
+        "Empty-key CI"
+      ],
       "evidenceUrl": "https://github.com/pabloalvarez99"
     }
   ],

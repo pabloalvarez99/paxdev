@@ -968,6 +968,21 @@ p {
   margin-top: 48px;
 }
 
+.gallery-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 48px;
+}
+
+.gallery-frame .product-screen {
+  max-height: 320px;
+}
+
+.gallery-frame figcaption a {
+  white-space: nowrap;
+}
+
 .system-card {
   background: rgba(14, 29, 25, 0.72);
   border: 1px solid var(--line);
@@ -1602,7 +1617,8 @@ p {
     max-width: 760px;
   }
 
-  .systems-grid {
+  .systems-grid,
+  .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1818,6 +1834,7 @@ p {
   }
 
   .systems-grid,
+  .gallery-grid,
   .work-grid {
     grid-template-columns: 1fr;
   }
