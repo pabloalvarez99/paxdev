@@ -466,7 +466,7 @@
       "name": "RepoMind",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v1.0.0 · main 099ac8a · CI green",
+      "phase": "v1.0.0 · main 91fa395 · CI green",
       "summary": "Repository intelligence built around safe repository walking, AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
       "outcome": "Understand codebases",
       "stack": [
@@ -494,8 +494,8 @@
           "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v1.0.0"
         },
         {
-          "label": "Content-addressed index, catalog contract, multi-language free path at 099ac8a / v1.0.0",
-          "url": "https://github.com/pabloalvarez99/repomind/blob/099ac8a/docs/SHIP.md"
+          "label": "Content-addressed index, catalog contract, multi-language free path at 91fa395 / v1.0.0",
+          "url": "https://github.com/pabloalvarez99/repomind/blob/91fa395/docs/SHIP.md"
         }
       ],
       "links": [
@@ -523,7 +523,7 @@
         "width": 1280,
         "height": 1255,
         "caption": "RepoMind reading its own repository, answering with path:line evidence.",
-        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/099ac8a/docs/assets/ui-dogfood-hit.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/91fa395/docs/assets/ui-dogfood-hit.png"
       },
       "secondaryCapture": {
         "src": "/repomind-mini-refuse.png",
@@ -531,7 +531,7 @@
         "width": 1280,
         "height": 1125,
         "caption": "No evidence found, zero citations. The refusal is the same code path as the answer.",
-        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/099ac8a/docs/assets/ui-mini-refuse.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/91fa395/docs/assets/ui-mini-refuse.png"
       },
       "route": "/systems/repomind",
       "page": {
@@ -556,10 +556,10 @@
         ],
         "cta": {
           "kind": "hosted",
-          "label": "Ask create_app on production_rag",
-          "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=production_rag",
-          "command": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"production_rag\"}'",
-          "note": "Deep link and POST both accept repo_id=production_rag on main 4de0ac6. Ask something the fixture cannot know and the same endpoint returns zero citations."
+          "label": "Ask create_app on mini",
+          "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=mini",
+          "command": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"mini\"}'",
+          "note": "Primary free-path hit on main 91fa395: app/main.py:6-9. Dogfood on production_rag uses reciprocal_rank_fusion (rrf.py:54-113); create_app is not a reliable symbol in that frozen snapshot. Ask something the fixture cannot know and the same endpoint returns zero citations."
         },
         "interview": [
           {
@@ -977,16 +977,16 @@
         "slug": "repomind",
         "embedUrl": "https://pax-repomind.vercel.app",
         "embedTitle": "RepoMind hosted console",
-        "howTo": "Three steps on the page: open create_app on production_rag, read the path:line hit, then run a refusal. Deep link is primary if the iframe is blank.",
+        "howTo": "Three steps on the page: open create_app on mini, read the path:line hit, then run a refusal. Deep link is primary if the iframe is blank.",
         "deepLinks": [
-          {
-            "label": "create_app on production_rag",
-            "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=production_rag",
-            "expect": 200
-          },
           {
             "label": "A hit on mini: where is create_app defined?",
             "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=mini",
+            "expect": 200
+          },
+          {
+            "label": "Dogfood: hybrid fusion on production_rag",
+            "url": "https://pax-repomind.vercel.app/ask?question=How+does+hybrid+retrieval+fuse+rankings%3F&repo_id=production_rag",
             "expect": 200
           },
           {
@@ -995,11 +995,11 @@
             "expect": 200
           }
         ],
-        "curl": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"production_rag\"}'",
-        "boundary": "Indexes only the committed mini and production_rag fixtures. The production_rag catalog is a frozen snapshot, not a live sibling checkout.",
+        "curl": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"mini\"}'",
+        "boundary": "Indexes only the committed mini and production_rag fixtures. The production_rag catalog is a frozen snapshot, not a live sibling checkout. Prefer mini create_app for the free-path symbol hit; production_rag dogfood is reciprocal_rank_fusion, not create_app.",
         "script": [
-          "Open https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=production_rag",
-          "Read the path:line citation for create_app on the production_rag catalog.",
+          "Open https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=mini",
+          "Read the path:line citation for create_app (app/main.py lines 6-9).",
           "Ask a refusal question on the same host and confirm zero citations."
         ],
         "captureSrc": "/repomind-dogfood-hit.png",
@@ -1186,7 +1186,7 @@
         "clock": "28–38",
         "mode": "HOSTED",
         "system": "repomind",
-        "title": "path:line, and the snapshot caveat · 099ac8a · pax-repomind.vercel.app",
+        "title": "path:line, and the snapshot caveat · 91fa395 · pax-repomind.vercel.app",
         "say": "Citations as path:start-end, not prose references. Open one — it is a real range in a real file. Then say the honesty beat before anyone asks: the production_rag catalog is a frozen snapshot committed under fixtures, not a live checkout of the sibling project. It proves navigation and citation correctness on committed bytes. It does not prove the tool works on your repository.",
         "steps": [
           {
@@ -1197,9 +1197,9 @@
           },
           {
             "kind": "link",
-            "value": "Where is create_app defined? on production_rag",
-            "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=production_rag",
-            "note": "Primary interview hit on main 099ac8a. Name the host pax-repomind.vercel.app and the SHA."
+            "value": "Dogfood: how does hybrid retrieval fuse rankings? on production_rag",
+            "url": "https://pax-repomind.vercel.app/ask?question=How+does+hybrid+retrieval+fuse+rankings%3F&repo_id=production_rag",
+            "note": "Live path:line on the frozen production_rag snapshot (rrf.py:54-113). create_app is not a reliable symbol in that catalog — use mini for create_app. Name the host pax-repomind.vercel.app and SHA 91fa395."
           },
           {
             "kind": "link",
@@ -1209,12 +1209,12 @@
           },
           {
             "kind": "command",
-            "value": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"production_rag\"}'",
-            "note": "On main 099ac8a the catalog accepts production_rag for POST as well as GET. Say the SHA and the host out loud."
+            "value": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"mini\"}'",
+            "note": "On main 91fa395 POST returns create_app at app/main.py:6-9. Say the SHA and the host out loud."
           }
         ],
         "watch": "Do not describe the dogfood gate as evidence of general code comprehension. Do not imply the snapshot tracks the sibling repository — it does not update itself. Do not quote eval counts as a score.",
-        "sha": "099ac8a",
+        "sha": "91fa395",
         "host": "https://pax-repomind.vercel.app"
       },
       {
@@ -1266,7 +1266,7 @@
   },
   "architecturePoster": {
     "title": "Five-system ladder",
-    "subtitle": "Exact roles. Honest hosted vs clone. Pins: P1 3b54d85 CLONE · P2 1b4915f · P3 88a24f2 · P4 099ac8a · P5 801fc0b. Verified 2026-08-14.",
+    "subtitle": "Exact roles. Honest hosted vs clone. Pins: P1 3b54d85 CLONE · P2 1b4915f · P3 88a24f2 · P4 91fa395 · P5 801fc0b. Verified 2026-08-14.",
     "layers": [
       {
         "number": "01",

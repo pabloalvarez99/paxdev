@@ -18,7 +18,7 @@ const p5 = bySlug["ai-platform"];
 const content = JSON.parse(readFileSync(join(root, "content", "portfolio.json"), "utf8"));
 content.site.lastVerified = pins.pinnedAt;
 content.proof[0].detail =
-  "Five public repos with tagged v0.3.0 releases and green CI; P2–P5 hosted on free path, P1 clone-only on main after PR #3 merge";
+  "Five public repos with tagged v1.0.0 releases and green CI; P2–P5 hosted on free path, P1 clone-only on main after PR #3 merge";
 
 function pinPhase(sys) {
   return `${sys.release} · main ${sys.main} · CI green`;
@@ -100,7 +100,7 @@ function rePinSystem(system, pin) {
   );
   if (system.page.cta?.note) {
     system.page.cta.note = replaceOld(system.page.cta.note, olds, pin.main)
-      .replace(/version 0\.2\.0/g, "version 0.3.0")
+      .replace(/version 0\.2\.0/g, "version 1.0.0")
       .replace(/v0\.2\.0/g, pin.release);
   }
 }
@@ -142,10 +142,10 @@ while (s1.page.planned.length < 3) {
 
 rePinSystem(content.aiSystems[1], p2);
 content.aiSystems[1].page.cta.note =
-  `No clone, no key. Ask a question the fixture cannot support and read the typed refuse. Hosted health reports version 0.3.0; GET /health and GET /metrics both returned 200 on ${pins.pinnedAt}.`;
+  `No clone, no key. Ask a question the fixture cannot support and read the typed refuse. Hosted health reports version 1.0.0; GET /health and GET /metrics both returned 200 on ${pins.pinnedAt}.`;
 if (!content.aiSystems[1].page.live.some((l) => /0\.3\.0|compare/i.test(l))) {
   content.aiSystems[1].page.live.push(
-    `Hosted health reports version 0.3.0 on main ${p2.main}; free path remains fixture-only.`,
+    `Hosted health reports version 1.0.0 on main ${p2.main}; free path remains fixture-only.`,
   );
 }
 
@@ -157,7 +157,7 @@ rePinSystem(content.aiSystems[3], p4);
 
 rePinSystem(content.aiSystems[4], p5);
 content.aiSystems[4].page.cta.note =
-  `No clone. Open /health without a key (200). /v1/platform/status is 401 without a header; X-API-Key: dev-local returns gateway up with four unconfigured upstreams and version 0.3.0. Main ${p5.main} / ${p5.release}.`;
+  `No clone. Open /health without a key (200). /v1/platform/status is 401 without a header; X-API-Key: dev-local returns gateway up with four unconfigured upstreams and version 1.0.0. Main ${p5.main} / ${p5.release}.`;
 
 // Interview kit
 const kit = content.interviewKit;
@@ -225,7 +225,7 @@ kit.beats = kit.beats.map((beat) => {
   if (beat.system === "ai-platform") {
     beat.title = `Rejected, then unconfigured · ${p5.main} · pax-ai-gateway.vercel.app`;
     beat.say =
-      `This is a gateway on main ${p5.main} / ${p5.release} at pax-ai-gateway.vercel.app, and there is nothing behind it right now. The four upstream URLs are empty, so the console says unconfigured rather than pretending. Status reports version 0.3.0 with the public fixture key.`;
+      `This is a gateway on main ${p5.main} / ${p5.release} at pax-ai-gateway.vercel.app, and there is nothing behind it right now. The four upstream URLs are empty, so the console says unconfigured rather than pretending. Status reports version 1.0.0 with the public fixture key.`;
   }
   return beat;
 });

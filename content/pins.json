@@ -1,7 +1,7 @@
 {
   "note": "Machine-readable pin table for the five-system ladder. content/portfolio.json, docs/PORTFOLIO-SERIES.md, and the GitHub profile README must agree with this file. Refresh with scripts/check-pins.mjs --live after re-curling origin main and hosted health. Never invent a P1 host.",
   "pinnedAt": "2026-08-14",
-  "source": "final pin pass re-curl origin main + live health 2026-08-14 (A2 site-v1.0)",
+  "source": "v1.0 LOCK re-curl origin main + live health 2026-08-14 — bodyHints match hosted 1.0.0 JSON",
   "systems": [
     {
       "id": "P1",
@@ -36,7 +36,7 @@
       "health": {
         "url": "https://pax-agentic-rag.vercel.app/health",
         "expect": 200,
-        "bodyHint": "version 0.3.0"
+        "bodyHint": "\"version\":\"1.0.0\""
       },
       "notes": [
         "Hosted free path uses fixture retriever; no PRODUCTION_RAG_URL on the public host."
@@ -66,16 +66,16 @@
       "id": "P4",
       "slug": "repomind",
       "repo": "pabloalvarez99/repomind",
-      "main": "099ac8a",
-      "mainFull": "099ac8a495f11ca582a64ff9347ab7578e5e9442",
+      "main": "91fa395",
+      "mainFull": "91fa3954a5bd50e7ac538c3f8fd330c5442745b4",
       "release": "v1.0.0",
-      "releaseTagTarget": "099ac8a",
+      "releaseTagTarget": "91fa395",
       "mode": "HOSTED",
       "host": "https://pax-repomind.vercel.app",
       "health": {
         "url": "https://pax-repomind.vercel.app/health",
         "expect": 200,
-        "bodyHint": "version 0.3.0"
+        "bodyHint": "\"version\":\"1.0.0\""
       },
       "notes": [
         "Indexes committed mini + production_rag fixtures only."
@@ -100,7 +100,7 @@
         "url": "https://pax-ai-gateway.vercel.app/v1/platform/status",
         "expectUnauthed": 401,
         "fixtureKey": "dev-local",
-        "bodyHint": "version 0.3.0 four unconfigured"
+        "bodyHint": "\"version\":\"1.0.0\" unconfigured"
       },
       "notes": [
         "Does not run P1–P4. Empty upstreams are the product story.",

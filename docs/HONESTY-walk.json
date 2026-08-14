@@ -1,0 +1,171 @@
+{
+  "at": "2026-08-14T23:44:46.901Z",
+  "rows": [
+    {
+      "label": "P1 studio clone/DEMO-DAY zero Ipsura host",
+      "pass": true
+    },
+    {
+      "label": "P1 DEMO-DAY.md raw at pin",
+      "url": "https://raw.githubusercontent.com/pabloalvarez99/production-rag/3b54d85/docs/DEMO-DAY.md",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "# Demo day — forty-five minutes across five systems A minute-boxed script for showing the whole series live: P1 production-rag, P2 agentic-rag-research, P3 multi-agent-orchestrati"
+    },
+    {
+      "label": "P2 open host",
+      "url": "https://pax-agentic-rag.vercel.app",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"color-scheme\" content="
+    },
+    {
+      "label": "P2 health 1.0.0",
+      "url": "https://pax-agentic-rag.vercel.app/health",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "{\"status\":\"ok\",\"service\":\"agentic-rag-research\",\"version\":\"1.0.0\"}"
+    },
+    {
+      "label": "P2 POST unanswerable research",
+      "status": 200,
+      "pass": true,
+      "note": "{\"status\":\"refused\",\"report\":\"Question: What were the quarterly revenues in Patagonia?\\n\\nRefused: nothing was retrieved that could support an answer.\\n\\nNot es"
+    },
+    {
+      "label": "P3 open host",
+      "url": "https://pax-orchestration.vercel.app",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"color-scheme\" content="
+    },
+    {
+      "label": "P3 health",
+      "url": "https://pax-orchestration.vercel.app/health",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "{\"status\":\"ok\"}"
+    },
+    {
+      "label": "P3 POST free-path task",
+      "status": 200,
+      "pass": true,
+      "note": "{\"trace_schema\":1,\"status\":\"done\",\"stop_reason\":\"writer_final\",\"result\":\"The task asks for Audit retrieval risk. The requested concern was checked in a second d"
+    },
+    {
+      "label": "P4 create_app mini GET",
+      "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=mini",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"description\" content=\""
+    },
+    {
+      "label": "P4 health 1.0.0",
+      "url": "https://pax-repomind.vercel.app/health",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "{\"status\":\"ok\",\"service\":\"repomind\",\"version\":\"1.0.0\"}"
+    },
+    {
+      "label": "P4 refusal ask",
+      "url": "https://pax-repomind.vercel.app/ask?question=Who+won+the+2019+Antarctic+chess+championship%3F&repo_id=mini",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"description\" content=\""
+    },
+    {
+      "label": "P4 POST create_app mini",
+      "status": 200,
+      "pass": true,
+      "note": "{\"answer\":\"[1] `create_app` is a function in `app/main.py` at lines 6-9.\",\"citations\":[{\"path\":\"app/main.py\",\"start_line\":6,\"end_line\":9,\"snippet\":\"def create_a"
+    },
+    {
+      "label": "P4 POST production_rag RRF dogfood",
+      "status": 200,
+      "pass": true,
+      "note": "{\"answer\":\"[1] `reciprocal_rank_fusion` is a function in `production_rag/retrieval/rrf.py` at lines 54-113.\\n[2] `FakeEmbeddingProvider` is a class in `producti"
+    },
+    {
+      "label": "P5 open host",
+      "url": "https://pax-ai-gateway.vercel.app",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"description\" content=\""
+    },
+    {
+      "label": "P5 health",
+      "url": "https://pax-ai-gateway.vercel.app/health",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "{\"status\":\"ok\",\"service\":\"gateway\"}"
+    },
+    {
+      "label": "P5 status 401",
+      "url": "https://pax-ai-gateway.vercel.app/v1/platform/status",
+      "status": 401,
+      "expect": 401,
+      "pass": true,
+      "note": "{\"error\":\"A valid X-API-Key header is required.\",\"error_type\":\"unauthorized\",\"request_id\":\"0c8967e4-7687-4252-95d4-150922b05a41\"}"
+    },
+    {
+      "label": "P5 status dev-local 1.0.0",
+      "url": "https://pax-ai-gateway.vercel.app/v1/platform/status",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "{\"version\":\"1.0.0\",\"services\":{\"rag\":\"unconfigured\",\"research\":\"unconfigured\",\"mao\":\"unconfigured\",\"repomind\":\"unconfigured\",\"gateway\":\"up\"}}"
+    },
+    {
+      "label": "GET /interview",
+      "url": "https://paxdev.vercel.app/interview",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/immutabl"
+    },
+    {
+      "label": "GET /changelog",
+      "url": "https://paxdev.vercel.app/changelog",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/immutabl"
+    },
+    {
+      "label": "GET /studio",
+      "url": "https://paxdev.vercel.app/studio",
+      "status": 200,
+      "expect": 200,
+      "pass": true,
+      "note": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/immutabl"
+    },
+    {
+      "label": "interview print CSS",
+      "pass": true
+    },
+    {
+      "label": "interview hostnames ⊆ verified",
+      "pass": true,
+      "note": "paxdev.vercel.app,pax-agentic-rag.vercel.app,pax-orchestration.vercel.app,pax-repomind.vercel.app,pax-ai-gateway.vercel.app"
+    },
+    {
+      "label": "changelog five v1.0.0",
+      "pass": true,
+      "note": "count=42"
+    },
+    {
+      "label": "no Ipsura embed/href on studio/interview",
+      "pass": true
+    }
+  ]
+}
