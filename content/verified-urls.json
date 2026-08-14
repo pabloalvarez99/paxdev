@@ -21,7 +21,7 @@
       "method": "GET",
       "expect": 200,
       "observed": 200,
-      "note": "Health returns status ok for agentic-rag-research 0.1.0."
+      "note": "Health returns status ok for agentic-rag-research 0.2.0."
     },
     {
       "url": "https://pax-agentic-rag.vercel.app/metrics",
@@ -63,7 +63,7 @@
       "method": "GET",
       "expect": 200,
       "observed": 200,
-      "note": "Health returns status ok for repomind 0.1.0."
+      "note": "Health returns status ok for repomind 0.2.0."
     },
     {
       "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=mini",
@@ -105,7 +105,7 @@
       "method": "GET",
       "expect": 401,
       "observed": 401,
-      "note": "Authenticated route. 401 without a header is the contract; X-API-Key dev-local returns 200 with four unconfigured upstreams."
+      "note": "Authenticated route. 401 without a header is the contract; X-API-Key dev-local returns 200 with four unconfigured upstreams and version 0.2.0."
     },
     {
       "url": "https://pax-ai-gateway.vercel.app/metrics",
@@ -127,6 +127,13 @@
       "expect": 200,
       "observed": 200,
       "note": "Selected work: Prescribo prototype."
+    },
+    {
+      "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=production_rag",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Interview/studio primary P4 hit: create_app on production_rag catalog (main 5d4eefe)."
     }
   ],
   "absent": [

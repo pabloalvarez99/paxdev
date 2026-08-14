@@ -139,6 +139,28 @@ test("the studio embeds only hosted UIs, and keeps every unhosted system as a cl
     );
     assert.ok(reachable.has(normalise(embed.embedUrl)), `${embed.slug} embeds an unverified URL`);
     assert.ok(embed.deepLinks.length > 0, `${embed.slug} needs at least one probe`);
+    assert.equal(embed.script.length, 3, `${embed.slug} needs a three-step studio script`);
+    const host = new URL(embed.embedUrl).hostname;
+    const scriptText = embed.script.join("\n");
+    for (const step of embed.script) {
+      assert.match(step, /\S/, `${embed.slug} script step must not be empty`);
+    }
+    assert.ok(
+      scriptText.includes(host),
+      `${embed.slug} script text must name the live hostname ${host} from the fixture`,
+    );
+    assert.match(embed.captureSrc, /^\/[a-z0-9-]+\.png$/);
+    assert.ok(
+      [system.capture, system.secondaryCapture]
+        .filter(Boolean)
+        .some((capture) => capture.src === embed.captureSrc),
+      `${embed.slug} captureSrc must match a capture the system already vendors`,
+    );
+    assert.match(
+      embed.iframeHonesty,
+      /iframe may be blocked/i,
+      `${embed.slug} must state third-party iframe honesty`,
+    );
     for (const link of embed.deepLinks) {
       const observed = byStatus.get(normalise(link.url));
       assert.notEqual(
@@ -198,13 +220,20 @@ test("the interview kit is a 45-minute script with publishable steps and an arch
   assert.ok(poster, "architecture poster content is required");
   assert.equal(kit.beats.length, 5, "one beat per system");
   assert.equal(poster.layers.length, 5);
+  assert.equal(kit.dayOfChecklist.command, "npm run verify:urls");
+  assert.match(kit.dayOfChecklist.body, /verified-urls\.json/);
 
   let minutesCovered = 0;
   for (const beat of kit.beats) {
     assert.match(beat.clock, /^\d+–\d+$/, `${beat.system} needs a minute range`);
     assert.ok(["HOSTED", "CLONE"].includes(beat.mode), `${beat.system} mode must be HOSTED or CLONE`);
+    assert.match(beat.sha, /^[0-9a-f]{7,40}$/, `${beat.system} minute mark needs a pinned SHA`);
     assert.ok(beat.steps.length >= 3, `${beat.system} needs concrete steps`);
     assert.match(beat.watch, /\S/);
+    assert.ok(
+      beat.title.includes(beat.sha),
+      `${beat.system} minute-mark title must name the pinned SHA`,
+    );
     for (const step of beat.steps) {
       if (step.url) {
         if (step.url.startsWith("/")) {
@@ -220,9 +249,15 @@ test("the interview kit is a 45-minute script with publishable steps and an arch
     if (beat.mode === "HOSTED") {
       const system = content.aiSystems.find((item) => item.slug === beat.system);
       assert.ok(system?.hosted, `${beat.system} is HOSTED in the kit but has no hosted block`);
+      assert.equal(beat.host, system.hosted.url, `${beat.system} host must match the card`);
+      assert.ok(
+        beat.title.includes(new URL(beat.host).hostname),
+        `${beat.system} minute-mark title must name the live hostname`,
+      );
     } else {
       const system = content.aiSystems.find((item) => item.slug === beat.system);
       assert.equal(system?.hosted, null, `${beat.system} is CLONE in the kit but claims a host`);
+      assert.equal(beat.host, null);
     }
     minutesCovered += 1;
   }
@@ -248,6 +283,42 @@ test("the interview kit is a 45-minute script with publishable steps and an arch
   const interviewPage = readFileSync(join(root, "app", "interview", "page.tsx"), "utf8");
   assert.match(interviewPage, /site\.lastVerified/);
   assert.match(interviewPage, /ArchitecturePoster/);
+  assert.match(interviewPage, /dayOfChecklist/);
+  assert.match(interviewPage, /beat\.sha/);
+  assert.match(interviewPage, /beat\.host/);
+});
+
+test("interview kit hostnames must all appear in verified-urls.json", () => {
+  const kit = content.interviewKit;
+  const knownHosts = new Set(
+    verified.checks.map((check) => new URL(check.url).hostname),
+  );
+  const knownOrigins = new Set(
+    verified.checks.map((check) => new URL(check.url).origin),
+  );
+  const serialised = JSON.stringify(kit);
+  const hostnames = new Set(
+    [...serialised.matchAll(/https:\/\/([a-z0-9.-]+\.vercel\.app)/gi)].map((match) => match[1]),
+  );
+  assert.ok(hostnames.size > 0, "interview kit must name at least one vercel host");
+  for (const hostname of hostnames) {
+    assert.ok(
+      knownHosts.has(hostname),
+      `/interview mentions ${hostname}, which is not in content/verified-urls.json`,
+    );
+    assert.ok(
+      knownOrigins.has(`https://${hostname}`),
+      `/interview origin https://${hostname} missing from the fixture`,
+    );
+  }
+  for (const beat of kit.beats) {
+    if (beat.host) {
+      assert.ok(
+        knownOrigins.has(normalise(beat.host)) || knownHosts.has(new URL(beat.host).hostname),
+        `beat ${beat.system} host ${beat.host} is not in the fixture`,
+      );
+    }
+  }
 });
 
 test("frame-src is derived from the fixture, so an unverified origin cannot be embedded", () => {
