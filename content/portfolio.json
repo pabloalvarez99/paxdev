@@ -1,0 +1,209 @@
+{
+  "site": {
+    "name": "PAX / DEV",
+    "owner": "Pablo Alvarez",
+    "role": "AI Systems & Product Engineer",
+    "canonicalUrl": "https://paxdev.vercel.app",
+    "githubUrl": "https://github.com/pabloalvarez99",
+    "location": "Chile",
+    "lastVerified": "2026-08-13"
+  },
+  "proof": [
+    {
+      "value": "5",
+      "label": "system roadmap",
+      "detail": "Two public systems, three explicit next layers"
+    },
+    {
+      "value": "$0",
+      "label": "default AI path",
+      "detail": "No key, billed call, or signup for the core demos"
+    },
+    {
+      "value": "4",
+      "label": "product surfaces",
+      "detail": "API, web, mobile, and desktop engineering"
+    },
+    {
+      "value": "CI",
+      "label": "evidence first",
+      "detail": "Typed contracts, deterministic tests, honest boundaries"
+    }
+  ],
+  "aiSystems": [
+    {
+      "number": "01",
+      "slug": "production-rag",
+      "name": "Production RAG",
+      "status": "LIVE",
+      "statusTone": "live",
+      "phase": "Flagship · v0.1.0",
+      "summary": "A production-shaped retrieval system that combines dense and sparse search, reranks candidates, and returns grounded answers with resolvable citations—or refuses.",
+      "outcome": "Retrieve and answer honestly",
+      "stack": ["Python", "FastAPI", "Qdrant", "LangGraph", "Docker", "GitHub Actions"],
+      "evidence": [
+        "Hybrid dense + sparse retrieval with RRF",
+        "Cross-encoder reranking with fail-open behavior",
+        "Citation validation and first-class refusal",
+        "Two-tier offline evaluation and generated scorecards"
+      ],
+      "links": [
+        { "label": "Repository", "url": "https://github.com/pabloalvarez99/production-rag" },
+        { "label": "Case study", "url": "https://github.com/pabloalvarez99/production-rag/blob/main/docs/CASESTUDY.md" },
+        { "label": "v0.1.0", "url": "https://github.com/pabloalvarez99/production-rag/releases/tag/v0.1.0" }
+      ]
+    },
+    {
+      "number": "02",
+      "slug": "agentic-rag-research",
+      "name": "Agentic Research",
+      "status": "IN PROGRESS",
+      "statusTone": "progress",
+      "phase": "M2 live · runtime next",
+      "summary": "A bounded plan → retrieve → critique research loop with explicit budgets, terminal states, cited synthesis, and deterministic execution traces.",
+      "outcome": "Act with tools under budget",
+      "stack": ["Python", "Pydantic", "FastAPI", "HTTPX", "Typed protocols"],
+      "evidence": [
+        "Step budget enforced in state",
+        "Fake and HTTP retrieval behind one port",
+        "Explicit stop reasons and evidence gaps",
+        "Byte-stable traces on the free path"
+      ],
+      "links": [
+        { "label": "Repository", "url": "https://github.com/pabloalvarez99/agentic-rag-research" }
+      ]
+    },
+    {
+      "number": "03",
+      "slug": "multi-agent-orchestration",
+      "name": "Multi-Agent Orchestration",
+      "status": "PLANNED",
+      "statusTone": "planned",
+      "phase": "Starts after P2 is solid",
+      "summary": "An orchestrator and specialist agents with explicit handoffs, global budgets, failure isolation, and auditable multi-agent timelines.",
+      "outcome": "Coordinate specialists",
+      "stack": ["Agent protocols", "Handoff policy", "Trace timelines", "Failure isolation"],
+      "evidence": [],
+      "links": []
+    },
+    {
+      "number": "04",
+      "slug": "repomind",
+      "name": "RepoMind",
+      "status": "PLANNED",
+      "statusTone": "planned",
+      "phase": "Scoped · no product repo yet",
+      "summary": "Repository intelligence built around AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
+      "outcome": "Understand codebases",
+      "stack": ["Python AST", "Code retrieval", "Path:line evidence", "Golden fixtures"],
+      "evidence": [],
+      "links": []
+    },
+    {
+      "number": "05",
+      "slug": "ai-platform",
+      "name": "AI Platform",
+      "status": "PLANNED",
+      "statusTone": "planned",
+      "phase": "Final platform layer",
+      "summary": "A service gateway for the portfolio with authentication, rate limits, request propagation, aggregate health, and compose-based operations.",
+      "outcome": "Operate the system",
+      "stack": ["API gateway", "Auth", "Rate limiting", "Docker Compose", "Observability"],
+      "evidence": [],
+      "links": []
+    }
+  ],
+  "selectedWork": [
+    {
+      "name": "RutBusiness",
+      "status": "ACTIVE",
+      "statusTone": "live",
+      "category": "Offline-first ERP",
+      "summary": "An on-premise ERP/POS for Chilean small businesses: a Rust/Axum server, embedded SurrealKV, native Android client, Tauri desktop, and web operator.",
+      "stack": ["Rust", "Axum", "SurrealDB", "Kotlin", "Jetpack Compose", "Tauri"],
+      "repo": "https://github.com/pabloalvarez99/pharma-server",
+      "demo": null,
+      "note": "Public source; proprietary product license."
+    },
+    {
+      "name": "FarmaciaCompare",
+      "status": "PUBLIC BUILD",
+      "statusTone": "progress",
+      "category": "Health-commerce discovery",
+      "summary": "A Chilean pharmacy price-comparison platform spanning a TypeScript web experience and Python-backed data and service workflows.",
+      "stack": ["TypeScript", "Next.js", "Python", "Turborepo", "Data pipelines"],
+      "repo": "https://github.com/pabloalvarez99/FarmaciaCompare",
+      "demo": "https://farmacia-compare-web.vercel.app",
+      "note": "Public demo and repository."
+    },
+    {
+      "name": "Prescribo",
+      "status": "PROTOTYPE",
+      "statusTone": "planned",
+      "category": "Digital medical documents",
+      "summary": "A Next.js prototype for signed prescriptions, orders, certificates, QR verification, short links, and pharmacy-side validation.",
+      "stack": ["Next.js", "React", "TypeScript", "WorkOS", "Cloudflare", "Vercel"],
+      "repo": "https://github.com/pabloalvarez99/prescribo",
+      "demo": "https://prescribo.vercel.app",
+      "note": "Prototype only; not for real PHI or legally valid FEA documents."
+    },
+    {
+      "name": "GeoAgent",
+      "status": "PUBLIC REPOSITORY",
+      "statusTone": "progress",
+      "category": "Geo-intelligence product",
+      "summary": "A cross-platform geo-intelligence codebase spanning TypeScript web, Kotlin Android, Rust desktop components, maps, and analytical surfaces.",
+      "stack": ["TypeScript", "Next.js", "Kotlin", "Rust", "Firebase", "Geospatial UI"],
+      "repo": "https://github.com/pabloalvarez99/GeoAgent-App",
+      "demo": null,
+      "note": "Public engineering repository."
+    }
+  ],
+  "capabilities": [
+    {
+      "index": "A",
+      "title": "AI systems",
+      "description": "Retrieval and agent behavior designed as inspectable systems, not prompt demos.",
+      "skills": ["Hybrid search", "RRF", "Reranking", "Grounding", "Citations", "Refusal", "Agent budgets", "Evaluation harnesses"],
+      "evidenceUrl": "https://github.com/pabloalvarez99/production-rag"
+    },
+    {
+      "index": "B",
+      "title": "Backend & platform",
+      "description": "Typed APIs and operational seams across Python and Rust services.",
+      "skills": ["FastAPI", "Axum", "Pydantic", "OpenAPI", "Qdrant", "SurrealDB", "Docker", "Structured logging"],
+      "evidenceUrl": "https://github.com/pabloalvarez99/pharma-server"
+    },
+    {
+      "index": "C",
+      "title": "Product surfaces",
+      "description": "One engineering language per surface when that is the honest product trade-off.",
+      "skills": ["Next.js", "React", "TypeScript", "Kotlin", "Jetpack Compose", "Tauri", "PWA", "Vercel"],
+      "evidenceUrl": "https://github.com/pabloalvarez99/FarmaciaCompare"
+    },
+    {
+      "index": "D",
+      "title": "Delivery & trust",
+      "description": "Quality gates, explicit failure modes, and evidence that survives outside the author's laptop.",
+      "skills": ["GitHub Actions", "Deterministic tests", "Security headers", "Secret hygiene", "ADRs", "Release engineering", "Offline-first", "Failure contracts"],
+      "evidenceUrl": "https://github.com/pabloalvarez99"
+    }
+  ],
+  "principles": [
+    {
+      "number": "01",
+      "title": "Evidence over adjectives",
+      "copy": "A capability is linked to code, a test, a release, or a runnable path. Planned work stays visibly planned."
+    },
+    {
+      "number": "02",
+      "title": "Failure is a product state",
+      "copy": "Refusal, degradation, budget exhaustion, and dependency failure are modeled explicitly instead of hidden behind a successful response."
+    },
+    {
+      "number": "03",
+      "title": "Free path first",
+      "copy": "Core demos run without credentials or billed calls, so reviewers can inspect the whole system rather than trust screenshots."
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+import type { Metadata, Viewport } from "next";
+import type { ReactNode } from "react";
+
+import portfolio from "@/content/portfolio";
+
+import "./globals.css";
+
+const { site } = portfolio;
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.canonicalUrl),
+  title: {
+    default: `${site.owner} — ${site.role}`,
+    template: `%s — ${site.name}`,
+  },
+  description:
+    "Production-shaped AI systems, offline-first products, and evidence-driven engineering by Pablo Alvarez.",
+  applicationName: site.name,
+  authors: [{ name: site.owner, url: site.githubUrl }],
+  creator: site.owner,
+  publisher: site.owner,
+  keywords: [
+    "AI Engineer",
+    "LLM Engineer",
+    "RAG",
+    "Agentic AI",
+    "FastAPI",
+    "Rust",
+    "Next.js",
+    "Product Engineering",
+    "Chile",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: `${site.owner} — ${site.role}`,
+    description:
+      "AI systems that show their work: grounded retrieval, bounded agents, measurable behavior, and honest scope.",
+    siteName: site.name,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.owner} — ${site.role}`,
+    description:
+      "Production-shaped AI systems and product engineering, with public evidence behind every claim.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "dark",
+  themeColor: "#07110f",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
