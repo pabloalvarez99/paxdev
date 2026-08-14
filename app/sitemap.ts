@@ -26,6 +26,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    {
+      url: `${site.canonicalUrl}/changelog`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${site.canonicalUrl}/casestudy`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...aiSystems.map((system) => ({
       url: `${site.canonicalUrl}${system.route}`,
       lastModified,

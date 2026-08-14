@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { ArrowUpRightIcon, CheckIcon, GithubIcon, ShieldIcon } from "@/components/icons";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
-import { ExternalLink, Status } from "@/components/ui";
+import { SystemHeroI18n } from "@/components/system-hero-i18n";
+import { ExternalLink } from "@/components/ui";
 import portfolio, { systemBySegment, systemCaptures, systemSegment } from "@/content/portfolio";
 
 const { site, aiSystems } = portfolio;
@@ -53,95 +53,20 @@ export default async function SystemPage({ params }: { params: Promise<Params> }
       <SiteHeader />
 
       <main id="main-content" className="system-page">
-        <section className="section system-hero">
-          <div className="container">
-            <nav className="crumbs" aria-label="Breadcrumb">
-              <Link href="/">Portfolio</Link>
-              <span aria-hidden="true">/</span>
-              <Link href="/#systems">Systems</Link>
-              <span aria-hidden="true">/</span>
-              <span aria-current="page">{page.title}</span>
-            </nav>
-
-            <p className="section-kicker">{page.kicker}</p>
-            <h1>{page.headline}</h1>
-
-            <div className="system-hero-meta">
-              <Status tone={system.statusTone}>{system.status}</Status>
-              <span className="mono">{system.phase}</span>
-              <span className="mono">Verified {site.lastVerified}</span>
-            </div>
-
-            <p className="system-pitch">{page.pitch}</p>
-
-            <div className="hero-actions">
-              <a
-                className="button button-primary"
-                href={page.cta.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {page.cta.label}
-                <ArrowUpRightIcon />
-              </a>
-              <a
-                className="button button-secondary"
-                href={system.links[0].url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <GithubIcon />
-                Read the source
-              </a>
-            </div>
-
-            <div className="cta-strip">
-              <p className="cta-strip-kind">
-                {page.cta.kind === "hosted" ? "HOSTED · no clone, no key" : "CLONE · runs at $0"}
-              </p>
-              <pre>
-                <code>{page.cta.command}</code>
-              </pre>
-              <p>{page.cta.note}</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="section system-contract">
-          <div className="container contract-grid">
-            <article className="contract-column contract-live">
-              <h2>
-                <CheckIcon />
-                LIVE
-              </h2>
-              <p className="contract-lede">
-                Every line here is backed by a test, a route, or a file in the repository at{" "}
-                <span className="mono">{system.phase}</span>.
-              </p>
-              <ul>
-                {page.live.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-
-            <article className="contract-column contract-planned">
-              <h2>
-                <ShieldIcon />
-                NOT SHIPPED
-              </h2>
-              <p className="contract-lede">
-                The boundary, stated before you find it yourself. Nothing below is presented as
-                built, hidden in a footnote, or described as coming soon.
-              </p>
-              <ul>
-                {page.planned.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          </div>
-        </section>
+        <SystemHeroI18n
+          slug={system.slug}
+          title={page.title}
+          route={system.route}
+          status={system.status}
+          statusTone={system.statusTone}
+          phase={system.phase}
+          lastVerified={site.lastVerified}
+          en={{ headline: page.headline, pitch: page.pitch, kicker: page.kicker }}
+          cta={page.cta}
+          repoUrl={system.links[0].url}
+          live={page.live}
+          planned={page.planned}
+        />
 
         <section className="section system-captures">
           <div className="container">

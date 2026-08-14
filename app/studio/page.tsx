@@ -228,6 +228,11 @@ export default function StudioPage() {
                         <GithubIcon />
                         Repository
                       </ExternalLink>
+                      {"demoDayUrl" in card && card.demoDayUrl ? (
+                        <ExternalLink href={card.demoDayUrl as string}>
+                          DEMO-DAY (stream · Filtering · /evals)
+                        </ExternalLink>
+                      ) : null}
                     </div>
                   </article>
                 );

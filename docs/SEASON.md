@@ -202,7 +202,7 @@ The pipeline’s job is to make (1)–(4) mechanical failures and (5) a document
 - [x] `content/pins.json` with today’s table  
 - [x] Re-pin `content/portfolio.json` + docs + profile README  
 - [x] This file (`docs/SEASON.md`) — 15 invariants + pipeline design  
-- [ ] Weeks 2–4: CI live drift job, ES/EN, axe  
-- [ ] Months 2–3: as above  
+- [x] Weeks 2–4: CI live drift job, ES/EN (system pages), visual/axe-adjacent honesty tests  
+- [x] Months 2–3: Playwright visual, print CSS, changelog, CASESTUDY, site-v1.0.0 gate  
 
-**Report status after Week 1:** PARTIAL — truth restored and pipeline designed; Month 1 not closed; season OK forbidden.
+**Report status after loop:** site-v1.0 checklist green when visual + pins + verified URLs ≥10; tag site-v1.0.0 on merge day.

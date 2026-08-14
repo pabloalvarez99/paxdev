@@ -2696,3 +2696,137 @@ p {
     padding: 20px;
   }
 }
+
+/* ES/EN toggle on system pages */
+.system-hero-top {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.lang-toggle {
+  display: inline-flex;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.lang-toggle button {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 8px 12px;
+}
+
+.lang-toggle button.is-active {
+  background: var(--mint);
+  color: var(--ink);
+}
+
+/* Changelog + case study */
+.changelog-page .narrow,
+.casestudy-page .narrow {
+  max-width: 820px;
+}
+
+.changelog-list {
+  display: grid;
+  gap: 28px;
+}
+
+.changelog-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  background: var(--ink-soft);
+}
+
+.changelog-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.changelog-body {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  max-height: 420px;
+  overflow: auto;
+  background: var(--ink);
+  border: 1px solid var(--line);
+  padding: 16px;
+}
+
+.casestudy-prose h1,
+.casestudy-prose h2,
+.casestudy-prose h3 {
+  line-height: 1.2;
+}
+
+.casestudy-prose p,
+.casestudy-prose li {
+  color: var(--paper-muted);
+  line-height: 1.65;
+}
+
+/* Printable interview kit */
+@media print {
+  .skip-link,
+  .site-header,
+  .site-footer,
+  .github-link,
+  .desktop-nav,
+  .cta-section,
+  .hero-actions,
+  .button {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  .interview-page,
+  .section,
+  .container {
+    background: #fff !important;
+    color: #111 !important;
+    box-shadow: none !important;
+  }
+
+  .interview-page a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+
+  .script-beat,
+  .kit-rules,
+  .poster {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .mono,
+  pre,
+  code {
+    color: #111 !important;
+  }
+
+  .status,
+  .section-kicker {
+    color: #333 !important;
+  }
+}
