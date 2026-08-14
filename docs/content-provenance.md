@@ -8,15 +8,20 @@ site. Update this record whenever a public status changes.
 
 | Surface | Public evidence |
 |---|---|
-| Production RAG | Release `v0.1.0`; verified green post-release SHA `d882c9a`. Current docs-only `main` `590045c` is red on the rendered-metric provenance guard, so it is not presented as the verified SHA. |
-| Agentic Research | `main` `b99c88c`; API/CLI/UI, optional P1 HTTP, notes tool, 17-case eval contract, green CI, release `v0.1.0` |
-| Multi-Agent Orchestration | `main` `2c79e9c` and green CI; the public README/SHIP still define the claim boundary as M4 and no release, despite newer client/UI code on main |
-| RepoMind | `main` `83c4fff` and green CI; the public README still defines the claim boundary as M5 and no release, despite newer dogfood/UI code on main |
-| AI Platform | `main` `3cdd3dd`; open `/health`, gateway/auth/rate-limit/status/guardrail tests, M0–M6 docs, green CI; no release |
+| Production RAG | Release `v0.1.0`; `main` `cb852ba` with green CI. The earlier `590045c` was red on the rendered-metric provenance guard; `cb852ba` is the docs fix that restored green. |
+| Agentic Research | Release `v0.1.0`; `main` `66aada2` with green CI; API/CLI/UI, optional P1 HTTP, notes tool, 17-case eval contract |
+| Multi-Agent Orchestration | Release `v0.1.0`; `main` `e2687ca` with green CI; the release tag points at the same commit |
+| RepoMind | Release `v0.1.0`; `main` `327a949` with green CI; the release tag points at the same commit |
+| AI Platform | Release `v0.1.0`; `main` `7978a00` with green CI; open `/health`, gateway/auth/rate-limit/status/guardrail tests |
 
-The first proof-strip count is five because P1–P5 are now public repositories with documented
-credential-free demo paths. AI Platform moved from `PLANNED` to `LIVE` only after its repository,
-open `/health`, tests, and green CI were all public; it does not claim a release.
+The first proof-strip count is five because all five systems now carry a published `v0.1.0` tag on a
+`main` whose latest CI run is green, plus a documented credential-free demo path. Every SHA cited on
+the site was checked against `gh run list` on the day of the refresh; no red SHA is promoted.
+
+AI Platform is the only system whose free path does not exercise the others. Its gateway starts with
+every upstream URL empty, so P1–P4 report `unconfigured` rather than running for the visitor, and its
+rate limiter is an in-process fixed window on a single instance, not a distributed limiter. The
+`dev-local` demo key is a public fixture in the repository, not a credential.
 
 The Production RAG screenshot is copied from
 `production-rag/docs/assets/ui-grounded.png`. Its source repository documents the repeatable

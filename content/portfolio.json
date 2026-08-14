@@ -11,8 +11,8 @@
   "proof": [
     {
       "value": "5",
-      "label": "public free-path systems",
-      "detail": "Five public repos clone and demo at $0; hosted services remain optional"
+      "label": "LIVE AI systems",
+      "detail": "Five public repos at tagged v0.1.0 with green CI; each clones and demos at $0"
     },
     {
       "value": "$0",
@@ -37,7 +37,7 @@
       "name": "Production RAG",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 · verified d882c9a",
+      "phase": "v0.1.0 · main cb852ba · CI green",
       "summary": "A production-shaped retrieval system that combines dense and sparse search, reranks candidates, and returns grounded answers with resolvable citations—or refuses.",
       "outcome": "Retrieve and answer honestly",
       "stack": ["Python", "FastAPI", "Qdrant", "LangGraph", "Docker", "GitHub Actions"],
@@ -59,7 +59,7 @@
       "name": "Agentic Research",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 · main b99c88c",
+      "phase": "v0.1.0 · main 66aada2 · CI green",
       "summary": "A bounded plan → retrieve → critique research loop with tools, explicit budgets, API/CLI/UI surfaces, cited synthesis, and deterministic traces.",
       "outcome": "Act with tools under budget",
       "stack": ["Python", "Pydantic", "FastAPI", "HTTPX", "Typed tools"],
@@ -80,17 +80,19 @@
       "name": "Multi-Agent Orchestration",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "M4 documented · main 2c79e9c",
+      "phase": "v0.1.0 · main e2687ca · CI green",
       "summary": "An orchestrator and specialist agents with explicit handoffs, global budgets, failure isolation, and auditable multi-agent timelines.",
       "outcome": "Coordinate specialists",
       "stack": ["Python", "FastAPI", "Agent protocols", "Handoff policy", "Trace timelines"],
       "evidence": [
         { "label": "Bounded roles, handoffs, API/CLI, and degraded mode — SHIP", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/main/docs/SHIP.md" },
-        { "label": "12-task offline routing evaluation contract", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/main/data/eval/README.md" },
-        { "label": "Credential-free checks — CI", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/actions/workflows/ci.yml" }
+        { "label": "12-task offline routing evaluation contract — a routing contract, not a claim that agents beat one model", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/main/data/eval/README.md" },
+        { "label": "Credential-free checks — CI", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/actions/workflows/ci.yml" },
+        { "label": "Published v0.1.0 release", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.1.0" }
       ],
       "links": [
-        { "label": "Repository", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration" }
+        { "label": "Repository", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration" },
+        { "label": "v0.1.0", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.1.0" }
       ]
     },
     {
@@ -99,17 +101,19 @@
       "name": "RepoMind",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "M5 documented · main 83c4fff",
+      "phase": "v0.1.0 · main 327a949 · CI green",
       "summary": "Repository intelligence built around safe repository walking, AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
       "outcome": "Understand codebases",
       "stack": ["Python AST", "FastAPI", "JSON CLI", "Path:line evidence", "Golden fixtures"],
       "evidence": [
-        { "label": "AST chunks, code Q&A, CLI, and milestone truth — README", "url": "https://github.com/pabloalvarez99/repomind#readme" },
-        { "label": "14-question fixture evaluation contract", "url": "https://github.com/pabloalvarez99/repomind/blob/main/data/eval/README.md" },
-        { "label": "Credential-free checks — CI", "url": "https://github.com/pabloalvarez99/repomind/actions/workflows/ci.yml" }
+        { "label": "AST chunks, code Q&A, CLI, and claim boundary — SHIP", "url": "https://github.com/pabloalvarez99/repomind/blob/main/docs/SHIP.md" },
+        { "label": "14-question fixture evaluation contract — citation plumbing on a fixture, not SOTA over arbitrary repositories", "url": "https://github.com/pabloalvarez99/repomind/blob/main/data/eval/README.md" },
+        { "label": "Credential-free checks — CI", "url": "https://github.com/pabloalvarez99/repomind/actions/workflows/ci.yml" },
+        { "label": "Published v0.1.0 release", "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.1.0" }
       ],
       "links": [
-        { "label": "Repository", "url": "https://github.com/pabloalvarez99/repomind" }
+        { "label": "Repository", "url": "https://github.com/pabloalvarez99/repomind" },
+        { "label": "v0.1.0", "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.1.0" }
       ]
     },
     {
@@ -118,17 +122,22 @@
       "name": "AI Platform",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "M0–M6 · main 3cdd3dd",
-      "summary": "A service gateway for the portfolio with authentication, rate limits, request propagation, aggregate health, and compose-based operations.",
+      "phase": "v0.1.0 · main 7978a00 · CI green",
+      "summary": "A service gateway for the portfolio with API-key authentication, per-key rate limits, request-ID propagation, aggregate health, and compose-based operations.",
       "outcome": "Operate the system",
       "stack": ["API gateway", "Auth", "Rate limiting", "Docker Compose", "Observability"],
       "evidence": [
         { "label": "Open health, gateway contracts, and release boundary — SHIP", "url": "https://github.com/pabloalvarez99/ai-platform/blob/main/docs/SHIP.md" },
-        { "label": "Auth, rate limits, status console, and guardrails — README", "url": "https://github.com/pabloalvarez99/ai-platform#readme" },
-        { "label": "Credential-free mocked checks — CI", "url": "https://github.com/pabloalvarez99/ai-platform/actions/workflows/ci.yml" }
+        { "label": "Free path is the gateway only: it does not run P1–P4 for the visitor", "url": "https://github.com/pabloalvarez99/ai-platform#readme" },
+        { "label": "Upstream URLs are empty in CI, so the four services report unconfigured", "url": "https://github.com/pabloalvarez99/ai-platform/blob/main/docs/SHIP.md" },
+        { "label": "The dev-local demo key is a public fixture, not a credential", "url": "https://github.com/pabloalvarez99/ai-platform#readme" },
+        { "label": "Rate limiting is an in-process fixed window on one instance, not a distributed limiter", "url": "https://github.com/pabloalvarez99/ai-platform#readme" },
+        { "label": "Credential-free mocked checks — CI", "url": "https://github.com/pabloalvarez99/ai-platform/actions/workflows/ci.yml" },
+        { "label": "Published v0.1.0 release", "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.1.0" }
       ],
       "links": [
-        { "label": "Repository", "url": "https://github.com/pabloalvarez99/ai-platform" }
+        { "label": "Repository", "url": "https://github.com/pabloalvarez99/ai-platform" },
+        { "label": "v0.1.0", "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.1.0" }
       ]
     }
   ],
@@ -190,7 +199,7 @@
       "index": "B",
       "title": "Backend & platform",
       "description": "Typed APIs and operational seams across Python and Rust services.",
-      "skills": ["FastAPI", "Axum", "Pydantic", "OpenAPI", "Qdrant", "SurrealDB", "Docker", "Structured logging", "Request IDs", "Fail-open design"],
+      "skills": ["FastAPI", "Axum", "Pydantic", "OpenAPI", "Qdrant", "SurrealDB", "Docker", "API gateway", "Rate limiting", "Structured logging", "Request IDs", "Fail-open design"],
       "evidenceUrl": "https://github.com/pabloalvarez99/pharma-server"
     },
     {
