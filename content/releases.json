@@ -1,61 +1,61 @@
 {
-  "note": "Vendored GitHub release notes for /changelog. Refresh with scripts/fetch-releases.mjs. Stale tags vs content/pins.json fail tests.",
+  "note": "Vendored GitHub release notes for /changelog. Stale tags vs content/pins.json fail tests.",
   "fetchedAt": "2026-08-14",
   "releases": [
     {
       "id": "P1",
       "slug": "production-rag",
       "repo": "pabloalvarez99/production-rag",
-      "tag": "v0.3.0",
-      "name": "v0.3.0 ΓÇö scorecard replay, ui-stream, CASESTUDY",
-      "publishedAt": "2026-08-14T20:02:25Z",
-      "htmlUrl": "https://github.com/pabloalvarez99/production-rag/releases/tag/v0.3.0",
-      "targetCommitish": "bf6e36d1d4ca353c4f17f649cb721da51d74f6bb",
-      "body": "## production-rag v0.3.0\n\nBuilds on **v0.2.0** (stream + filter-aware cache + scorecard). Still clone-only, $0 free path, no hosted URL.\n\n### See it (Week 2)\n- UI stills regenerated with **Stream the draft** toggle visible\n- New `docs/assets/ui-stream.png` (grounded + stream checked)\n- `capture_ui.py` rebuilds API image; `CACHE_ENABLED=false` for service-failure still\n- DEMO-DAY beats: filter chip `title=Filtering`, stream, cache hit, `/evals`\n\n### Scorecard is a loop (Week 3)\n- Replay free-path golden items via `/v1/query` and `/v1/query/stream`\n- Tests: unanswerable refuses; grounded keeps markers; cache hit on second replay when enabled\n- CASESTUDY: why stream is additive; why cache keys include filters\n\n**Main:** after merge of PR #4\n**PR:** https://github.com/pabloalvarez99/production-rag/pull/4"
+      "tag": "v1.0.0",
+      "name": "v1.0.0 ΓÇö free-path evaluation program + identity + failure injection",
+      "publishedAt": "2026-08-14T20:54:38Z",
+      "htmlUrl": "https://github.com/pabloalvarez99/production-rag/releases/tag/v1.0.0",
+      "targetCommitish": "3b54d85a9c0d3ba85bd0760058aafce76849d1f7",
+      "body": "## production-rag v1.0.0\n\nClone-only free-path flagship. Still $0. Still no Vercel. Never cite production-rag.vercel.app (Ipsura).\n\n### What shipped\n- Free-path eval program n=52 (`golden-free-path.jsonl`) with slices answerable / unanswerable / filter / hybrid-vs-dense\n- Difficulty predicates: CI fails if a ranking slice is all trivial rank-1\n- Scorecard HTML+JSON ablation dense/sparse/hybrid/hybrid_rerank labeled **plumbing**, `billed=false`\n- HTTP transcripts: grounded, refuse, title=Filtering, stream; failure path with CACHE_ENABLED=false\n- `/v1/ready` collection identity: embedder_id, chunker_version, doc_count, corpus_hash\n- Cache key includes corpus identity (no cross-hit); typed `wrong_collection`\n- Provider/store failures ΓåÆ 503 with `refused: false` (never soft refuse)\n- Local load harness: `docs/assets/load.json` (n=100, honest single-process note)\n- ADR-0014 corpus hash in cache key; CASESTUDY ΓëÑ1500 words\n\n### Still PLANNED\n- Auth / rate limit (P5)\n- Hosted Qdrant / multi-worker Redis cache\n- Hosted-provider quality baseline (billed run with named providers)\n- Public P1 host (will not ship; clone-only is intentional)\n\n### Verify\n```\npip install -e \".[dev]\"\npytest -q\npython scripts/write_compose_transcripts.py\npython scripts/run_load_local.py\n```\r\n"
     },
     {
       "id": "P2",
       "slug": "agentic-rag-research",
       "repo": "pabloalvarez99/agentic-rag-research",
-      "tag": "v0.3.0",
-      "name": "v0.3.0 ΓÇö compare payloads, hosted smoke, critic-can-lose",
-      "publishedAt": "2026-08-14T19:58:47Z",
-      "htmlUrl": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.3.0",
+      "tag": "v1.0.0",
+      "name": "v1.0.0 ΓÇö experiment lab",
+      "publishedAt": "2026-08-14T20:51:44Z",
+      "htmlUrl": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v1.0.0",
       "targetCommitish": "main",
-      "body": "# agentic-rag-research v0.3.0 ΓÇö compare, hosted contract, critic can lose\r\n\r\n**Date:** 2026-08-14  \r\n**Hosted:** https://pax-agentic-rag.vercel.app (Vercel project **`pax-agentic-rag`** only)\r\n\r\n## What this release proves\r\n\r\nA hiring manager can put two finished runs next to each other after a serverless recycle\r\nforgets in-memory ids. Compare is on **payloads**, not server ids\r\n([ADR-0005](../adr/0005-compare-on-payloads.md)). The free-path critic can still **lose**\r\nwhen notes exist but are off-topic. Hosted contract smoke is a script + transcript, not a\r\nflaky network CI job.\r\n\r\n## Surface\r\n\r\n| Endpoint / page | Role |\r\n| --- | --- |\r\n| `POST /v1/research` | Bounded research run (unchanged) |\r\n| `GET /v1/research/stream` | SSE plan ΓåÆ retrieve ΓåÆ note ΓåÆ critique |\r\n| `GET /v1/runs/{id}` | Stored artifact (in-process, ephemeral) |\r\n| `GET /v1/runs/{id}/run.json` | **Full run download** (compare input) |\r\n| `GET /v1/runs/{id}/trace.json` | Trace-only download |\r\n| `POST /v1/runs/compare` | Typed diff of two payloads |\r\n| `/compare` | Load two files; side-by-side + API diff |\r\n| `scripts/hosted_smoke.ps1` | health ┬╖ done ┬╖ refuse ┬╖ stream ┬╖ compare |\r\n\r\n## Evidence\r\n\r\n```bash\r\npython -m pytest -q\r\npython -m agentic_rag.evals.run\r\n# expect pass_rate 1.0, billed_usd 0.0, 18/18\r\npwsh scripts/hosted_smoke.ps1 -BaseUrl https://pax-agentic-rag.vercel.app\r\n```\r\n\r\n- Identical fixtures ΓåÆ empty, byte-stable compare response.\r\n- Refused vs done ΓåÆ typed field diffs (`status`, `stop_reason`, ΓÇª).\r\n- Golden `critic-notes-exist-not-success`: notes present, status `refused`.\r\n- Multi-hop sequence: critique after retrieve-1 precedes and justifies retrieve-2.\r\n\r\n## Honesty\r\n\r\n- Fixture retriever only on the public host. No live-web research claim.\r\n- HTTP to production-rag stays opt-in; CI never points at a production-rag Vercel host.\r\n- Control metrics only ΓÇö steps, stop reasons, citation presence, refused_unanswerable.\r\n- No OpenAI required for tests or the free path.\r\n\r\n## Upgrade notes\r\n\r\nClients that only downloaded `trace.json` should also keep `run.json` if they want to\r\ncompare after recycle. Compare request body is `{ \"left\": <RunArtifact>, \"right\": <RunArtifact> }`.\r\n"
+      "body": "# Release v1.0.0 ΓÇö experiment lab\r\n\r\n**Date:** 2026-08-14  \r\n**Hosted:** https://pax-agentic-rag.vercel.app ┬╖ Vercel project **`pax-agentic-rag` only**  \r\n**Baseline season doc:** [docs/SEASON.md](../SEASON.md)\r\n\r\n## Summary\r\n\r\nP2 graduates from a bounded research **demo** to a free-path **experiment lab**: experiment\r\nrecords, nΓëÑ40 control goldens with difficulty predicates, three tools with per-tool budgets,\r\npayload experiment packs, honest load numbers, and a CASESTUDY that states what is still\r\nPLANNED.\r\n\r\n## Added\r\n\r\n- `ExperimentRecord` (`id`, seed, budget, note ids, stop reason, pack hash, tool calls)\r\n- Golden control set **48** cases (was 18), including `tool_budget` and more unanswerable /\r\n  thin / budget slices; `critic-notes-exist-not-success` still refuses\r\n- Third tool: fixture **lexicon** lookup; per-tool `max_calls` in state; stop reason\r\n  `tool_budget_spent` ([ADR-0006](../adr/0006-three-tools-not-a-platform.md))\r\n- Experiment pack: policy + two run payloads + compare + experiments + `pack_hash`\r\n  (`POST /v1/experiments/pack`, `/pack` UI, directory/zip round-trip tests)\r\n- Load artifact: `docs/assets/load.json` (n=50 free-path researches, p50/p95, cold start)\r\n- Optional `max_tool_calls` on research request (OpenAPI)\r\n\r\n## Still PLANNED (honest)\r\n\r\n- Durable multi-instance run storage (DB / object store)\r\n- Live web tools or default paid LLM planner/critic\r\n- Hosted HTTP-P1 without captain-configured `PRODUCTION_RAG_URL`\r\n- Tier-2 quality judges in CI\r\n- Production capacity claims from single-process load.json\r\n- Agent plugin marketplace / unrestricted tool registry\r\n- Second Vercel project\r\n\r\n## Hosted contract\r\n\r\n- Project: **pax-agentic-rag** ┬╖ URL: https://pax-agentic-rag.vercel.app\r\n- Never `production-rag.vercel.app` (Ipsura)\r\n- Fixture retriever default; HTTP P1 opt-in; CI offline\r\n- Smoke: `pwsh scripts/hosted_smoke.ps1`\r\n\r\n## Verify\r\n\r\n```bash\r\npytest -q\r\npython -m agentic_rag.evals.run\r\npython scripts/load_fake_research.py --n 50\r\npwsh scripts/hosted_smoke.ps1\r\n```\r\n"
     },
     {
       "id": "P3",
       "slug": "multi-agent-orchestration",
       "repo": "pabloalvarez99/multi-agent-orchestration",
-      "tag": "v0.3.0",
-      "name": "multi-agent-orchestration v0.3.0 ΓÇö offline file replay and isolation",
-      "publishedAt": "2026-08-14T19:49:12Z",
-      "htmlUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.3.0",
+      "tag": "v1.0.0",
+      "name": "v1.0.0 ΓÇö policy as product",
+      "publishedAt": "2026-08-14T20:49:26Z",
+      "htmlUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v1.0.0",
       "targetCommitish": "main",
-      "body": "# multi-agent-orchestration v0.3.0 ΓÇö offline file replay and isolation proof\n\n## LIVE in this release\n\n- GitHub Release object for v0.2.0 already published; this tag is the durable-proof follow-on.\n- **Replay from file:** browser ΓÇ£Load trace JSONΓÇ¥ renders the Replay panel with no server\n  round-trip after load; `python -m mao.replay path.json` exits 0 on valid schema-1, 2 on invalid.\n- Schema-1 export download (`/ui/tasks/{id}/export.json`) plus committed fixture and tests.\n- ADR-0006: client-side file replay instead of Vercel KV/Postgres this week.\n- Concurrent fake tasks keep Writer text and traces isolated under a shared process store.\n- Recycle-equivalent (`RunStore.clear`) still allows offline file replay.\n- Optional P2 HTTP Research remains fail-closed (unset ΓåÆ `capability_missing`; 5xx ΓåÆ degraded).\n- DEMO-DAY tightened to a 15-minute run ΓåÆ download ΓåÆ 404 ΓåÆ load file story.\n\n## Deliberate limits\n\n- Server retention is still process-local last-128; recycle still 404s server lookup.\n- File replay is client durability, not a multi-instance audit database.\n- Specialists remain deterministic fakes unless HTTP Research is explicitly selected and configured.\n"
+      "body": "# Release v1.0.0 ΓÇö policy as product\n\n**Date:** 2026-08-14  \n**Baseline prior:** v0.3.0 (`8feb31a`) file replay + concurrent isolation demo  \n**Host:** https://pax-orchestration.vercel.app (project `pax-orchestration` only)\n\n## LIVE\n\n- Loadable default policy JSON characterizing v0.3 handoff graph and budgets (ADR-0007)\n- Restrictive fixture policy that changes happy path (`forbid-research-to-writer`)\n- Chaos isolation suite **n ΓëÑ 40** with easy/medium/hard predicates\n- Isolation simulation **n=1000**, `swap_rate=0`, `writer_only_violations=0` (JSON+HTML)\n- Policy UI (`/ui/policy`) + generated capture\n- Load probe p50/p95 for fake `POST /v1/tasks` (`docs/assets/load.json`, single isolate honesty)\n- Trace pack (JSON / directory / zip) with policy hash, task, seed, trace, result; UI import + round-trip tests\n- CASESTUDY ΓëÑ1500 words; DEMO-DAY 25 min script\n- Free path still fake specialists, `$0`, CI with empty keys\n\n## Still PLANNED (honest)\n\n- Multi-instance durable run storage (KV / Postgres / object store of every run)\n- Redis / shared session fabric\n- Real LLM specialists as default free path\n- Multi-tenant policy SaaS or remote policy registry\n- Multi-agent **answer quality** claims from fake specialists\n- Capacity planning from single-isolate load numbers\n- Any host other than `pax-orchestration` / `pax-orchestration.vercel.app`\n\n## Non-goals this tag\n\n- No Redis\n- No inventing durable server storage for recycle demos\n- No `pax-mao` project\n"
     },
     {
       "id": "P4",
       "slug": "repomind",
       "repo": "pabloalvarez99/repomind",
-      "tag": "v0.3.0",
-      "name": "v0.3.0",
-      "publishedAt": "2026-08-14T19:53:05Z",
-      "htmlUrl": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.3.0",
-      "targetCommitish": "4de0ac649d8f73cb3003b4e22d2977bfb7f5cfc1",
-      "body": "## RepoMind v0.3.0\n\n- **History without git(1):** committed fixture snapshots ΓåÆ hosted `GET /v1/code/history` returns 200 (ADR 0004)\n- **Pinned P1 dogfood:** `production_rag` from `d43f812ΓÇª`; catalog `source_sha`\n- **Who calls X:** Python AST incoming refs + UI `/refs`\n- Goldens 14/14 + 8/8 + JS, billed $0\n- Hosted: https://pax-repomind.vercel.app"
+      "tag": "v1.0.0",
+      "name": "v1.0.0",
+      "publishedAt": "2026-08-14T20:56:42Z",
+      "htmlUrl": "https://github.com/pabloalvarez99/repomind/releases/tag/v1.0.0",
+      "targetCommitish": "main",
+      "body": "## RepoMind v1.0.0\n\nFree-path code intelligence season close.\n\n### Included\n- Program eval n=52 with difficulty predicates (mini / mini_js / production_rag)\n- Language packs: python-ast, js, json (stdlib; no grammar download in default CI)\n- Rename-aware history via committed renames.jsonl\n- Offline repomind pack / unpack (billed $0)\n- Catalog UI: indexer_version, tree_hash, source_sha\n- production_rag pin: bf6e36d1d4ca353c4f17f649cb721da51d74f6bb\n- Load: docs/assets/load.json (200 mini asks, p50/p95; lexical fixture honesty)\n\n### Still PLANNED\n- No live git on host (snapshots only)\n- No stranger uploads / raw paths\n- No required tree-sitter in CI\n- Not semantic/SOTA code search\n\nHost: https://pax-repomind.vercel.app"
     },
     {
       "id": "P5",
       "slug": "ai-platform",
       "repo": "pabloalvarez99/ai-platform",
-      "tag": "v0.3.0",
-      "name": "v0.3.0",
-      "publishedAt": "2026-08-14T19:48:35Z",
-      "htmlUrl": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.3.0",
-      "targetCommitish": "main",
-      "body": "# v0.3.0 ΓÇö proxy contracts and preview-only upstreams\n\n## What shipped\n\n- **Week 1 ┬╖ edge hygiene:** security headers; Redis connect/command timeouts + port from URL;\n  journal never stores raw keys (including the published `dev-local` fixture); backend-neutral\n  429 docs; hostname-required upstream URLs; OpenAPI still documents `/v1/platform/status`.\n- **Week 2 ┬╖ proxy contracts:** `respx` + committed fixtures under `tests/fixtures/siblings/` for\n  P2 `/v1/research`, P3 `/v1/tasks`, P4 `/v1/code/*`. Empty URL ΓåÆ typed `upstream_unconfigured`.\n  Transport failure ΓåÆ typed `upstream_down`. Sibling 5xx body pass-through + request id.\n  Production stays empty: [ADR-0004](../adr/0004-production-env-stays-empty.md).\n- **Week 3 ┬╖ preview recipe:** [PREVIEW-UPSTREAMS.md](../PREVIEW-UPSTREAMS.md). Production env\n  is not wired. Status UI keeps `unconfigured` first-class and never claims four systems hosted.\n\n## Hosted honesty (unchanged)\n\n- Public host: https://pax-ai-gateway.vercel.app ΓÇö P5 only, four `unconfigured`.\n- No global 429 claim. Fly remains **PLANNED**.\n- No sibling URLs in committed deployment files.\n\n## Verify\n\n```bash\ncurl -s https://pax-ai-gateway.vercel.app/health\ncurl -s https://pax-ai-gateway.vercel.app/openapi.json | head -c 200\ncurl -s -H \"X-API-Key: dev-local\" https://pax-ai-gateway.vercel.app/v1/platform/status\n# four unconfigured\ncurl -s -H \"X-API-Key: dev-local\" https://pax-ai-gateway.vercel.app/v1/research\n# 503 upstream_unconfigured\n```\n\nOffline: `pytest` (includes `test_proxy_contracts` and `test_journal_never_contains_the_published_fixture_key`).\n"
+      "tag": "v1.0.0",
+      "name": "v1.0.0 ΓÇö operable free-path edge",
+      "publishedAt": "2026-08-14T20:47:33Z",
+      "htmlUrl": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v1.0.0",
+      "targetCommitish": "801fc0b8d9259b47b2ea3783eaaa8ebce4ce1b57",
+      "body": "# v1.0.0 ΓÇö operable free-path edge\n\n## What shipped\n\n- **Quota policy as data:** `config/quota_policy.json` defaults to 30 requests / 60s per key\n  (matches historical `GATEWAY_RATE_LIMIT=30/min`); per-key overrides; blank path falls back to env.\n- **Audit export:** journal `?format=jsonl` with meta + entry lines; salted `key_id` only;\n  fixture `dev-local` never appears in export body (tested).\n- **Proxy honesty:** offline respx fixtures for research compare, mao replay, repomind refs/history;\n  chaos for sibling 429 / application 502 / connect / timeout with `request_id` preserved.\n- **Preview discipline:** dry-run script; production upstreams remain empty (ADR-0004).\n- **Operate:** runbook (unconfigured / 401 storm / previewΓåÆprod), load artifact (health+401 only,\n  single isolate), CASESTUDY ΓëÑ1500 words, season ledger `docs/SEASON.md`.\n\n## Hosted honesty (must stay true)\n\n- Public host: https://pax-ai-gateway.vercel.app ΓÇö **P5 only**, four **`unconfigured`**.\n- Status path: `/v1/platform/status` (not `/v1/status`).\n- No global 429 claim (`rate_limiter.scope` = `process` without Redis).\n- **Fly remains PLANNED** (billing blocks free deploy theater).\n- Agents do not set production upstream env.\n\n## Verify\n\n```bash\ncurl -s https://pax-ai-gateway.vercel.app/health\ncurl -s https://pax-ai-gateway.vercel.app/v1/platform/status   # 401\ncurl -s -H \"X-API-Key: dev-local\" https://pax-ai-gateway.vercel.app/v1/platform/status\n# four unconfigured\ncurl -s -H \"X-API-Key: dev-local\" \"https://pax-ai-gateway.vercel.app/v1/platform/journal?format=jsonl&limit=5\"\n# no raw keys\n```\n\nOffline: `pytest` (quota policy, audit export, proxy contracts, chaos).  \nLoad: `python scripts/load_public_edge.py --n 120` ΓåÆ `docs/assets/load.json`.\n\n## Still PLANNED after v1.0.0\n\n- Fly.io multi-region gateway if billing unblocks.\n- Deployment-wide 429 on public Vercel without intentional Redis.\n- Durable multi-tenant audit / SIEM shipping.\n- OAuth / enterprise IdP.\n- Token-bucket limiter (shipped algorithm remains fixed window).\n- P1 public host integration on production gateway.\n"
     }
   ]
 }

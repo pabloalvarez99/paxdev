@@ -12,7 +12,7 @@
     {
       "value": "5",
       "label": "LIVE AI systems",
-      "detail": "Five public repos with tagged v0.3.0 releases and green CI; P2–P5 hosted on free path, P1 clone-only on main after PR #3 merge"
+      "detail": "Five public repos with tagged v1.0.0 releases and green CI; P2–P5 hosted on free path, P1 clone-only on main"
     },
     {
       "value": "$0",
@@ -37,7 +37,7 @@
       "name": "Production RAG",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.3.0 · main bf6e36d · CI green",
+      "phase": "v1.0.0 · main 3b54d85 · CI green",
       "summary": "A production-shaped retrieval system that combines dense and sparse search, reranks candidates, and returns grounded answers with resolvable citations—or refuses.",
       "outcome": "Retrieve and answer honestly",
       "stack": [
@@ -66,20 +66,20 @@
           "url": "https://github.com/pabloalvarez99/production-rag/blob/main/docs/adr/0011-metadata-filters.md"
         },
         {
-          "label": "Stream, filter-aware cache, scorecard /evals at bf6e36d / v0.3.0 (PR #3 merged)",
-          "url": "https://github.com/pabloalvarez99/production-rag/blob/bf6e36d/docs/SHIP.md"
+          "label": "Stream, filter-aware cache, scorecard /evals at 3b54d85 / v1.0.0 (PR #3 merged)",
+          "url": "https://github.com/pabloalvarez99/production-rag/blob/3b54d85/docs/SHIP.md"
         },
         {
           "label": "The filter control offers only the allowlisted fields the API would accept — demo walkthrough at bf6e36d",
-          "url": "https://github.com/pabloalvarez99/production-rag/blob/bf6e36d/docs/demo.md"
+          "url": "https://github.com/pabloalvarez99/production-rag/blob/3b54d85/docs/demo.md"
         },
         {
           "label": "Credential-free checks — CI",
           "url": "https://github.com/pabloalvarez99/production-rag/actions/workflows/ci.yml"
         },
         {
-          "label": "Published v0.3.0 release",
-          "url": "https://github.com/pabloalvarez99/production-rag/releases/tag/v0.3.0"
+          "label": "Published v1.0.0 release",
+          "url": "https://github.com/pabloalvarez99/production-rag/releases/tag/v1.0.0"
         }
       ],
       "links": [
@@ -96,8 +96,8 @@
           "url": "https://github.com/pabloalvarez99/production-rag/blob/main/docs/DEMO-DAY.md"
         },
         {
-          "label": "v0.3.0",
-          "url": "https://github.com/pabloalvarez99/production-rag/releases/tag/v0.3.0"
+          "label": "v1.0.0",
+          "url": "https://github.com/pabloalvarez99/production-rag/releases/tag/v1.0.0"
         }
       ],
       "hosted": null,
@@ -107,7 +107,7 @@
         "width": 1440,
         "height": 2127,
         "caption": "Grounded answer with citations, from the free local stack.",
-        "sourceUrl": "https://github.com/pabloalvarez99/production-rag/blob/bf6e36d/docs/assets/ui-grounded.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/production-rag/blob/3b54d85/docs/assets/ui-grounded.png"
       },
       "secondaryCapture": {
         "src": "/production-rag-filtered.png",
@@ -115,7 +115,7 @@
         "width": 1440,
         "height": 1785,
         "caption": "The same corpus under tags = hybrid: the control offers only allowlisted fields, and the result footer names the narrowing.",
-        "sourceUrl": "https://github.com/pabloalvarez99/production-rag/blob/bf6e36d/docs/assets/ui-filtered.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/production-rag/blob/3b54d85/docs/assets/ui-filtered.png"
       },
       "route": "/systems/production-rag",
       "page": {
@@ -190,7 +190,7 @@
       "name": "Agentic Research",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.3.0 · main dc80188 · CI green",
+      "phase": "v1.0.0 · main 1b4915f · CI green",
       "summary": "A bounded plan → retrieve → critique research loop with tools, explicit budgets, API/CLI/UI surfaces, cited synthesis, and deterministic traces.",
       "outcome": "Act with tools under budget",
       "stack": [
@@ -214,12 +214,12 @@
           "url": "https://github.com/pabloalvarez99/agentic-rag-research/actions/workflows/ci.yml"
         },
         {
-          "label": "Published v0.3.0 release",
-          "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.3.0"
+          "label": "Published v1.0.0 release",
+          "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v1.0.0"
         },
         {
-          "label": "Notes store, run export, SSE stream, control scorecard at dc80188 / v0.3.0",
-          "url": "https://github.com/pabloalvarez99/agentic-rag-research/blob/dc80188/docs/SHIP.md"
+          "label": "Notes store, run export, SSE stream, control scorecard at 1b4915f / v1.0.0",
+          "url": "https://github.com/pabloalvarez99/agentic-rag-research/blob/1b4915f/docs/SHIP.md"
         }
       ],
       "links": [
@@ -228,8 +228,8 @@
           "url": "https://github.com/pabloalvarez99/agentic-rag-research"
         },
         {
-          "label": "v0.3.0",
-          "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.3.0"
+          "label": "v1.0.0",
+          "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v1.0.0"
         },
         {
           "label": "Hosted demo",
@@ -247,7 +247,7 @@
         "width": 1280,
         "height": 2292,
         "caption": "A completed research run: budget spent, stop reason, cited synthesis.",
-        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/dc80188/docs/assets/ui-done.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/1b4915f/docs/assets/ui-done.png"
       },
       "secondaryCapture": {
         "src": "/agentic-research-trace.png",
@@ -255,7 +255,7 @@
         "width": 1280,
         "height": 5009,
         "caption": "The full trace: six event types in order, ending in the stop that named the reason.",
-        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/dc80188/docs/assets/ui-trace.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/1b4915f/docs/assets/ui-trace.png"
       },
       "route": "/systems/agentic-rag-research",
       "page": {
@@ -270,7 +270,7 @@
           "POST /v1/research, a CLI, GET /health, and GET /metrics in Prometheus text — all four verified over HTTP on the hosted instance.",
           "A 17-case golden evaluation across five slices, run with empty provider variables.",
           "An optional production-rag HTTP retriever, opt-in behind PRODUCTION_RAG_URL and mock-transport tested.",
-          "Stored run artifacts with GET /v1/runs, SSE stream, and smoke-tested download offsets at dc80188 / v0.3.0 (fixture-only on the hosted copy)."
+          "Stored run artifacts with GET /v1/runs, SSE stream, and smoke-tested download offsets at dc80188 / v1.0.0 (fixture-only on the hosted copy)."
         ],
         "planned": [
           "The hosted demo runs the committed fixture retriever. It proves the agent's control flow and claims nothing about retrieval or answer quality.",
@@ -284,7 +284,7 @@
           "label": "Run a research loop in the browser",
           "url": "https://pax-agentic-rag.vercel.app",
           "command": "curl https://pax-agentic-rag.vercel.app/health",
-          "note": "No clone, no key. Ask a question the fixture cannot support and read the typed refuse. Hosted health reports version 0.3.0; GET /health and GET /metrics both returned 200 on 2026-08-14."
+          "note": "No clone, no key. Ask a question the fixture cannot support and read the typed refuse. Hosted health reports version 1.0.0; GET /health and GET /metrics both returned 200 on 2026-08-14."
         },
         "interview": [
           {
@@ -326,7 +326,7 @@
       "name": "Multi-Agent Orchestration",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.3.0 · main 8feb31a · CI green",
+      "phase": "v1.0.0 · main 88a24f2 · CI green",
       "summary": "An orchestrator and specialist agents with explicit handoffs, global budgets, failure isolation, auditable multi-agent timelines, and a credential-free hosted console.",
       "outcome": "Coordinate specialists",
       "stack": [
@@ -350,16 +350,16 @@
           "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/actions/workflows/ci.yml"
         },
         {
-          "label": "Published v0.3.0 release",
-          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.3.0"
+          "label": "Published v1.0.0 release",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v1.0.0"
         },
         {
-          "label": "Hosted free-path console at 8feb31a / v0.3.0",
-          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/8feb31a/docs/SHIP.md"
+          "label": "Hosted free-path console at 88a24f2 / v1.0.0",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/88a24f2/docs/SHIP.md"
         },
         {
-          "label": "Published v0.3.0 release",
-          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.3.0"
+          "label": "Published v1.0.0 release",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v1.0.0"
         }
       ],
       "links": [
@@ -368,8 +368,8 @@
           "url": "https://github.com/pabloalvarez99/multi-agent-orchestration"
         },
         {
-          "label": "v0.3.0",
-          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.3.0"
+          "label": "v1.0.0",
+          "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v1.0.0"
         },
         {
           "label": "Hosted demo",
@@ -387,7 +387,7 @@
         "width": 1080,
         "height": 3613,
         "caption": "The handoff timeline, step by step, with per-agent budget.",
-        "sourceUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/8feb31a/docs/assets/ui-trace.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/88a24f2/docs/assets/ui-trace.png"
       },
       "secondaryCapture": {
         "src": "/multi-agent-budget.png",
@@ -395,7 +395,7 @@
         "width": 1440,
         "height": 2755,
         "caption": "budget_exhausted is a terminal state with a number behind it, not a stalled run.",
-        "sourceUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/8feb31a/docs/assets/ui-budget.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/88a24f2/docs/assets/ui-budget.png"
       },
       "route": "/systems/multi-agent",
       "page": {
@@ -410,7 +410,7 @@
           "An ordered, JSON-safe multi-agent timeline with completeness, ordering, privacy, and budget-stop tests, downloadable as JSON.",
           "A 12-task golden evaluation across three slices, including an HTTP-absent slice that makes zero network calls.",
           "Hosted console and API on the free path with no key: GET /health and GET /metrics returned 200, and POST /v1/tasks completed with status done on 2026-08-14.",
-          "Versioned run replay traces and typed chaos isolation contracts shipped at v0.3.0 / main 8feb31a."
+          "Versioned run replay traces and typed chaos isolation contracts shipped at v1.0.0 / main 8feb31a."
         ],
         "planned": [
           "No claim that several agents outperform one. The 12-task evaluation is a routing contract on deterministic fakes.",
@@ -424,7 +424,7 @@
           "label": "Open the hosted specialist console",
           "url": "https://pax-orchestration.vercel.app",
           "command": "curl https://pax-orchestration.vercel.app/health",
-          "note": "No clone, no key. Health returned {\"status\":\"ok\"} on 2026-08-14. Submit a task in the console, or POST /v1/tasks, and read the ordered trace. Hosted free path on main 8feb31a / v0.3.0."
+          "note": "No clone, no key. Health returned {\"status\":\"ok\"} on 2026-08-14. Submit a task in the console, or POST /v1/tasks, and read the ordered trace. Hosted free path on main 88a24f2 / v1.0.0."
         },
         "interview": [
           {
@@ -466,7 +466,7 @@
       "name": "RepoMind",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.3.0 · main 4de0ac6 · CI green",
+      "phase": "v1.0.0 · main 099ac8a · CI green",
       "summary": "Repository intelligence built around safe repository walking, AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
       "outcome": "Understand codebases",
       "stack": [
@@ -490,12 +490,12 @@
           "url": "https://github.com/pabloalvarez99/repomind/actions/workflows/ci.yml"
         },
         {
-          "label": "Published v0.3.0 release",
-          "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.3.0"
+          "label": "Published v1.0.0 release",
+          "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v1.0.0"
         },
         {
-          "label": "Content-addressed index, catalog contract, multi-language free path at 4de0ac6 / v0.3.0",
-          "url": "https://github.com/pabloalvarez99/repomind/blob/4de0ac6/docs/SHIP.md"
+          "label": "Content-addressed index, catalog contract, multi-language free path at 099ac8a / v1.0.0",
+          "url": "https://github.com/pabloalvarez99/repomind/blob/099ac8a/docs/SHIP.md"
         }
       ],
       "links": [
@@ -504,8 +504,8 @@
           "url": "https://github.com/pabloalvarez99/repomind"
         },
         {
-          "label": "v0.3.0",
-          "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.3.0"
+          "label": "v1.0.0",
+          "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v1.0.0"
         },
         {
           "label": "Hosted demo",
@@ -523,7 +523,7 @@
         "width": 1280,
         "height": 1255,
         "caption": "RepoMind reading its own repository, answering with path:line evidence.",
-        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/4de0ac6/docs/assets/ui-dogfood-hit.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/099ac8a/docs/assets/ui-dogfood-hit.png"
       },
       "secondaryCapture": {
         "src": "/repomind-mini-refuse.png",
@@ -531,7 +531,7 @@
         "width": 1280,
         "height": 1125,
         "caption": "No evidence found, zero citations. The refusal is the same code path as the answer.",
-        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/4de0ac6/docs/assets/ui-mini-refuse.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/099ac8a/docs/assets/ui-mini-refuse.png"
       },
       "route": "/systems/repomind",
       "page": {
@@ -546,7 +546,7 @@
           "A 14-case mini evaluation and an 8-case production_rag dogfood snapshot, both with a deterministic provider, a null judge, and a $0 bill.",
           "A capture staleness gate: CI records a sha256 per committed PNG and per file that decides what a capture shows, and fails when either drifts.",
           "Hosted console and API on the same fixtures with no key, verified over HTTP on 2026-08-14.",
-          "Content-addressed incremental index and GET /v1/catalog at 4de0ac6 / v0.3.0; optional git history returns 503 capability_missing when unavailable."
+          "Content-addressed incremental index and GET /v1/catalog at 4de0ac6 / v1.0.0; optional git history returns 503 capability_missing when unavailable."
         ],
         "planned": [
           "The hosted instance indexes the committed mini and production_rag fixtures and nothing else. It cannot answer about an arbitrary repository.",
@@ -601,7 +601,7 @@
       "name": "AI Platform",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.3.0 · main 98970d4 · CI green",
+      "phase": "v1.0.0 · main 801fc0b · CI green",
       "summary": "A service gateway for the portfolio with API-key authentication, per-key rate limits, request-ID propagation, aggregate health, and compose-based operations — now hosted, so the gateway answers over HTTP without a clone.",
       "outcome": "Operate the system",
       "stack": [
@@ -634,19 +634,19 @@
         },
         {
           "label": "Hosted on Vercel from the entrypoint shims in api/index.py and main.py",
-          "url": "https://github.com/pabloalvarez99/ai-platform/blob/98970d4/api/index.py"
+          "url": "https://github.com/pabloalvarez99/ai-platform/blob/801fc0b/api/index.py"
         },
         {
           "label": "Credential-free mocked checks — CI",
           "url": "https://github.com/pabloalvarez99/ai-platform/actions/workflows/ci.yml"
         },
         {
-          "label": "Published v0.3.0 release",
-          "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.3.0"
+          "label": "Published v1.0.0 release",
+          "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v1.0.0"
         },
         {
-          "label": "Request journal, OpenAPI contract, OTel seam, limiter protocol at 98970d4 / v0.3.0",
-          "url": "https://github.com/pabloalvarez99/ai-platform/blob/98970d4/docs/SHIP.md"
+          "label": "Request journal, OpenAPI contract, OTel seam, limiter protocol at 801fc0b / v1.0.0",
+          "url": "https://github.com/pabloalvarez99/ai-platform/blob/801fc0b/docs/SHIP.md"
         }
       ],
       "links": [
@@ -655,8 +655,8 @@
           "url": "https://github.com/pabloalvarez99/ai-platform"
         },
         {
-          "label": "v0.3.0",
-          "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.3.0"
+          "label": "v1.0.0",
+          "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v1.0.0"
         },
         {
           "label": "Hosted gateway",
@@ -674,7 +674,7 @@
         "width": 2200,
         "height": 2128,
         "caption": "The gateway is honest when nothing is behind it: four upstreams, unconfigured.",
-        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/98970d4/docs/assets/ui-status-unconfigured.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/801fc0b/docs/assets/ui-status-unconfigured.png"
       },
       "secondaryCapture": {
         "src": "/ai-platform-status-partial.png",
@@ -682,7 +682,7 @@
         "width": 2200,
         "height": 2098,
         "caption": "The same console when upstreams are configured: partial is a reportable state, not an outage.",
-        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/98970d4/docs/assets/ui-status-partial.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/801fc0b/docs/assets/ui-status-partial.png"
       },
       "route": "/systems/ai-platform",
       "page": {
@@ -695,9 +695,9 @@
           "A read-only status console at the root that reports gateway up and each upstream's real state.",
           "Per-key rate limiting as an in-process fixed window, request-ID propagation, and structured logs that mask credentials.",
           "GET /metrics in Prometheus text, verified 200 on the hosted instance.",
-          "Docker Compose for the whole stack, plus Vercel entrypoint shims in api/index.py and main.py at 98970d4, which is the commit main serves after the v0.3.0 weeks-depth merge.",
+          "Docker Compose for the whole stack, plus Vercel entrypoint shims in api/index.py and main.py at 98970d4, which is the commit main serves after the v1.0.0 weeks-depth merge.",
           "Credential-free mocked checks in CI, with upstream URLs empty so the four services report unconfigured there too.",
-          "Request journal, complete OpenAPI contract, NullTracer/OTel seam, and one limiter protocol (memory default, Redis opt-in) at 98970d4 / v0.3.0."
+          "Request journal, complete OpenAPI contract, NullTracer/OTel seam, and one limiter protocol (memory default, Redis opt-in) at 98970d4 / v1.0.0."
         ],
         "planned": [
           "The hosted instance is the gateway alone. It does not run P1-P4 for a visitor, which is exactly why the console shows four unconfigured upstreams.",
@@ -711,7 +711,7 @@
           "label": "Open the status console",
           "url": "https://pax-ai-gateway.vercel.app",
           "command": "curl https://pax-ai-gateway.vercel.app/health",
-          "note": "No clone. Open /health without a key (200). /v1/platform/status is 401 without a header; X-API-Key: dev-local returns gateway up with four unconfigured upstreams and version 0.3.0. Main 98970d4 / v0.3.0."
+          "note": "No clone. Open /health without a key (200). /v1/platform/status is 401 without a header; X-API-Key: dev-local returns gateway up with four unconfigured upstreams and version 1.0.0. Main 801fc0b / v1.0.0."
         },
         "interview": [
           {
@@ -1044,8 +1044,8 @@
         "why": "Hybrid retrieval needs local Qdrant. Clone the repo and follow DEMO-DAY: stream, title=Filtering, /evals. production-rag.vercel.app is Ipsura — never iframe it.",
         "absentUrl": "https://pax-production-rag.vercel.app",
         "command": "git clone https://github.com/pabloalvarez99/production-rag",
-        "demoDayUrl": "https://github.com/pabloalvarez99/production-rag/blob/bf6e36d/docs/DEMO-DAY.md",
-        "evalsUrl": "https://github.com/pabloalvarez99/production-rag/blob/bf6e36d/docs/assets/scorecard.html"
+        "demoDayUrl": "https://github.com/pabloalvarez99/production-rag/blob/3b54d85/docs/DEMO-DAY.md",
+        "evalsUrl": "https://github.com/pabloalvarez99/production-rag/blob/3b54d85/docs/assets/scorecard.html"
       }
     ]
   },
@@ -1053,8 +1053,8 @@
     "title": "Forty-five minutes, five systems",
     "intro": "This is the demo-day script from the flagship repository, re-cut for the way the portfolio actually runs today. The original is written for five localhost ports, because when it was published nothing was deployed. Four systems are hosted now, so four of these five beats are a link a reviewer can open on their own machine and one still needs a clone. Both facts are on the page.",
     "source": {
-      "label": "The original script — DEMO-DAY.md at bf6e36d",
-      "url": "https://github.com/pabloalvarez99/production-rag/blob/bf6e36d/docs/DEMO-DAY.md"
+      "label": "The original script — DEMO-DAY.md at 3b54d85",
+      "url": "https://github.com/pabloalvarez99/production-rag/blob/3b54d85/docs/DEMO-DAY.md"
     },
     "rules": [
       {
@@ -1075,8 +1075,8 @@
         "clock": "0–8",
         "mode": "CLONE",
         "system": "production-rag",
-        "title": "Grounded, then refusing, then narrowed · main bf6e36d · CLONE",
-        "say": "Open with the thesis in one breath: a retrieval system is only as good as the evidence it can show for its own behaviour. Main is bf6e36d / v0.3.0; PR #3 (stream, filter-aware cache, /evals) is MERGED. Then ask three questions in an order that carries the argument — including title = Filtering — and point at DEMO-DAY in the repo.",
+        "title": "Grounded, then refusing, then narrowed · main 3b54d85 · CLONE",
+        "say": "Open with the thesis in one breath. Main is 3b54d85 / v1.0.0; stream, filter-aware cache, and /evals are on main. Ask grounded, refuse, then title = Filtering. DEMO-DAY lives in the clone.",
         "steps": [
           {
             "kind": "command",
@@ -1107,20 +1107,20 @@
           {
             "kind": "link",
             "value": "DEMO-DAY + /evals in the repo",
-            "url": "https://github.com/pabloalvarez99/production-rag/blob/bf6e36d/docs/DEMO-DAY.md",
+            "url": "https://github.com/pabloalvarez99/production-rag/blob/3b54d85/docs/DEMO-DAY.md",
             "note": "Clone card only: stream path, Filtering chip, and scorecard live in-repo. Never open production-rag.vercel.app (Ipsura)."
           }
         ],
         "watch": "Do not present the deterministic run as retrieval or answer quality — the embedder, the LLM, and the reranker are fakes. Do not present the field allowlist as access control: it bounds which fields a query may filter on, never which documents a caller may see.",
-        "sha": "bf6e36d",
+        "sha": "3b54d85",
         "host": null
       },
       {
         "clock": "8–18",
         "mode": "HOSTED",
         "system": "agentic-rag-research",
-        "title": "A loop that stops for a stated reason · dc80188 · pax-agentic-rag.vercel.app",
-        "say": "The interesting output of an agent is not the answer. It is the record of why it stopped. Hosted at pax-agentic-rag.vercel.app on main dc80188 / v0.3.0. Ask a question the corpus supports, then one it does not, and read stop_reason as a field.",
+        "title": "A loop that stops for a stated reason · 1b4915f · pax-agentic-rag.vercel.app",
+        "say": "Hosted at pax-agentic-rag.vercel.app on main 1b4915f / v1.0.0. Ask a supported question, then an unsupported one, and read stop_reason.",
         "steps": [
           {
             "kind": "link",
@@ -1145,15 +1145,15 @@
           }
         ],
         "watch": "Do not claim the agent beats a single retrieval pass; the scorecard measures contract conformance, not uplift. Do not imply the P1 HTTP retriever is running — the hosted instance sets no PRODUCTION_RAG_URL, so that path answers capability_missing on purpose.",
-        "sha": "dc80188",
+        "sha": "1b4915f",
         "host": "https://pax-agentic-rag.vercel.app"
       },
       {
         "clock": "18–28",
         "mode": "HOSTED",
         "system": "multi-agent-orchestration",
-        "title": "Writer-only, and degraded on purpose — now in the browser · 8feb31a · pax-orchestration.vercel.app",
-        "say": "A multi-agent system without budgets is a system that can bill you forever. Hosted at pax-orchestration.vercel.app on main 8feb31a / v0.3.0. Open the console, run a task, download the JSON; specialists are fakes on purpose.",
+        "title": "Writer-only, and degraded on purpose — now in the browser · 88a24f2 · pax-orchestration.vercel.app",
+        "say": "Hosted at pax-orchestration.vercel.app on main 88a24f2 / v1.0.0. Run a task and download the JSON; specialists are fakes.",
         "steps": [
           {
             "kind": "link",
@@ -1179,14 +1179,14 @@
           }
         ],
         "watch": "Do not claim answer quality or multi-model uplift; the specialists are deterministic fakes. Do not claim the optional remote research integration is live unless AGENTIC_RAG_URL is set — the free path does not need it.",
-        "sha": "8feb31a",
+        "sha": "88a24f2",
         "host": "https://pax-orchestration.vercel.app"
       },
       {
         "clock": "28–38",
         "mode": "HOSTED",
         "system": "repomind",
-        "title": "path:line, and the snapshot caveat · 4de0ac6 · pax-repomind.vercel.app",
+        "title": "path:line, and the snapshot caveat · 099ac8a · pax-repomind.vercel.app",
         "say": "Citations as path:start-end, not prose references. Open one — it is a real range in a real file. Then say the honesty beat before anyone asks: the production_rag catalog is a frozen snapshot committed under fixtures, not a live checkout of the sibling project. It proves navigation and citation correctness on committed bytes. It does not prove the tool works on your repository.",
         "steps": [
           {
@@ -1199,7 +1199,7 @@
             "kind": "link",
             "value": "Where is create_app defined? on production_rag",
             "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=production_rag",
-            "note": "Primary interview hit on main 4de0ac6. Name the host pax-repomind.vercel.app and the SHA."
+            "note": "Primary interview hit on main 099ac8a. Name the host pax-repomind.vercel.app and the SHA."
           },
           {
             "kind": "link",
@@ -1210,19 +1210,19 @@
           {
             "kind": "command",
             "value": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"production_rag\"}'",
-            "note": "On main 4de0ac6 the catalog accepts production_rag for POST as well as GET. Say the SHA and the host out loud."
+            "note": "On main 099ac8a the catalog accepts production_rag for POST as well as GET. Say the SHA and the host out loud."
           }
         ],
         "watch": "Do not describe the dogfood gate as evidence of general code comprehension. Do not imply the snapshot tracks the sibling repository — it does not update itself. Do not quote eval counts as a score.",
-        "sha": "4de0ac6",
+        "sha": "099ac8a",
         "host": "https://pax-repomind.vercel.app"
       },
       {
         "clock": "38–45",
         "mode": "HOSTED",
         "system": "ai-platform",
-        "title": "Rejected, then unconfigured · 98970d4 · pax-ai-gateway.vercel.app",
-        "say": "This is a gateway on main 98970d4 / v0.3.0 at pax-ai-gateway.vercel.app, and there is nothing behind it right now. The four upstream URLs are empty, so the console says unconfigured rather than pretending. Status reports version 0.3.0 with the public fixture key.",
+        "title": "Rejected, then unconfigured · 801fc0b · pax-ai-gateway.vercel.app",
+        "say": "Gateway on main 801fc0b / v1.0.0 at pax-ai-gateway.vercel.app. Status with the public fixture key reports four unconfigured upstreams.",
         "steps": [
           {
             "kind": "command",
@@ -1248,7 +1248,7 @@
           }
         ],
         "watch": "Do not say P5 hosts, runs, or serves P1 through P4. Do not call dev-local a key, a secret, or a credential. The rate limiter is an in-process fixed window per isolate on serverless, so do not present its advertised limit as a global guarantee.",
-        "sha": "98970d4",
+        "sha": "801fc0b",
         "host": "https://pax-ai-gateway.vercel.app"
       }
     ],
@@ -1257,7 +1257,7 @@
       "Every system can return a result its author would not have chosen: a refusal, a degraded outcome, a no_evidence stop, an unconfigured upstream.",
       "Every number published anywhere in the series carries what produced it, and where a number would flatter without support, the repository says so instead."
     ],
-    "divergence": "DEMO-DAY.md at bf6e36d may still describe localhost-first ports for the flagship free path. Four systems are hosted now (P2–P5). This page is the re-cut for the portfolio hosts. P1 stays clone-only; PR #3 is merged on main bf6e36d. Never cite production-rag.vercel.app (Ipsura).",
+    "divergence": "DEMO-DAY.md at 3b54d85 may still describe localhost-first ports for the flagship free path. Four systems are hosted now (P2–P5). This page is the re-cut for the portfolio hosts. P1 stays clone-only; PR #3 is merged on main 3b54d85. Never cite production-rag.vercel.app (Ipsura).",
     "dayOfChecklist": {
       "title": "Day-of checklist",
       "command": "npm run verify:urls",
@@ -1266,7 +1266,7 @@
   },
   "architecturePoster": {
     "title": "Five-system ladder",
-    "subtitle": "Exact roles. Honest hosted vs clone. Pins: P1 bf6e36d CLONE · P2 dc80188 · P3 8feb31a · P4 4de0ac6 · P5 98970d4. Verified 2026-08-14.",
+    "subtitle": "Exact roles. Honest hosted vs clone. Pins: P1 3b54d85 CLONE · P2 1b4915f · P3 88a24f2 · P4 099ac8a · P5 801fc0b. Verified 2026-08-14.",
     "layers": [
       {
         "number": "01",
