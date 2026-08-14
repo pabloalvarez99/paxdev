@@ -8,7 +8,7 @@ site. Update this record whenever a public status changes.
 
 | Surface | Public evidence |
 |---|---|
-| Production RAG | Release `v0.1.0` at `678c554`; `main` `62cc15f` with green CI; metadata filters merged with ADR 0011; `docs/DEMO-DAY.md`, demo GIF, and social preview committed |
+| Production RAG | Release `v0.1.0` at `678c554`; `main` `1cd8e4b` with green CI; the allowlisted metadata filter control merged onto the query UI (ADR 0011, `docs/demo.md`); `docs/DEMO-DAY.md`, demo GIF, and social preview committed |
 | Agentic Research | Release `v0.1.0` at `18c1ff9`; `main` `8bde9c9` with green CI; API/CLI/UI, optional P1 HTTP, notes tool, 17-case eval contract, three committed UI captures |
 | Multi-Agent Orchestration | Release `v0.1.0` at `e2687ca`; `main` `78b3910` with green CI; done, budget, and trace captures committed |
 | RepoMind | Release `v0.1.0` at `327a949`; `main` `0f91b7c` with green CI; mini-hit, mini-refuse, and dogfood-hit captures committed |
@@ -37,7 +37,18 @@ here:
 | <https://pax-repomind.vercel.app> | `GET /health` returned `200`; `POST /v1/code/ask` answered `create_app` with `app/main.py` lines 6-9 | Indexes the committed `mini` and `production_rag` fixtures only; it cannot answer about an arbitrary repository |
 
 The proof strip counts three hosted demos, not five hosted systems, and P1 and P3 remain
-clone-and-run.
+clone-and-run. `pax-production-rag.vercel.app` and `pax-multi-agent.vercel.app` were both requested
+on 2026-08-14 and both returned `404`; they are recorded in the `absent` list of
+`content/verified-urls.json` so that a future refresh has to observe a `200` before either system
+can be published as hosted.
+
+`content/verified-urls.json` is the machine-checkable half of this document: every hosted URL the
+site publishes must appear there with the status a real request observed, and `npm test` fails if
+`portfolio.json` claims a host the fixture never reached. The file records `401` for
+`GET /v1/platform/status` because that is what an anonymous request receives — the authenticated
+`200` is described in prose here and on the card, never asserted as the anonymous status.
+
+`production-rag.vercel.app` belongs to an unrelated product and is never cited by this site.
 
 AI Platform is the only system whose free path does not exercise the others. Its gateway starts with
 every upstream URL empty, so P1–P4 report `unconfigured` rather than running for the visitor, and its
@@ -50,11 +61,22 @@ source file on GitHub.
 
 | Site file | Source of record |
 |---|---|
-| `production-rag-grounded.png` | `production-rag/docs/assets/ui-grounded.png` at `129a46d` |
-| `agentic-research-run.png` | `agentic-rag-research/docs/assets/ui-done.png` at `57ce423` |
+| `production-rag-grounded.png` | `production-rag/docs/assets/ui-grounded.png` at `1cd8e4b` |
+| `production-rag-filtered.png` | `production-rag/docs/assets/ui-filtered.png` at `1cd8e4b` |
+| `agentic-research-run.png` | `agentic-rag-research/docs/assets/ui-done.png` at `8bde9c9` |
 | `multi-agent-trace.png` | `multi-agent-orchestration/docs/assets/ui-trace.png` at `78b3910` |
-| `repomind-dogfood-hit.png` | `repomind/docs/assets/ui-dogfood-hit.png` at `a9b0acb` |
-| `ai-platform-status.png` | `ai-platform/docs/assets/ui-status-unconfigured.png` at `4318531` |
+| `repomind-dogfood-hit.png` | `repomind/docs/assets/ui-dogfood-hit.png` at `0f91b7c` |
+| `ai-platform-status.png` | `ai-platform/docs/assets/ui-status-unconfigured.png` at `eba1e22` |
+
+Every vendored file was re-fetched from `raw.githubusercontent.com` at the SHA in this table and
+its Git blob hash compared against `gh api .../contents/...?ref=<sha>`; the two matched for every
+row, so the site serves the same bytes the source repository stores. Each capture SHA is now the
+`main` the same row claims, so a reader who opens the source link sees the head the card cites
+rather than an older commit that merely happened to hold the file.
+
+`production-rag/docs/assets/ui-grounded.png` changed between `129a46d` and `1cd8e4b`; the vendored
+copy was refreshed rather than left pinned to the older blob, and its height moved from 1962 to
+2127.
 
 Each source repository documents the repeatable capture command and its fake-provider boundary.
 

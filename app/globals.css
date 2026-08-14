@@ -674,6 +674,31 @@ p {
   padding-top: 18px;
 }
 
+.flagship-detail {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 72px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  margin-top: 84px;
+  padding-top: 72px;
+}
+
+.flagship-detail-copy h3 {
+  font-size: clamp(1.45rem, 2.3vw, 2rem);
+  line-height: 1.16;
+  margin: 14px 0 18px;
+}
+
+.flagship-detail-copy > p {
+  color: var(--muted);
+  max-width: 52ch;
+}
+
+.flagship-detail-copy .text-links {
+  margin-top: 26px;
+}
+
 .project-title-row {
   align-items: start;
   border-bottom: 1px solid var(--line);
@@ -1629,11 +1654,19 @@ p {
     padding-top: 20px;
   }
 
-  .flagship-grid {
+  .flagship-grid,
+  .flagship-detail {
     grid-template-columns: 1fr;
   }
 
-  .flagship-copy {
+  .flagship-detail {
+    gap: 40px;
+    margin-top: 56px;
+    padding-top: 48px;
+  }
+
+  .flagship-copy,
+  .flagship-detail-copy {
     max-width: 760px;
   }
 

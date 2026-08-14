@@ -1,0 +1,88 @@
+{
+  "note": "Every hosted URL this site publishes, with the status code observed by a real request. A URL that is not in this file must not appear as a hosted claim in content/portfolio.json. Refresh with `npm run verify:urls -- --write` and commit the diff; `npm run verify:urls` fails when content and this file disagree.",
+  "verifiedAt": "2026-08-14",
+  "checks": [
+    {
+      "url": "https://paxdev.vercel.app",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "This site."
+    },
+    {
+      "url": "https://pax-agentic-rag.vercel.app",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "P2 hosted UI. text/html; the research form posts to /ui/research."
+    },
+    {
+      "url": "https://pax-agentic-rag.vercel.app/health",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "{\"status\":\"ok\",\"service\":\"agentic-rag-research\",\"version\":\"0.1.0\"}"
+    },
+    {
+      "url": "https://pax-repomind.vercel.app",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "P4 hosted UI. The ask form is GET /ask, so a question is deep-linkable."
+    },
+    {
+      "url": "https://pax-repomind.vercel.app/health",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "{\"status\":\"ok\",\"service\":\"repomind\",\"version\":\"0.1.0\"}"
+    },
+    {
+      "url": "https://pax-ai-gateway.vercel.app",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "P5 hosted status console."
+    },
+    {
+      "url": "https://pax-ai-gateway.vercel.app/health",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "{\"status\":\"ok\",\"service\":\"gateway\"} - open, no header."
+    },
+    {
+      "url": "https://pax-ai-gateway.vercel.app/v1/platform/status",
+      "method": "GET",
+      "expect": 401,
+      "observed": 401,
+      "note": "Authenticated route. 401 without a header is the contract; the public demo header documented in the ai-platform README returns 200 and reports the four upstreams as unconfigured."
+    },
+    {
+      "url": "https://farmacia-compare-web.vercel.app",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Selected work: FarmaciaCompare."
+    },
+    {
+      "url": "https://prescribo.vercel.app",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Selected work: Prescribo prototype."
+    }
+  ],
+  "absent": [
+    {
+      "url": "https://pax-production-rag.vercel.app",
+      "observed": 404,
+      "note": "P1 has no hosted deployment. It stays a clone-only card until a URL returns 200 here."
+    },
+    {
+      "url": "https://pax-multi-agent.vercel.app",
+      "observed": 404,
+      "note": "P3 has no hosted deployment. It stays a clone-only card until a URL returns 200 here."
+    }
+  ]
+}

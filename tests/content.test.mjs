@@ -5,6 +5,7 @@ import test from "node:test";
 
 const root = new URL("..", import.meta.url).pathname.replace(/^\/(.:\/)/, "$1");
 const content = JSON.parse(readFileSync(join(root, "content", "portfolio.json"), "utf8"));
+const verified = JSON.parse(readFileSync(join(root, "content", "verified-urls.json"), "utf8"));
 const page = readFileSync(join(root, "app", "page.tsx"), "utf8");
 const config = readFileSync(join(root, "next.config.ts"), "utf8");
 
@@ -124,6 +125,85 @@ test("security headers cover the static public surface", () => {
   }
   assert.match(config, /frame-ancestors 'none'/);
   assert.match(config, /object-src 'none'/);
+});
+
+test("a hosted claim requires a fixture that observed the status it claims", () => {
+  const reachable = new Map(
+    verified.checks
+      .filter((check) => check.observed === 200)
+      .map((check) => [check.url.replace(/\/$/, ""), check]),
+  );
+  const absent = new Set(verified.absent.map((entry) => entry.url.replace(/\/$/, "")));
+
+  for (const system of content.aiSystems) {
+    if (system.hosted === null) {
+      continue;
+    }
+    const url = system.hosted.url.replace(/\/$/, "");
+    assert.ok(
+      reachable.has(url),
+      `${system.name} claims ${url} but content/verified-urls.json has no 200 for it`,
+    );
+    assert.ok(!absent.has(url), `${system.name} claims a URL recorded as absent`);
+  }
+
+  for (const project of content.selectedWork) {
+    if (project.demo === null) {
+      continue;
+    }
+    assert.ok(
+      reachable.has(project.demo.replace(/\/$/, "")),
+      `${project.name} links ${project.demo} with no verified 200`,
+    );
+  }
+});
+
+test("the fixture file is dated and never records a status it did not observe", () => {
+  assert.match(verified.verifiedAt, /^\d{4}-\d{2}-\d{2}$/);
+  assert.equal(verified.verifiedAt, content.site.lastVerified);
+  assert.ok(verified.checks.length > 0);
+  for (const check of verified.checks) {
+    assert.match(check.url, /^https:\/\//);
+    assert.equal(
+      check.observed,
+      check.expect,
+      `${check.url} expects ${check.expect} but the fixture observed ${check.observed}`,
+    );
+  }
+  for (const entry of verified.absent) {
+    assert.notEqual(entry.observed, 200, `${entry.url} cannot be absent and reachable`);
+  }
+});
+
+test("every capture is pinned to a commit, never to a moving branch", () => {
+  for (const system of content.aiSystems) {
+    const captures = [system.capture, system.secondaryCapture].filter(Boolean);
+    assert.ok(captures.length > 0, `${system.name} needs at least one capture`);
+    for (const capture of captures) {
+      assert.match(
+        capture.sourceUrl,
+        /^https:\/\/github\.com\/pabloalvarez99\/[a-z-]+\/blob\/[0-9a-f]{7,40}\//,
+        `${system.name} capture must cite a commit SHA, not ${capture.sourceUrl}`,
+      );
+      assert.match(capture.src, /^\/[a-z0-9-]+\.png$/);
+      assert.ok(capture.width > 0 && capture.height > 0);
+      assert.match(capture.alt, /\S/);
+    }
+  }
+});
+
+test("each system pins the main it claims inside its own evidence links", () => {
+  for (const system of content.aiSystems.filter((item) => item.status === "LIVE")) {
+    const main = /main ([0-9a-f]{7,40})/.exec(system.phase);
+    assert.ok(main, `${system.name} must state the main commit it was verified against`);
+    assert.ok(
+      [system.capture, system.secondaryCapture]
+        .filter(Boolean)
+        .some((capture) => capture.sourceUrl.includes(main[1])) ||
+        system.evidence.some((item) => item.url.includes(main[1])),
+      `${system.name} claims main ${main[1]} but pins no evidence to it`,
+    );
+  }
 });
 
 test("canonical metadata points to the intended production domain", () => {

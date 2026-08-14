@@ -37,7 +37,7 @@
       "name": "Production RAG",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 678c554) · main 62cc15f · CI green",
+      "phase": "v0.1.0 (tag 678c554) · main 1cd8e4b · CI green",
       "summary": "A production-shaped retrieval system that combines dense and sparse search, reranks candidates, and returns grounded answers with resolvable citations—or refuses.",
       "outcome": "Retrieve and answer honestly",
       "stack": [
@@ -64,6 +64,10 @@
         {
           "label": "Metadata filters: allowlist-only, fail closed, exact keyword match — ADR 0011",
           "url": "https://github.com/pabloalvarez99/production-rag/blob/main/docs/adr/0011-metadata-filters.md"
+        },
+        {
+          "label": "The filter control offers only the allowlisted fields the API would accept — demo walkthrough at 1cd8e4b",
+          "url": "https://github.com/pabloalvarez99/production-rag/blob/1cd8e4b/docs/demo.md"
         },
         {
           "label": "Credential-free checks — CI",
@@ -97,9 +101,17 @@
         "src": "/production-rag-grounded.png",
         "alt": "Production RAG returning a grounded answer with resolvable citations and pipeline timings",
         "width": 1440,
-        "height": 1962,
+        "height": 2127,
         "caption": "Grounded answer with citations, from the free local stack.",
-        "sourceUrl": "https://github.com/pabloalvarez99/production-rag/blob/129a46d/docs/assets/ui-grounded.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/production-rag/blob/1cd8e4b/docs/assets/ui-grounded.png"
+      },
+      "secondaryCapture": {
+        "src": "/production-rag-filtered.png",
+        "alt": "Production RAG answering under an allowlisted metadata filter, tags equals hybrid, with every citation drawn from a single document",
+        "width": 1440,
+        "height": 1785,
+        "caption": "The same corpus under tags = hybrid: the control offers only allowlisted fields, and the result footer names the narrowing.",
+        "sourceUrl": "https://github.com/pabloalvarez99/production-rag/blob/1cd8e4b/docs/assets/ui-filtered.png"
       }
     },
     {
@@ -161,8 +173,9 @@
         "width": 1280,
         "height": 2292,
         "caption": "A completed research run: budget spent, stop reason, cited synthesis.",
-        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/57ce423/docs/assets/ui-done.png"
-      }
+        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/8bde9c9/docs/assets/ui-done.png"
+      },
+      "secondaryCapture": null
     },
     {
       "number": "03",
@@ -216,7 +229,8 @@
         "height": 3321,
         "caption": "The handoff timeline, step by step, with per-agent budget.",
         "sourceUrl": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/78b3910/docs/assets/ui-trace.png"
-      }
+      },
+      "secondaryCapture": null
     },
     {
       "number": "04",
@@ -277,8 +291,9 @@
         "width": 1280,
         "height": 1255,
         "caption": "RepoMind reading its own repository, answering with path:line evidence.",
-        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/a9b0acb/docs/assets/ui-dogfood-hit.png"
-      }
+        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/0f91b7c/docs/assets/ui-dogfood-hit.png"
+      },
+      "secondaryCapture": null
     },
     {
       "number": "05",
@@ -355,8 +370,9 @@
         "width": 2200,
         "height": 1800,
         "caption": "The gateway is honest when nothing is behind it: four upstreams, unconfigured.",
-        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/4318531/docs/assets/ui-status-unconfigured.png"
-      }
+        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/eba1e22/docs/assets/ui-status-unconfigured.png"
+      },
+      "secondaryCapture": null
     }
   ],
   "selectedWork": [

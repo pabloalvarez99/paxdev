@@ -257,6 +257,57 @@ export default function Home() {
               </figure>
             </div>
 
+            {flagship.secondaryCapture ? (
+              <div className="flagship-detail">
+                <div className="flagship-detail-copy">
+                  <p className="section-kicker">THE CONTROL THAT CANNOT OVER-PROMISE</p>
+                  <h3>A filter the API would refuse is a filter the UI never offers.</h3>
+                  <p>
+                    The metadata filter reads its field list from the running deployment&apos;s
+                    allowlist, so the control cannot propose a narrowing the API would reject. A
+                    field posted by hand anyway gets the same typed 422 the API answers with, and
+                    the result footer names the narrowing that produced the citations.
+                  </p>
+                  <div className="text-links">
+                    <ExternalLink href="https://github.com/pabloalvarez99/production-rag/blob/main/docs/adr/0011-metadata-filters.md">
+                      ADR 0011 — allowlist-only, fail closed
+                    </ExternalLink>
+                    <ExternalLink href="https://github.com/pabloalvarez99/production-rag/blob/1cd8e4b/docs/demo.md">
+                      Walk the filter in the demo script
+                    </ExternalLink>
+                  </div>
+                </div>
+
+                <figure className="product-frame">
+                  <div className="product-frame-bar">
+                    <div className="window-dots" aria-hidden="true">
+                      <i />
+                      <i />
+                      <i />
+                    </div>
+                    <span>production-rag / metadata filter</span>
+                    <span className="frame-secure">tags = hybrid</span>
+                  </div>
+                  <div className="product-screen">
+                    <Image
+                      alt={flagship.secondaryCapture.alt}
+                      height={flagship.secondaryCapture.height}
+                      loading="lazy"
+                      sizes="(max-width: 900px) 100vw, 50vw"
+                      src={flagship.secondaryCapture.src}
+                      width={flagship.secondaryCapture.width}
+                    />
+                  </div>
+                  <figcaption>
+                    {flagship.secondaryCapture.caption}{" "}
+                    <ExternalLink href={flagship.secondaryCapture.sourceUrl}>
+                      Source file
+                    </ExternalLink>
+                  </figcaption>
+                </figure>
+              </div>
+            ) : null}
+
             <div className="roadmap-heading">
               <div>
                 <p className="section-kicker">THE FIVE-SYSTEM LADDER</p>
