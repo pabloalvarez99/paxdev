@@ -146,11 +146,55 @@ if (live) {
             `health ${pin.health.url} expected ${pin.health.expect} got ${res.status}`,
           );
         }
+        if (pin.health.bodyHint) {
+          const body = await res.text();
+          if (!bodyIncludesHint(body, pin.health.bodyHint)) {
+            fail(
+              `health ${pin.health.url} bodyHint "${pin.health.bodyHint}" not found in live body: ${body.slice(0, 200)}`,
+            );
+          }
+        }
       } catch (err) {
         fail(`health fetch failed ${pin.health.url}: ${err.message}`);
       }
     }
+
+    // P5 (and any pin) may declare an authed status route; fixture key is public, not a secret.
+    if (pin.statusRoute?.url && pin.statusRoute.fixtureKey) {
+      try {
+        const res = await fetch(pin.statusRoute.url, {
+          redirect: "follow",
+          headers: { "X-API-Key": pin.statusRoute.fixtureKey },
+        });
+        if (!res.ok) {
+          fail(
+            `status ${pin.statusRoute.url} with fixture key expected 2xx got ${res.status}`,
+          );
+        } else if (pin.statusRoute.bodyHint) {
+          const body = await res.text();
+          if (!bodyIncludesHint(body, pin.statusRoute.bodyHint)) {
+            fail(
+              `status ${pin.statusRoute.url} bodyHint "${pin.statusRoute.bodyHint}" not found in live body: ${body.slice(0, 200)}`,
+            );
+          }
+        }
+      } catch (err) {
+        fail(`status fetch failed ${pin.statusRoute.url}: ${err.message}`);
+      }
+    }
   }
+}
+
+/**
+ * bodyHint may be one substring or space-separated substrings.
+ * Each non-empty part must appear in the live body (case-sensitive for JSON keys).
+ */
+function bodyIncludesHint(body, hint) {
+  const parts = String(hint)
+    .split(/\s+/)
+    .map((t) => t.trim())
+    .filter(Boolean);
+  return parts.every((p) => body.includes(p));
 }
 
 if (failures.length) {
