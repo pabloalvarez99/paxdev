@@ -286,7 +286,7 @@
       "name": "AI Platform",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 7978a00) · hosted from main 2fd74c7 · lint red on main",
+      "phase": "v0.1.0 (tag 7978a00) · main eba1e22 · CI green",
       "summary": "A service gateway for the portfolio with API-key authentication, per-key rate limits, request-ID propagation, aggregate health, and compose-based operations — now hosted, so the gateway answers over HTTP without a clone.",
       "outcome": "Operate the system",
       "stack": [
@@ -319,11 +319,7 @@
         },
         {
           "label": "Hosted on Vercel from the entrypoint shims in api/index.py and main.py",
-          "url": "https://github.com/pabloalvarez99/ai-platform/blob/2fd74c7/api/index.py"
-        },
-        {
-          "label": "Those two shims trip ruff E402, so main 2fd74c7 is lint-red and its test job never ran — the last all-green main is 4318531",
-          "url": "https://github.com/pabloalvarez99/ai-platform/actions/workflows/ci.yml"
+          "url": "https://github.com/pabloalvarez99/ai-platform/blob/eba1e22/api/index.py"
         },
         {
           "label": "Credential-free mocked checks — CI",
