@@ -21,7 +21,7 @@
       "method": "GET",
       "expect": 200,
       "observed": 200,
-      "note": "Health returns status ok for agentic-rag-research 0.3.0."
+      "note": "Health returns status ok for agentic-rag-research 1.0.0."
     },
     {
       "url": "https://pax-agentic-rag.vercel.app/metrics",
@@ -105,7 +105,7 @@
       "method": "GET",
       "expect": 401,
       "observed": 401,
-      "note": "Authenticated route. 401 without a header is the contract; X-API-Key dev-local returns 200 with four unconfigured upstreams and version 0.3.0."
+      "note": "401 without header; fixture key returns version 1.0.0 and four unconfigured upstreams."
     },
     {
       "url": "https://pax-ai-gateway.vercel.app/metrics",
@@ -133,7 +133,7 @@
       "method": "GET",
       "expect": 200,
       "observed": 200,
-      "note": "Interview/studio primary P4 hit: create_app on production_rag catalog (main 4de0ac6)."
+      "note": "Interview/studio primary P4 hit on main 099ac8a."
     }
   ],
   "absent": [
