@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import {
   ArrowUpRightIcon,
@@ -9,29 +10,13 @@ import {
   ShieldIcon,
   TerminalIcon,
 } from "@/components/icons";
+import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { SystemMap } from "@/components/system-map";
+import { ExternalLink, Status } from "@/components/ui";
 import portfolio from "@/content/portfolio";
 
 const { site, proof, aiSystems, selectedWork, capabilities, principles } = portfolio;
 const flagship = aiSystems[0];
-
-function Status({ tone, children }: { tone: string; children: React.ReactNode }) {
-  return (
-    <span className={`status status-${tone}`}>
-      <i aria-hidden="true" />
-      {children}
-    </span>
-  );
-}
-
-function ExternalLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <a href={href} target="_blank" rel="noreferrer">
-      {children}
-      <ArrowUpRightIcon />
-    </a>
-  );
-}
 
 export default function Home() {
   const structuredData = {
@@ -81,36 +66,7 @@ export default function Home() {
         }}
       />
 
-      <header className="site-header">
-        <div className="container header-inner">
-          <a className="brand" href="#top">
-            <span className="brand-mark">P/A</span>
-            <span className="brand-copy">
-              <strong>PAX / DEV</strong>
-              <small>AI SYSTEMS</small>
-            </span>
-          </a>
-
-          <nav className="desktop-nav" aria-label="Primary navigation">
-            <a href="#systems">Systems</a>
-            <a href="#work">Selected work</a>
-            <a href="#capabilities">Capabilities</a>
-            <a href="#principles">Principles</a>
-          </nav>
-
-          <a
-            className="github-link"
-            href={site.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub portfolio"
-          >
-            <GithubIcon />
-            <span>GitHub</span>
-            <ArrowUpRightIcon />
-          </a>
-        </div>
-      </header>
+      <SiteHeader home />
 
       <main id="main-content">
         <section className="hero" id="top">
@@ -313,7 +269,10 @@ export default function Home() {
                 <p className="section-kicker">THE FIVE-SYSTEM LADDER</p>
                 <h3>Each project adds one layer of operational maturity.</h3>
               </div>
-              <p>LIVE is linked to runnable evidence. PLANNED means exactly that.</p>
+              <p>
+                LIVE is linked to runnable evidence. PLANNED means exactly that. Each card opens a
+                page that states what the system does not do before it asks you to be impressed.
+              </p>
             </div>
 
             <div className="systems-grid">
@@ -324,7 +283,9 @@ export default function Home() {
                     <Status tone={system.statusTone}>{system.status}</Status>
                   </div>
                   <p className="system-outcome">{system.outcome}</p>
-                  <h4>{system.name}</h4>
+                  <h4>
+                    <Link href={system.route}>{system.name}</Link>
+                  </h4>
                   <p>{system.summary}</p>
                   <div className="compact-tags">
                     {system.stack.slice(0, 4).map((item) => (
@@ -346,6 +307,12 @@ export default function Home() {
                       ))}
                     </ul>
                   ) : null}
+                  <div className="system-study">
+                    <Link className="button button-secondary button-small" href={system.route}>
+                      Study {system.name}
+                      <ArrowUpRightIcon />
+                    </Link>
+                  </div>
                   <div className="card-footer">
                     <span>{system.phase}</span>
                     {system.links.length > 0 ? (
@@ -371,7 +338,8 @@ export default function Home() {
               </div>
               <p>
                 Each image is the official capture stored in that repository at the verified
-                commit. Follow the caption link to see the same file on GitHub.
+                commit. Follow the caption link to see the same file on GitHub, or open the{" "}
+                <Link href="/studio">demo studio</Link> to use the three that are hosted.
               </p>
             </div>
 
@@ -530,28 +498,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <div className="container footer-grid">
-          <div>
-            <a className="brand footer-brand" href="#top">
-              <span className="brand-mark">P/A</span>
-              <span className="brand-copy">
-                <strong>PAX / DEV</strong>
-                <small>AI SYSTEMS</small>
-              </span>
-            </a>
-            <p>Independent engineering portfolio operated by {site.owner}.</p>
-          </div>
-          <div className="footer-meta">
-            <span>Verified {site.lastVerified}</span>
-            <span>No login · No tracking · No credential forms</span>
-            <a href={site.githubUrl} target="_blank" rel="noreferrer">
-              github.com/pabloalvarez99
-              <ArrowUpRightIcon />
-            </a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter home />
     </>
   );
 }

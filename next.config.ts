@@ -1,5 +1,21 @@
 import type { NextConfig } from "next";
 
+import verifiedUrls from "./content/verified-urls.json";
+
+/**
+ * The demo studio embeds the hosted systems. frame-src is derived from the same fixture the
+ * content is derived from, so a host that loses its verified 200 loses its frame permission in
+ * the same commit; nothing else is allowed to be framed.
+ */
+const frameSources = Array.from(
+  new Set(
+    verifiedUrls.checks
+      .filter((check) => check.observed === 200)
+      .map((check) => new URL(check.url).origin)
+      .filter((origin) => origin.startsWith("https://pax-")),
+  ),
+).sort();
+
 const contentSecurityPolicy = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'",
@@ -7,6 +23,7 @@ const contentSecurityPolicy = [
   "img-src 'self' data:",
   "font-src 'self' data:",
   "connect-src 'self'",
+  `frame-src ${frameSources.join(" ")}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

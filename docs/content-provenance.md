@@ -80,6 +80,36 @@ copy was refreshed rather than left pinned to the older blob, and its height mov
 
 Each source repository documents the repeatable capture command and its fake-provider boundary.
 
+## System pages and the demo studio
+
+Each system has a page at `/systems/<name>` whose LIVE and NOT SHIPPED columns are transcribed
+from that repository's own `docs/SHIP.md` at the commit the card cites — not paraphrased from the
+README, and not softened. Where the repository states a non-goal, the page states it as a
+non-goal. Three examples, so the standard is checkable rather than asserted:
+
+- P2's page says the hosted demo sets no `PRODUCTION_RAG_URL`, so its HTTP retriever answers
+  `capability_missing`. That is P2's own honest-boundary section, not a caveat invented here.
+- P3's page says the 12-task evaluation does not show that several agents beat one model. That is
+  the first line of P3's `Non-goals for v0.1.0`.
+- P4's page reports that the hosted console offers a `production_rag` catalog whose id contains an
+  underscore, while the JSON API's `repo_id` pattern is `^[a-z0-9-]+$` and rejects it. The deep
+  link works because the console is a GET form; the equivalent `curl` needs `repo_id=mini`. That
+  mismatch lives in P4's source and is reported rather than hidden.
+
+`/studio` embeds only the three systems whose URL was observed answering `200`. The embed list is
+asserted against `content/verified-urls.json` in `tests/systems.test.mjs`, and the page module
+throws at build time if an embedded slug loses its verified host, so the failure is a red build
+rather than a blank frame in front of a reviewer.
+
+Every probe printed beside an embed is a request that was actually made. The three RepoMind deep
+links, both `/metrics` routes, all three `/health` routes, and the anonymous
+`/v1/platform/status` `401` are recorded in the fixture with the status observed on 2026-08-14.
+
+`frame-src` in `next.config.ts` is computed from the same fixture rather than hand-written, so an
+origin that loses its verified `200` loses permission to be framed in the same commit. It names
+origins; there is no wildcard. `frame-ancestors 'none'` is unchanged: this site frames others and
+is framed by nobody.
+
 ## Selected public work
 
 | Project | Evidence used |

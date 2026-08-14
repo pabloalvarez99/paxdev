@@ -71,6 +71,41 @@
       "expect": 200,
       "observed": 200,
       "note": "Selected work: Prescribo prototype."
+    },
+    {
+      "url": "https://pax-agentic-rag.vercel.app/metrics",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Prometheus text: process_up, requests_total, research_total, research_steps_used_total."
+    },
+    {
+      "url": "https://pax-ai-gateway.vercel.app/metrics",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Prometheus text, per isolate rather than per deployment."
+    },
+    {
+      "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=mini",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Deep-linked hit: answers app/main.py lines 6-9."
+    },
+    {
+      "url": "https://pax-repomind.vercel.app/ask?question=How+does+hybrid+retrieval+fuse+rankings%3F&repo_id=production_rag",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Deep-linked dogfood hit: cites production_rag/retrieval/rrf.py:54-113."
+    },
+    {
+      "url": "https://pax-repomind.vercel.app/ask?question=Who+won+the+2019+Antarctic+chess+championship%3F&repo_id=mini",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "Deep-linked refusal: renders 'No evidence found' with zero citations."
     }
   ],
   "absent": [
