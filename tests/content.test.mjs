@@ -17,6 +17,13 @@ test("the AI ladder has five ordered, unique systems", () => {
   assert.equal(new Set(content.aiSystems.map((system) => system.slug)).size, 5);
 });
 
+test("the proof strip counts public free-path repositories", () => {
+  const publicSystems = content.aiSystems.filter((system) => system.status === "LIVE");
+  const proof = content.proof.find((item) => item.label === "public free-path systems");
+  assert.ok(proof);
+  assert.equal(Number(proof.value), publicSystems.length);
+});
+
 test("public status claims require public evidence", () => {
   const publicStatuses = new Set(["LIVE", "IN PROGRESS"]);
   const allowedStatuses = new Set(["LIVE", "IN PROGRESS", "PLANNED"]);

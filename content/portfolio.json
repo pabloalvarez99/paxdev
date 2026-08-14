@@ -10,9 +10,9 @@
   },
   "proof": [
     {
-      "value": "4",
+      "value": "5",
       "label": "public free-path systems",
-      "detail": "Four public repos clone and demo at $0; one platform layer remains planned"
+      "detail": "Five public repos clone and demo at $0; hosted services remain optional"
     },
     {
       "value": "$0",
@@ -37,7 +37,7 @@
       "name": "Production RAG",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 · main d882c9a",
+      "phase": "v0.1.0 · verified d882c9a",
       "summary": "A production-shaped retrieval system that combines dense and sparse search, reranks candidates, and returns grounded answers with resolvable citations—or refuses.",
       "outcome": "Retrieve and answer honestly",
       "stack": ["Python", "FastAPI", "Qdrant", "LangGraph", "Docker", "GitHub Actions"],
@@ -59,7 +59,7 @@
       "name": "Agentic Research",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 · main 56b77cf",
+      "phase": "v0.1.0 · main b99c88c",
       "summary": "A bounded plan → retrieve → critique research loop with tools, explicit budgets, API/CLI/UI surfaces, cited synthesis, and deterministic traces.",
       "outcome": "Act with tools under budget",
       "stack": ["Python", "Pydantic", "FastAPI", "HTTPX", "Typed tools"],
@@ -80,7 +80,7 @@
       "name": "Multi-Agent Orchestration",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "M4 · main 8b9c96b",
+      "phase": "M4 documented · main 2c79e9c",
       "summary": "An orchestrator and specialist agents with explicit handoffs, global budgets, failure isolation, and auditable multi-agent timelines.",
       "outcome": "Coordinate specialists",
       "stack": ["Python", "FastAPI", "Agent protocols", "Handoff policy", "Trace timelines"],
@@ -99,7 +99,7 @@
       "name": "RepoMind",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "M5 · core 46e21e3",
+      "phase": "M5 documented · main 83c4fff",
       "summary": "Repository intelligence built around safe repository walking, AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
       "outcome": "Understand codebases",
       "stack": ["Python AST", "FastAPI", "JSON CLI", "Path:line evidence", "Golden fixtures"],
@@ -116,14 +116,20 @@
       "number": "05",
       "slug": "ai-platform",
       "name": "AI Platform",
-      "status": "PLANNED",
-      "statusTone": "planned",
-      "phase": "Final platform layer",
+      "status": "LIVE",
+      "statusTone": "live",
+      "phase": "M0–M6 · main 3cdd3dd",
       "summary": "A service gateway for the portfolio with authentication, rate limits, request propagation, aggregate health, and compose-based operations.",
       "outcome": "Operate the system",
       "stack": ["API gateway", "Auth", "Rate limiting", "Docker Compose", "Observability"],
-      "evidence": [],
-      "links": []
+      "evidence": [
+        { "label": "Open health, gateway contracts, and release boundary — SHIP", "url": "https://github.com/pabloalvarez99/ai-platform/blob/main/docs/SHIP.md" },
+        { "label": "Auth, rate limits, status console, and guardrails — README", "url": "https://github.com/pabloalvarez99/ai-platform#readme" },
+        { "label": "Credential-free mocked checks — CI", "url": "https://github.com/pabloalvarez99/ai-platform/actions/workflows/ci.yml" }
+      ],
+      "links": [
+        { "label": "Repository", "url": "https://github.com/pabloalvarez99/ai-platform" }
+      ]
     }
   ],
   "selectedWork": [

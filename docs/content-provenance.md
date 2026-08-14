@@ -8,15 +8,15 @@ site. Update this record whenever a public status changes.
 
 | Surface | Public evidence |
 |---|---|
-| Production RAG | `main` `d882c9a`; README, SHIP, case study, green CI, release `v0.1.0` |
-| Agentic Research | `main` `56b77cf`; API/CLI/UI, optional P1 HTTP, notes tool, 17-case eval contract, green CI, release `v0.1.0` |
-| Multi-Agent Orchestration | `main` `8b9c96b`; M4 API/CLI, bounded fake specialists, 12-task eval contract, green CI; no release |
-| RepoMind | M5 core at `46e21e3`; AST `path:line` Q&A, JSON CLI, 14-question fixture eval contract, green CI; no release |
-| AI Platform | No public `pabloalvarez99/ai-platform` repository; displayed as `PLANNED` with no evidence links |
+| Production RAG | Release `v0.1.0`; verified green post-release SHA `d882c9a`. Current docs-only `main` `590045c` is red on the rendered-metric provenance guard, so it is not presented as the verified SHA. |
+| Agentic Research | `main` `b99c88c`; API/CLI/UI, optional P1 HTTP, notes tool, 17-case eval contract, green CI, release `v0.1.0` |
+| Multi-Agent Orchestration | `main` `2c79e9c` and green CI; the public README/SHIP still define the claim boundary as M4 and no release, despite newer client/UI code on main |
+| RepoMind | `main` `83c4fff` and green CI; the public README still defines the claim boundary as M5 and no release, despite newer dogfood/UI code on main |
+| AI Platform | `main` `3cdd3dd`; open `/health`, gateway/auth/rate-limit/status/guardrail tests, M0–M6 docs, green CI; no release |
 
-The first proof-strip count is four because P1–P4 are public repositories with documented
-credential-free demo paths. P5 is part of the five-system ladder but does not count as public
-or live until the repository, documented `/health`, and green CI exist.
+The first proof-strip count is five because P1–P5 are now public repositories with documented
+credential-free demo paths. AI Platform moved from `PLANNED` to `LIVE` only after its repository,
+open `/health`, tests, and green CI were all public; it does not claim a release.
 
 The Production RAG screenshot is copied from
 `production-rag/docs/assets/ui-grounded.png`. Its source repository documents the repeatable

@@ -9,7 +9,7 @@ export function SystemMap({ systems }: SystemMapProps) {
     <div
       className="system-map"
       role="img"
-      aria-label="Five-layer AI engineering roadmap: production RAG, agentic research, multi-agent orchestration, and repository intelligence are live; the AI platform remains planned."
+      aria-label="Five-layer AI engineering roadmap: production RAG, agentic research, multi-agent orchestration, repository intelligence, and the AI platform are live on documented free paths."
     >
       <div className="map-toolbar" aria-hidden="true">
         <span>SYSTEM MAP / 2026</span>
