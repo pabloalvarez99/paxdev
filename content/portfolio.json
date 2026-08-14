@@ -20,9 +20,9 @@
       "detail": "No key, billed call, or signup for the core demos"
     },
     {
-      "value": "4",
-      "label": "product surfaces",
-      "detail": "API, web, Android, and desktop engineering"
+      "value": "1",
+      "label": "hosted gateway",
+      "detail": "P5 answers over HTTP with no clone: open health, keyed status, four upstreams unconfigured"
     },
     {
       "value": "CI",
@@ -37,7 +37,7 @@
       "name": "Production RAG",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 678c554) · main 129a46d · CI green",
+      "phase": "v0.1.0 (tag 678c554) · main 62cc15f · CI green",
       "summary": "A production-shaped retrieval system that combines dense and sparse search, reranks candidates, and returns grounded answers with resolvable citations—or refuses.",
       "outcome": "Retrieve and answer honestly",
       "stack": [
@@ -60,6 +60,10 @@
         {
           "label": "Offline golden evaluation contract",
           "url": "https://github.com/pabloalvarez99/production-rag/blob/main/data/eval/README.md"
+        },
+        {
+          "label": "Metadata filters: allowlist-only, fail closed, exact keyword match — ADR 0011",
+          "url": "https://github.com/pabloalvarez99/production-rag/blob/main/docs/adr/0011-metadata-filters.md"
         },
         {
           "label": "Credential-free checks — CI",
@@ -88,6 +92,7 @@
           "url": "https://github.com/pabloalvarez99/production-rag/releases/tag/v0.1.0"
         }
       ],
+      "hosted": null,
       "capture": {
         "src": "/production-rag-grounded.png",
         "alt": "Production RAG returning a grounded answer with resolvable citations and pipeline timings",
@@ -141,6 +146,7 @@
           "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.1.0"
         }
       ],
+      "hosted": null,
       "capture": {
         "src": "/agentic-research-run.png",
         "alt": "Agentic Research UI showing a completed run with its stop reason and cited synthesis",
@@ -194,6 +200,7 @@
           "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/releases/tag/v0.1.0"
         }
       ],
+      "hosted": null,
       "capture": {
         "src": "/multi-agent-trace.png",
         "alt": "Multi-agent orchestration trace timeline showing handoffs between orchestrator and specialists",
@@ -209,7 +216,7 @@
       "name": "RepoMind",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 327a949) · main a9b0acb · CI green",
+      "phase": "v0.1.0 (tag 327a949) · main 1db33ab · CI green",
       "summary": "Repository intelligence built around safe repository walking, AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
       "outcome": "Understand codebases",
       "stack": [
@@ -247,6 +254,7 @@
           "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.1.0"
         }
       ],
+      "hosted": null,
       "capture": {
         "src": "/repomind-dogfood-hit.png",
         "alt": "RepoMind answering a question about its own repository with path and line citations",
@@ -262,8 +270,8 @@
       "name": "AI Platform",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 7978a00) · main 4318531 · CI green",
-      "summary": "A service gateway for the portfolio with API-key authentication, per-key rate limits, request-ID propagation, aggregate health, and compose-based operations.",
+      "phase": "v0.1.0 (tag 7978a00) · hosted from main 2fd74c7 · lint red on main",
+      "summary": "A service gateway for the portfolio with API-key authentication, per-key rate limits, request-ID propagation, aggregate health, and compose-based operations — now hosted, so the gateway answers over HTTP without a clone.",
       "outcome": "Operate the system",
       "stack": [
         "API gateway",
@@ -294,6 +302,14 @@
           "url": "https://github.com/pabloalvarez99/ai-platform#readme"
         },
         {
+          "label": "Hosted on Vercel from the entrypoint shims in api/index.py and main.py",
+          "url": "https://github.com/pabloalvarez99/ai-platform/blob/2fd74c7/api/index.py"
+        },
+        {
+          "label": "Those two shims trip ruff E402, so main 2fd74c7 is lint-red and its test job never ran — the last all-green main is 4318531",
+          "url": "https://github.com/pabloalvarez99/ai-platform/actions/workflows/ci.yml"
+        },
+        {
           "label": "Credential-free mocked checks — CI",
           "url": "https://github.com/pabloalvarez99/ai-platform/actions/workflows/ci.yml"
         },
@@ -310,8 +326,17 @@
         {
           "label": "v0.1.0",
           "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.1.0"
+        },
+        {
+          "label": "Hosted gateway",
+          "url": "https://pax-ai-gateway.vercel.app"
         }
       ],
+      "hosted": {
+        "url": "https://pax-ai-gateway.vercel.app",
+        "label": "Hosted gateway",
+        "note": "Open the status console, or call it directly: GET /health is open, and GET /v1/platform/status needs the public demo header X-API-Key: dev-local. The hosted instance is the gateway only — it does not run P1-P4 for the visitor, so those four services report unconfigured."
+      },
       "capture": {
         "src": "/ai-platform-status.png",
         "alt": "AI Platform status page reporting the four upstream services as unconfigured",

@@ -822,6 +822,30 @@ p {
   padding: 7px 9px;
 }
 
+.system-hosted {
+  border: 1px solid rgba(101, 246, 209, 0.35);
+  border-radius: 4px;
+  margin: 0 0 20px;
+  padding: 14px 16px;
+}
+
+.system-hosted a {
+  color: var(--text);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-decoration: underline;
+  text-decoration-color: rgba(101, 246, 209, 0.55);
+  text-transform: uppercase;
+  text-underline-offset: 3px;
+}
+
+.system-hosted p {
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.5;
+  margin: 8px 0 0;
+}
+
 .system-evidence {
   display: grid;
   gap: 8px;

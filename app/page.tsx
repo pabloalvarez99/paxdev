@@ -280,6 +280,12 @@ export default function Home() {
                       <span key={item}>{item}</span>
                     ))}
                   </div>
+                  {system.hosted ? (
+                    <div className="system-hosted">
+                      <ExternalLink href={system.hosted.url}>{system.hosted.label}</ExternalLink>
+                      <p>{system.hosted.note}</p>
+                    </div>
+                  ) : null}
                   {system.evidence.length > 0 ? (
                     <ul className="system-evidence" aria-label={`${system.name} evidence`}>
                       {system.evidence.map((item) => (

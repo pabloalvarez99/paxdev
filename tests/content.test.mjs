@@ -61,6 +61,28 @@ test("each live system links its repository and each claimed release", () => {
   }
 });
 
+test("a hosted system links the running deployment and stays inside its boundary", () => {
+  const hosted = content.aiSystems.filter((system) => system.hosted !== null);
+  const proof = content.proof.find((item) => item.label === "hosted gateway");
+  assert.ok(proof);
+  assert.equal(Number(proof.value), hosted.length);
+
+  for (const system of hosted) {
+    assert.equal(system.status, "LIVE", `${system.name} cannot host what it does not run`);
+    assert.match(system.hosted.url, /^https:\/\//);
+    assert.match(system.hosted.label, /\S/);
+    assert.ok(
+      system.links.some((link) => link.url === system.hosted.url),
+      `${system.name} must link its hosted URL alongside its repository`,
+    );
+    assert.match(
+      system.hosted.note,
+      /does not run P1-P4/,
+      `${system.name} must say what the hosted instance does not do`,
+    );
+  }
+});
+
 test("selected work links only to HTTPS public surfaces", () => {
   for (const project of content.selectedWork) {
     assert.match(project.repo, /^https:\/\/github\.com\/pabloalvarez99\//);
