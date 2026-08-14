@@ -228,7 +228,7 @@ export default function Home() {
                     <ExternalLink href="https://github.com/pabloalvarez99/production-rag/blob/main/docs/adr/0011-metadata-filters.md">
                       ADR 0011 — allowlist-only, fail closed
                     </ExternalLink>
-                    <ExternalLink href="https://github.com/pabloalvarez99/production-rag/blob/1cd8e4b/docs/demo.md">
+                    <ExternalLink href="https://github.com/pabloalvarez99/production-rag/blob/bf6e36d/docs/demo.md">
                       Walk the filter in the demo script
                     </ExternalLink>
                   </div>
