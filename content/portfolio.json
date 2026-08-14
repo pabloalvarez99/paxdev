@@ -12,7 +12,7 @@
     {
       "value": "5",
       "label": "LIVE AI systems",
-      "detail": "Five public repos at tagged v0.1.0 with green CI; each clones and demos at $0"
+      "detail": "Five public repos with tagged releases and green CI; P2–P5 at v0.2.0 on main, P1 at v0.1.0 with PR #3 open"
     },
     {
       "value": "$0",
@@ -128,6 +128,7 @@
           "Two evaluation tiers with paired statistics, and scorecard publication that fails closed."
         ],
         "planned": [
+          "PR #3 (stream + filter-aware cache + /evals scorecard at d43f812) is OPEN and NOT SHIPPED on main. Clone-only until that PR merges; do not treat the PR head as main.",
           "No hosted-provider quality numbers. The published scorecard comes from deterministic local providers: it proves the measurement path works and says nothing about retrieval or answer quality.",
           "No authentication, authorization, or rate limiting. A metadata allowlist bounds which fields a query may filter on, never which documents a caller may see.",
           "No metrics endpoint. The configuration shape exists and is marked DECLARED; the route does not.",
@@ -186,7 +187,7 @@
       "name": "Agentic Research",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 18c1ff9) · main 8bde9c9 · CI green",
+      "phase": "v0.2.0 (tag d62917d) · main d62917d · CI green",
       "summary": "A bounded plan → retrieve → critique research loop with tools, explicit budgets, API/CLI/UI surfaces, cited synthesis, and deterministic traces.",
       "outcome": "Act with tools under budget",
       "stack": [
@@ -210,8 +211,12 @@
           "url": "https://github.com/pabloalvarez99/agentic-rag-research/actions/workflows/ci.yml"
         },
         {
-          "label": "Published v0.1.0 release",
-          "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.1.0"
+          "label": "Published v0.2.0 release",
+          "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.2.0"
+        },
+        {
+          "label": "Notes store, run export, SSE stream, control scorecard at d62917d / v0.2.0",
+          "url": "https://github.com/pabloalvarez99/agentic-rag-research/blob/d62917d/docs/SHIP.md"
         }
       ],
       "links": [
@@ -220,8 +225,8 @@
           "url": "https://github.com/pabloalvarez99/agentic-rag-research"
         },
         {
-          "label": "v0.1.0",
-          "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.1.0"
+          "label": "v0.2.0",
+          "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.2.0"
         },
         {
           "label": "Hosted demo",
@@ -239,7 +244,7 @@
         "width": 1280,
         "height": 2292,
         "caption": "A completed research run: budget spent, stop reason, cited synthesis.",
-        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/8bde9c9/docs/assets/ui-done.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/d62917d/docs/assets/ui-done.png"
       },
       "secondaryCapture": {
         "src": "/agentic-research-trace.png",
@@ -247,7 +252,7 @@
         "width": 1280,
         "height": 5009,
         "caption": "The full trace: six event types in order, ending in the stop that named the reason.",
-        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/8bde9c9/docs/assets/ui-trace.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/agentic-rag-research/blob/d62917d/docs/assets/ui-trace.png"
       },
       "route": "/systems/agentic-rag-research",
       "page": {
@@ -261,7 +266,8 @@
           "A complete deterministic trace of six event types ending in stop, exportable from the API and from the result page.",
           "POST /v1/research, a CLI, GET /health, and GET /metrics in Prometheus text — all four verified over HTTP on the hosted instance.",
           "A 17-case golden evaluation across five slices, run with empty provider variables.",
-          "An optional production-rag HTTP retriever, opt-in behind PRODUCTION_RAG_URL and mock-transport tested."
+          "An optional production-rag HTTP retriever, opt-in behind PRODUCTION_RAG_URL and mock-transport tested.",
+          "Stored run artifacts with GET /v1/runs, SSE stream, and smoke-tested download offsets at d62917d / v0.2.0 (fixture-only on the hosted copy)."
         ],
         "planned": [
           "The hosted demo runs the committed fixture retriever. It proves the agent's control flow and claims nothing about retrieval or answer quality.",
@@ -275,7 +281,7 @@
           "label": "Run a research loop in the browser",
           "url": "https://pax-agentic-rag.vercel.app",
           "command": "curl https://pax-agentic-rag.vercel.app/health",
-          "note": "No clone, no key. Ask a question, then open the trace and the budget. GET /health and GET /metrics both returned 200 on 2026-08-14."
+          "note": "No clone, no key. Ask a question the fixture cannot support and read the typed refuse. Hosted health reports version 0.2.0; GET /health and GET /metrics both returned 200 on 2026-08-14."
         },
         "interview": [
           {
@@ -457,7 +463,7 @@
       "name": "RepoMind",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 327a949) · main bffc329 · CI green",
+      "phase": "v0.2.0 (tag 5d4eefe) · main 5d4eefe · CI green",
       "summary": "Repository intelligence built around safe repository walking, AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
       "outcome": "Understand codebases",
       "stack": [
@@ -481,8 +487,12 @@
           "url": "https://github.com/pabloalvarez99/repomind/actions/workflows/ci.yml"
         },
         {
-          "label": "Published v0.1.0 release",
-          "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.1.0"
+          "label": "Published v0.2.0 release",
+          "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.2.0"
+        },
+        {
+          "label": "Content-addressed index, catalog contract, multi-language free path at 5d4eefe / v0.2.0",
+          "url": "https://github.com/pabloalvarez99/repomind/blob/5d4eefe/docs/SHIP.md"
         }
       ],
       "links": [
@@ -491,8 +501,8 @@
           "url": "https://github.com/pabloalvarez99/repomind"
         },
         {
-          "label": "v0.1.0",
-          "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.1.0"
+          "label": "v0.2.0",
+          "url": "https://github.com/pabloalvarez99/repomind/releases/tag/v0.2.0"
         },
         {
           "label": "Hosted demo",
@@ -510,7 +520,7 @@
         "width": 1280,
         "height": 1255,
         "caption": "RepoMind reading its own repository, answering with path:line evidence.",
-        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/bffc329/docs/assets/ui-dogfood-hit.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/5d4eefe/docs/assets/ui-dogfood-hit.png"
       },
       "secondaryCapture": {
         "src": "/repomind-mini-refuse.png",
@@ -518,7 +528,7 @@
         "width": 1280,
         "height": 1125,
         "caption": "No evidence found, zero citations. The refusal is the same code path as the answer.",
-        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/bffc329/docs/assets/ui-mini-refuse.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/repomind/blob/5d4eefe/docs/assets/ui-mini-refuse.png"
       },
       "route": "/systems/repomind",
       "page": {
@@ -529,10 +539,11 @@
         "live": [
           "AST chunks keyed by path::qualname with exact line ranges, and a deterministic lexical index where exact symbol match dominates token overlap.",
           "POST /v1/code/ask and POST /v1/code/symbols, plus a GET /ask console whose questions are deep-linkable.",
-          "Catalog sandboxing: the API takes a catalog repo_id and never a caller filesystem path (bffc329 lets the catalog decide which ids are valid).",
+          "Catalog sandboxing: the API takes a catalog repo_id and never a caller filesystem path; production_rag is a valid catalog id on main 5d4eefe.",
           "A 14-case mini evaluation and an 8-case production_rag dogfood snapshot, both with a deterministic provider, a null judge, and a $0 bill.",
           "A capture staleness gate: CI records a sha256 per committed PNG and per file that decides what a capture shows, and fails when either drifts.",
-          "Hosted console and API on the same fixtures with no key, verified over HTTP on 2026-08-14."
+          "Hosted console and API on the same fixtures with no key, verified over HTTP on 2026-08-14.",
+          "Content-addressed incremental index and GET /v1/catalog at 5d4eefe / v0.2.0; optional git history returns 503 capability_missing when unavailable."
         ],
         "planned": [
           "The hosted instance indexes the committed mini and production_rag fixtures and nothing else. It cannot answer about an arbitrary repository.",
@@ -542,15 +553,15 @@
         ],
         "cta": {
           "kind": "hosted",
-          "label": "Ask the hosted console",
-          "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=mini",
-          "command": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"mini\"}'",
-          "note": "That request returned app/main.py lines 6-9 on 2026-08-14. POST with repo_id=production_rag also returns 200 after bffc329 (catalog decides valid ids). Ask something the fixture cannot know and the same endpoint answers with zero citations."
+          "label": "Ask create_app on production_rag",
+          "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=production_rag",
+          "command": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"production_rag\"}'",
+          "note": "Deep link and POST both accept repo_id=production_rag on main 5d4eefe. Ask something the fixture cannot know and the same endpoint returns zero citations."
         },
         "interview": [
           {
             "question": "Why does the API take a repo_id instead of a path?",
-            "why": "A path parameter is a directory traversal waiting for a careless deploy. A catalog id is an allowlist: the service can only answer about repositories someone deliberately indexed, and the pattern rejects anything that is not lowercase, digits, and hyphens."
+            "why": "A path parameter is a directory traversal waiting for a careless deploy. A catalog id is an allowlist: the service can only answer about repositories someone deliberately indexed. After 5d4eefe the catalog decides which ids are valid (including production_rag); callers still cannot pass an arbitrary filesystem path."
           },
           {
             "question": "Why does an exact symbol match dominate token overlap rather than being blended into one score?",
@@ -587,7 +598,7 @@
       "name": "AI Platform",
       "status": "LIVE",
       "statusTone": "live",
-      "phase": "v0.1.0 (tag 7978a00) · main eba1e22 · CI green",
+      "phase": "v0.2.0 (tag f0b5abc) · main e9bec1b · CI green",
       "summary": "A service gateway for the portfolio with API-key authentication, per-key rate limits, request-ID propagation, aggregate health, and compose-based operations — now hosted, so the gateway answers over HTTP without a clone.",
       "outcome": "Operate the system",
       "stack": [
@@ -620,15 +631,19 @@
         },
         {
           "label": "Hosted on Vercel from the entrypoint shims in api/index.py and main.py",
-          "url": "https://github.com/pabloalvarez99/ai-platform/blob/eba1e22/api/index.py"
+          "url": "https://github.com/pabloalvarez99/ai-platform/blob/e9bec1b/api/index.py"
         },
         {
           "label": "Credential-free mocked checks — CI",
           "url": "https://github.com/pabloalvarez99/ai-platform/actions/workflows/ci.yml"
         },
         {
-          "label": "Published v0.1.0 release",
-          "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.1.0"
+          "label": "Published v0.2.0 release",
+          "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.2.0"
+        },
+        {
+          "label": "Request journal, OpenAPI contract, OTel seam, limiter protocol at e9bec1b / v0.2.0",
+          "url": "https://github.com/pabloalvarez99/ai-platform/blob/e9bec1b/docs/SHIP.md"
         }
       ],
       "links": [
@@ -637,8 +652,8 @@
           "url": "https://github.com/pabloalvarez99/ai-platform"
         },
         {
-          "label": "v0.1.0",
-          "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.1.0"
+          "label": "v0.2.0",
+          "url": "https://github.com/pabloalvarez99/ai-platform/releases/tag/v0.2.0"
         },
         {
           "label": "Hosted gateway",
@@ -654,17 +669,17 @@
         "src": "/ai-platform-status.png",
         "alt": "AI Platform status page reporting the four upstream services as unconfigured",
         "width": 2200,
-        "height": 1800,
+        "height": 2128,
         "caption": "The gateway is honest when nothing is behind it: four upstreams, unconfigured.",
-        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/eba1e22/docs/assets/ui-status-unconfigured.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/e9bec1b/docs/assets/ui-status-unconfigured.png"
       },
       "secondaryCapture": {
         "src": "/ai-platform-status-partial.png",
         "alt": "AI Platform status console reporting a partial fleet, with some upstreams up and others not",
         "width": 2200,
-        "height": 1800,
+        "height": 2098,
         "caption": "The same console when upstreams are configured: partial is a reportable state, not an outage.",
-        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/eba1e22/docs/assets/ui-status-partial.png"
+        "sourceUrl": "https://github.com/pabloalvarez99/ai-platform/blob/e9bec1b/docs/assets/ui-status-partial.png"
       },
       "route": "/systems/ai-platform",
       "page": {
@@ -677,8 +692,9 @@
           "A read-only status console at the root that reports gateway up and each upstream's real state.",
           "Per-key rate limiting as an in-process fixed window, request-ID propagation, and structured logs that mask credentials.",
           "GET /metrics in Prometheus text, verified 200 on the hosted instance.",
-          "Docker Compose for the whole stack, plus Vercel entrypoint shims in api/index.py and main.py at eba1e22, which is the commit the deployment serves.",
-          "Credential-free mocked checks in CI, with upstream URLs empty so the four services report unconfigured there too."
+          "Docker Compose for the whole stack, plus Vercel entrypoint shims in api/index.py and main.py at e9bec1b, which is the commit main serves after the v0.2.0 weeks-depth merge.",
+          "Credential-free mocked checks in CI, with upstream URLs empty so the four services report unconfigured there too.",
+          "Request journal, complete OpenAPI contract, NullTracer/OTel seam, and one limiter protocol (memory default, Redis opt-in) at e9bec1b / v0.2.0."
         ],
         "planned": [
           "The hosted instance is the gateway alone. It does not run P1-P4 for a visitor, which is exactly why the console shows four unconfigured upstreams.",
@@ -705,7 +721,7 @@
           },
           {
             "question": "How do you keep the site from citing a commit the deployment does not run?",
-            "why": "The card cites the commit Vercel serves, not the newest green one. P5 passed through a red window at 2fd74c7 when the Vercel shims tripped ruff E402; the site waited for eba1e22 rather than promoting a SHA the deployment had not reached."
+            "why": "The card cites the commit origin/main reports (e9bec1b), not an older green one. The site waited through the red window at 2fd74c7 and the earlier Vercel pin at eba1e22; this refresh tracks the weeks-depth merge on main."
           }
         ],
         "docs": [
@@ -718,8 +734,8 @@
             "url": "https://github.com/pabloalvarez99/ai-platform/blob/main/docs/SHIP.md"
           },
           {
-            "label": "Vercel entrypoint at eba1e22",
-            "url": "https://github.com/pabloalvarez99/ai-platform/blob/eba1e22/api/index.py"
+            "label": "Vercel entrypoint at e9bec1b",
+            "url": "https://github.com/pabloalvarez99/ai-platform/blob/e9bec1b/api/index.py"
           },
           {
             "label": "Architecture",
@@ -898,13 +914,13 @@
     }
   ],
   "studio": {
-    "intro": "Four of the five systems answer over HTTP with no clone and no key. They are embedded below, live, exactly as they run. Production RAG stays a clone card: hybrid retrieval needs a local Qdrant, and inventing a host for it would be the one thing this portfolio is built to avoid.",
+    "intro": "Four of the five systems answer over HTTP with no clone and no key. Each card below carries a three-step script you can follow without me in the room, a committed capture, and a deep link that remains the primary CTA when a third-party iframe is blank or blocked. Production RAG stays a clone card: hybrid retrieval needs a local Qdrant, and inventing a host for it would be the one thing this portfolio is built to avoid.",
     "embeds": [
       {
         "slug": "agentic-rag-research",
         "embedUrl": "https://pax-agentic-rag.vercel.app",
         "embedTitle": "Agentic Research hosted demo",
-        "howTo": "Type a question, submit, and read the report. Then open the trace and the budget: the run ends in a typed status, and the trace names the rule that ended it.",
+        "howTo": "Three steps: open the hosted agent, ask an unanswerable question, confirm a typed refuse. Deep link is primary if the iframe is blank.",
         "deepLinks": [
           {
             "label": "Health",
@@ -918,13 +934,20 @@
           }
         ],
         "curl": "curl https://pax-agentic-rag.vercel.app/health",
-        "boundary": "The research form posts to /ui/research, so a question is not deep-linkable. Use the embed, or POST /v1/research."
+        "boundary": "The research form posts to /ui/research, so a question is not deep-linkable. Use the embed, or POST /v1/research.",
+        "script": [
+          "Open https://pax-agentic-rag.vercel.app (deep link is primary if the iframe is blank).",
+          "Ask an unanswerable question such as: What were the quarterly revenues in Patagonia?",
+          "Confirm a typed refuse: empty citations and a stop reason, not a fluent invention."
+        ],
+        "captureSrc": "/agentic-research-run.png",
+        "iframeHonesty": "Third-party iframe may be blocked on mobile or by network policy. Use the deep link as the primary CTA."
       },
       {
         "slug": "multi-agent-orchestration",
         "embedUrl": "https://pax-orchestration.vercel.app",
         "embedTitle": "Multi-Agent Orchestration hosted console",
-        "howTo": "Submit a task in the console and read the ordered handoff timeline. Then hit the health and metrics endpoints: both returned 200 with no header before this page linked them.",
+        "howTo": "Three steps: run a free-path task, read the ordered timeline, download the JSON result. Deep link is primary if the iframe is blank.",
         "deepLinks": [
           {
             "label": "Health, open with no header",
@@ -938,22 +961,29 @@
           }
         ],
         "curl": "curl https://pax-orchestration.vercel.app/health",
-        "boundary": "Specialists are deterministic fakes. The hosted console proves routing, budgets, handoffs, and degradation — not answer quality and not multi-model uplift."
+        "boundary": "Specialists are deterministic fakes. The hosted console proves routing, budgets, handoffs, and degradation — not answer quality and not multi-model uplift.",
+        "script": [
+          "Open https://pax-orchestration.vercel.app and submit a free-path task (for example: Audit retrieval risk).",
+          "Read the ordered handoff timeline, stop_reason, and result_author on the page.",
+          "Download the run: curl -s -X POST https://pax-orchestration.vercel.app/v1/tasks -H \"content-type: application/json\" -d '{\"task\":\"Audit retrieval risk\",\"budget\":{\"max_handoffs\":8}}' and save the JSON."
+        ],
+        "captureSrc": "/multi-agent-trace.png",
+        "iframeHonesty": "Third-party iframe may be blocked on mobile or by network policy. Use the deep link as the primary CTA."
       },
       {
         "slug": "repomind",
         "embedUrl": "https://pax-repomind.vercel.app",
         "embedTitle": "RepoMind hosted console",
-        "howTo": "The console asks with GET, so every question below is a real link you can copy into a message. Run the hit, then run the refusal and note that it returns zero citations rather than a paragraph.",
+        "howTo": "Three steps on the page: open create_app on production_rag, read the path:line hit, then run a refusal. Deep link is primary if the iframe is blank.",
         "deepLinks": [
           {
-            "label": "A hit: where is create_app defined?",
-            "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=mini",
+            "label": "create_app on production_rag",
+            "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=production_rag",
             "expect": 200
           },
           {
-            "label": "A dogfood hit: how does hybrid retrieval fuse rankings?",
-            "url": "https://pax-repomind.vercel.app/ask?question=How+does+hybrid+retrieval+fuse+rankings%3F&repo_id=production_rag",
+            "label": "A hit on mini: where is create_app defined?",
+            "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=mini",
             "expect": 200
           },
           {
@@ -962,14 +992,21 @@
             "expect": 200
           }
         ],
-        "curl": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"mini\"}'",
-        "boundary": "Indexes only the committed mini and production_rag fixtures. The production_rag catalog is a frozen snapshot, not a live sibling checkout."
+        "curl": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"production_rag\"}'",
+        "boundary": "Indexes only the committed mini and production_rag fixtures. The production_rag catalog is a frozen snapshot, not a live sibling checkout.",
+        "script": [
+          "Open https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=production_rag",
+          "Read the path:line citation for create_app on the production_rag catalog.",
+          "Ask a refusal question on the same host and confirm zero citations."
+        ],
+        "captureSrc": "/repomind-dogfood-hit.png",
+        "iframeHonesty": "Third-party iframe may be blocked on mobile or by network policy. The deep-linked /ask URL is the primary CTA."
       },
       {
         "slug": "ai-platform",
         "embedUrl": "https://pax-ai-gateway.vercel.app",
         "embedTitle": "AI Platform status console",
-        "howTo": "The console loads with no header and reports the gateway up and four upstreams unconfigured. That is the deployment being honest about running alone, not an outage.",
+        "howTo": "Three steps: open the console, hit status for a 401 without a key, then use the public fixture key and read four unconfigured upstreams.",
         "deepLinks": [
           {
             "label": "Health, open with no header",
@@ -988,7 +1025,14 @@
           }
         ],
         "curl": "curl -H \"X-API-Key: dev-local\" https://pax-ai-gateway.vercel.app/v1/platform/status",
-        "boundary": "dev-local is a public fixture committed to the repository, not a credential. It reaches the status route and nothing else, and the gateway runs alone: it does not run P1-P4 for you."
+        "boundary": "dev-local is a public fixture committed to the repository, not a credential. It reaches the status route and nothing else, and the gateway runs alone: it does not run P1-P4 for you.",
+        "script": [
+          "Open https://pax-ai-gateway.vercel.app and note the status console.",
+          "curl https://pax-ai-gateway.vercel.app/v1/platform/status without a key and expect 401.",
+          "curl -H \"X-API-Key: dev-local\" https://pax-ai-gateway.vercel.app/v1/platform/status and expect gateway up with four unconfigured upstreams."
+        ],
+        "captureSrc": "/ai-platform-status.png",
+        "iframeHonesty": "Third-party iframe may be blocked on mobile or by network policy. Use the deep link as the primary CTA."
       }
     ],
     "cloneCards": [
@@ -1026,8 +1070,8 @@
         "clock": "0–8",
         "mode": "CLONE",
         "system": "production-rag",
-        "title": "Grounded, then refusing, then narrowed",
-        "say": "Open with the thesis in one breath: a retrieval system is only as good as the evidence it can show for its own behaviour. Then ask three questions in an order that carries the argument. A refusal shown first reads as a system that cannot answer; a refusal shown second reads as a system that chose not to.",
+        "title": "Grounded, then refusing, then narrowed · main 1cd8e4b · CLONE",
+        "say": "Open with the thesis in one breath: a retrieval system is only as good as the evidence it can show for its own behaviour. Main is 1cd8e4b; PR #3 (stream, filter-aware cache, /evals) is OPEN and NOT SHIPPED. Then ask three questions in an order that carries the argument.",
         "steps": [
           {
             "kind": "command",
@@ -1056,14 +1100,16 @@
             "note": "The page states what this system does not do, including that it has no auth and no rate limiting."
           }
         ],
-        "watch": "Do not present the deterministic run as retrieval or answer quality — the embedder, the LLM, and the reranker are fakes. Do not present the field allowlist as access control: it bounds which fields a query may filter on, never which documents a caller may see."
+        "watch": "Do not present the deterministic run as retrieval or answer quality — the embedder, the LLM, and the reranker are fakes. Do not present the field allowlist as access control: it bounds which fields a query may filter on, never which documents a caller may see.",
+        "sha": "1cd8e4b",
+        "host": null
       },
       {
         "clock": "8–18",
         "mode": "HOSTED",
         "system": "agentic-rag-research",
-        "title": "A loop that stops for a stated reason",
-        "say": "The interesting output of an agent is not the answer. It is the record of why it stopped. A budget that only exists in a prompt is a suggestion; this one is enforced in the loop and reported in the trace. Ask a question the corpus supports, then one it does not, and read stop_reason as a field rather than a mood.",
+        "title": "A loop that stops for a stated reason · d62917d · pax-agentic-rag.vercel.app",
+        "say": "The interesting output of an agent is not the answer. It is the record of why it stopped. Hosted at pax-agentic-rag.vercel.app on main d62917d / v0.2.0. Ask a question the corpus supports, then one it does not, and read stop_reason as a field.",
         "steps": [
           {
             "kind": "link",
@@ -1087,14 +1133,16 @@
             "note": "Prometheus text: process_up, requests_total, research_total, research_steps_used_total. Verified 200."
           }
         ],
-        "watch": "Do not claim the agent beats a single retrieval pass; the scorecard measures contract conformance, not uplift. Do not imply the P1 HTTP retriever is running — the hosted instance sets no PRODUCTION_RAG_URL, so that path answers capability_missing on purpose."
+        "watch": "Do not claim the agent beats a single retrieval pass; the scorecard measures contract conformance, not uplift. Do not imply the P1 HTTP retriever is running — the hosted instance sets no PRODUCTION_RAG_URL, so that path answers capability_missing on purpose.",
+        "sha": "d62917d",
+        "host": "https://pax-agentic-rag.vercel.app"
       },
       {
         "clock": "18–28",
         "mode": "HOSTED",
         "system": "multi-agent-orchestration",
-        "title": "Writer-only, and degraded on purpose — now in the browser",
-        "say": "A multi-agent system without budgets is a system that can bill you forever. Every handoff is counted, every retry is capped, and a specialist that fails makes the result degraded and says so. The orchestrator has no path that hides a failure. Open the hosted console; the specialists are fakes on purpose.",
+        "title": "Writer-only, and degraded on purpose — now in the browser · 8155274 · pax-orchestration.vercel.app",
+        "say": "A multi-agent system without budgets is a system that can bill you forever. Hosted at pax-orchestration.vercel.app on main 8155274 / v0.2.0. Open the console, run a task, download the JSON; specialists are fakes on purpose.",
         "steps": [
           {
             "kind": "link",
@@ -1119,13 +1167,15 @@
             "note": "Its own non-goals are on the page, starting with the one that matters: no claim that several agents outperform one."
           }
         ],
-        "watch": "Do not claim answer quality or multi-model uplift; the specialists are deterministic fakes. Do not claim the optional remote research integration is live unless AGENTIC_RAG_URL is set — the free path does not need it."
+        "watch": "Do not claim answer quality or multi-model uplift; the specialists are deterministic fakes. Do not claim the optional remote research integration is live unless AGENTIC_RAG_URL is set — the free path does not need it.",
+        "sha": "8155274",
+        "host": "https://pax-orchestration.vercel.app"
       },
       {
         "clock": "28–38",
         "mode": "HOSTED",
         "system": "repomind",
-        "title": "path:line, and the snapshot caveat",
+        "title": "path:line, and the snapshot caveat · 5d4eefe · pax-repomind.vercel.app",
         "say": "Citations as path:start-end, not prose references. Open one — it is a real range in a real file. Then say the honesty beat before anyone asks: the production_rag catalog is a frozen snapshot committed under fixtures, not a live checkout of the sibling project. It proves navigation and citation correctness on committed bytes. It does not prove the tool works on your repository.",
         "steps": [
           {
@@ -1136,9 +1186,9 @@
           },
           {
             "kind": "link",
-            "value": "The series reading its own flagship",
-            "url": "https://pax-repomind.vercel.app/ask?question=How+does+hybrid+retrieval+fuse+rankings%3F&repo_id=production_rag",
-            "note": "Cites production_rag/retrieval/rrf.py:54-113 — the same RRF implementation demonstrated in the first beat. Name that out loud."
+            "value": "Where is create_app defined? on production_rag",
+            "url": "https://pax-repomind.vercel.app/ask?question=Where+is+create_app+defined%3F&repo_id=production_rag",
+            "note": "Primary interview hit on main 5d4eefe. Name the host pax-repomind.vercel.app and the SHA."
           },
           {
             "kind": "link",
@@ -1148,18 +1198,20 @@
           },
           {
             "kind": "command",
-            "value": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"mini\"}'",
-            "note": "The API's repo_id pattern is ^[a-z0-9-]+$, which rejects the console's production_rag id. Use the deep link for that catalog and mini for curl, and say why rather than hiding the seam."
+            "value": "curl -X POST https://pax-repomind.vercel.app/v1/code/ask -H \"Content-Type: application/json\" -d '{\"question\":\"Where is create_app defined?\",\"repo_id\":\"production_rag\"}'",
+            "note": "On main 5d4eefe the catalog accepts production_rag for POST as well as GET. Say the SHA and the host out loud."
           }
         ],
-        "watch": "Do not describe the dogfood gate as evidence of general code comprehension. Do not imply the snapshot tracks the sibling repository — it does not update itself. Do not quote eval counts as a score."
+        "watch": "Do not describe the dogfood gate as evidence of general code comprehension. Do not imply the snapshot tracks the sibling repository — it does not update itself. Do not quote eval counts as a score.",
+        "sha": "5d4eefe",
+        "host": "https://pax-repomind.vercel.app"
       },
       {
         "clock": "38–45",
         "mode": "HOSTED",
         "system": "ai-platform",
-        "title": "Rejected, then unconfigured",
-        "say": "This is a gateway, and there is nothing behind it right now. The four upstream URLs are empty, so the console says unconfigured rather than pretending. What I am showing you is that the edge behaves. What I am not showing you is a platform in production.",
+        "title": "Rejected, then unconfigured · e9bec1b · pax-ai-gateway.vercel.app",
+        "say": "This is a gateway on main e9bec1b at pax-ai-gateway.vercel.app, and there is nothing behind it right now. The four upstream URLs are empty, so the console says unconfigured rather than pretending.",
         "steps": [
           {
             "kind": "command",
@@ -1184,7 +1236,9 @@
             "note": "Four upstreams, all unconfigured. The honest close of the whole demo."
           }
         ],
-        "watch": "Do not say P5 hosts, runs, or serves P1 through P4. Do not call dev-local a key, a secret, or a credential. The rate limiter is an in-process fixed window per isolate on serverless, so do not present its advertised limit as a global guarantee."
+        "watch": "Do not say P5 hosts, runs, or serves P1 through P4. Do not call dev-local a key, a secret, or a credential. The rate limiter is an in-process fixed window per isolate on serverless, so do not present its advertised limit as a global guarantee.",
+        "sha": "e9bec1b",
+        "host": "https://pax-ai-gateway.vercel.app"
       }
     ],
     "close": [
@@ -1192,11 +1246,16 @@
       "Every system can return a result its author would not have chosen: a refusal, a degraded outcome, a no_evidence stop, an unconfigured upstream.",
       "Every number published anywhere in the series carries what produced it, and where a number would flatter without support, the repository says so instead."
     ],
-    "divergence": "DEMO-DAY.md at 1cd8e4b still opens by saying nothing in the series is deployed and every URL is localhost. That was true when it was written and is no longer true for P2, P3, P4, and P5. This page is the re-cut, not a correction of that file: the script lives in the flagship repository, and changing it there is P1's commit to make, not this site's."
+    "divergence": "DEMO-DAY.md at 1cd8e4b still opens by saying nothing in the series is deployed and every URL is localhost. That was true when it was written and is no longer true for P2, P3, P4, and P5. This page is the re-cut, not a correction of that file: the script lives in the flagship repository, and changing it there is P1's commit to make, not this site's. P1 PR #3 remains NOT SHIPPED on main.",
+    "dayOfChecklist": {
+      "title": "Day-of checklist",
+      "command": "npm run verify:urls",
+      "body": "Five portfolio hosts (plus this site and selected work) are curled from content/verified-urls.json. Run it before the call. A red check means the script on this page is lying until you refresh the fixture."
+    }
   },
   "architecturePoster": {
     "title": "Five-system ladder",
-    "subtitle": "Exact roles. Honest hosted vs clone. Verified 2026-08-14.",
+    "subtitle": "Exact roles. Honest hosted vs clone. Pins: P1 1cd8e4b CLONE · P2 d62917d · P3 8155274 · P4 5d4eefe · P5 e9bec1b. Verified 2026-08-14.",
     "layers": [
       {
         "number": "01",

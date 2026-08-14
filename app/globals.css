@@ -2330,6 +2330,51 @@ p {
   width: 13px;
 }
 
+.studio-script {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+}
+
+.studio-script li {
+  align-items: start;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 42px minmax(0, 1fr);
+  line-height: 1.55;
+}
+
+.studio-script-n {
+  border: 1px solid var(--line-strong);
+  color: var(--mint);
+  font-family: Consolas, "SFMono-Regular", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 0;
+  text-align: center;
+}
+
+.studio-iframe-honesty {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 0 0 22px;
+}
+
+.studio-capture {
+  margin: 0 0 28px;
+}
+
+.studio-capture figcaption {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 12px 0 0;
+}
+
 .studio-frame {
   background: var(--ink-soft);
   border: 1px solid var(--line);
@@ -2343,6 +2388,26 @@ p {
   display: block;
   height: 760px;
   width: 100%;
+}
+
+.kit-dayof {
+  border: 1px solid var(--line);
+  margin-top: 36px;
+  padding: 22px 24px;
+}
+
+.kit-dayof h3 {
+  margin: 0 0 10px;
+}
+
+.kit-dayof p {
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0 0 14px;
+}
+
+.kit-dayof pre {
+  margin: 0;
 }
 
 .studio-detail {

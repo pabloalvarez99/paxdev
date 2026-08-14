@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowUpRightIcon, GithubIcon, ShieldIcon, TerminalIcon } from "@/components/icons";
@@ -11,7 +12,7 @@ const { site, studio, aiSystems } = portfolio;
 export const metadata: Metadata = {
   title: `Demo studio — ${site.name}`,
   description:
-    "The four hosted systems, embedded live, with deep links and curl commands that were requested before they were published.",
+    "The four hosted systems with three-step scripts, committed captures, deep links, and curl commands that were requested before they were published.",
   alternates: { canonical: `${site.canonicalUrl}/studio` },
 };
 
@@ -24,6 +25,10 @@ function systemFor(slug: string) {
     throw new Error(`studio references an unknown system: ${slug}`);
   }
   return system;
+}
+
+function primaryDeepLink(embed: (typeof studio.embeds)[number]) {
+  return embed.deepLinks[0]?.url ?? embed.embedUrl;
 }
 
 // A slug that loses its verified 200 must break the build, not quietly keep an embed alive.
@@ -63,7 +68,8 @@ export default function StudioPage() {
                 <ExternalLink href="https://github.com/pabloalvarez99/paxdev/blob/main/content/verified-urls.json">
                   content/verified-urls.json
                 </ExternalLink>{" "}
-                and a test fails if this page claims a host that file never reached.
+                and a test fails if this page claims a host that file never reached. A third-party
+                iframe may be blocked; the deep link is the primary CTA on every card.
               </span>
             </div>
           </div>
@@ -71,6 +77,13 @@ export default function StudioPage() {
 
         {studio.embeds.map((embed) => {
           const system = systemFor(embed.slug);
+          const deepLink = primaryDeepLink(embed);
+          const capture =
+            system.capture.src === embed.captureSrc
+              ? system.capture
+              : system.secondaryCapture?.src === embed.captureSrc
+                ? system.secondaryCapture
+                : system.capture;
           return (
             <section className="section studio-embed" id={embed.slug} key={embed.slug}>
               <div className="container">
@@ -84,13 +97,48 @@ export default function StudioPage() {
                   </div>
                   <div className="studio-heading-side">
                     <Status tone="live">HOSTED</Status>
+                    <ExternalLink href={deepLink}>Open deep link (primary CTA)</ExternalLink>
                     <Link className="button button-secondary button-small" href={system.route}>
                       Study this system
                       <ArrowUpRightIcon />
                     </Link>
-                    <ExternalLink href={embed.embedUrl}>Open in a new tab</ExternalLink>
+                    <ExternalLink href={embed.embedUrl}>Open host root</ExternalLink>
                   </div>
                 </div>
+
+                <ol className="studio-script" aria-label={`Three-step script for ${system.name}`}>
+                  {embed.script.map((step, index) => (
+                    <li key={`${embed.slug}-step-${index}`}>
+                      <span className="studio-script-n">{String(index + 1).padStart(2, "0")}</span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+                <p className="studio-iframe-honesty">{embed.iframeHonesty}</p>
+
+                <figure className="studio-capture product-frame">
+                  <div className="product-frame-bar">
+                    <div className="window-dots" aria-hidden="true">
+                      <i />
+                      <i />
+                      <i />
+                    </div>
+                    <span className="mono">capture · {system.phase}</span>
+                    <span className="frame-secure">COMMITTED</span>
+                  </div>
+                  <div className="product-screen">
+                    <Image
+                      alt={capture.alt}
+                      height={capture.height}
+                      src={embed.captureSrc}
+                      width={capture.width}
+                    />
+                  </div>
+                  <figcaption>
+                    {capture.caption}{" "}
+                    <ExternalLink href={capture.sourceUrl}>Source on GitHub</ExternalLink>
+                  </figcaption>
+                </figure>
 
                 <div className="studio-frame">
                   <div className="product-frame-bar">

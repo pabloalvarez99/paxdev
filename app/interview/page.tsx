@@ -116,6 +116,14 @@ export default function InterviewPage() {
                 </article>
               ))}
             </div>
+
+            <article className="kit-dayof">
+              <h3>{interviewKit.dayOfChecklist.title}</h3>
+              <p>{interviewKit.dayOfChecklist.body}</p>
+              <pre>
+                <code>{interviewKit.dayOfChecklist.command}</code>
+              </pre>
+            </article>
           </div>
         </section>
 
@@ -151,6 +159,8 @@ export default function InterviewPage() {
                     {beat.clock}
                     <small>{beat.mode}</small>
                     <small>{systemName(beat.system)}</small>
+                    <small className="mono">main {beat.sha}</small>
+                    {beat.host ? <small className="mono">{beat.host.replace("https://", "")}</small> : null}
                   </div>
                   <div>
                     <div className="system-hero-meta" style={{ border: "none", padding: 0 }}>
