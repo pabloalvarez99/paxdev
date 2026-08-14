@@ -23,6 +23,8 @@ export function SiteHeader({ home = false }: { home?: boolean }) {
           <a href={anchor("#systems")}>Systems</a>
           <Link href="/studio">Demo studio</Link>
           <Link href="/interview">Interview kit</Link>
+          <Link href="/changelog">Changelog</Link>
+          <Link href="/casestudy">Case study</Link>
           <a href={anchor("#capabilities")}>Capabilities</a>
           <a href={anchor("#principles")}>Principles</a>
         </nav>

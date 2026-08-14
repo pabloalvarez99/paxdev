@@ -1041,9 +1041,11 @@
     "cloneCards": [
       {
         "slug": "production-rag",
-        "why": "Hybrid retrieval needs a local Qdrant, so there is nothing to host without standing up a vector database per visitor. production-rag.vercel.app is another product (Ipsura) and is never cited here.",
+        "why": "Hybrid retrieval needs local Qdrant. Clone the repo and follow DEMO-DAY: stream, title=Filtering, /evals. production-rag.vercel.app is Ipsura — never iframe it.",
         "absentUrl": "https://pax-production-rag.vercel.app",
-        "command": "git clone https://github.com/pabloalvarez99/production-rag"
+        "command": "git clone https://github.com/pabloalvarez99/production-rag",
+        "demoDayUrl": "https://github.com/pabloalvarez99/production-rag/blob/bf6e36d/docs/DEMO-DAY.md",
+        "evalsUrl": "https://github.com/pabloalvarez99/production-rag/blob/bf6e36d/docs/assets/scorecard.html"
       }
     ]
   },

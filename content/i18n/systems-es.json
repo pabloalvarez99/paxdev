@@ -1,0 +1,42 @@
+{
+  "note": "Spanish strings for /systems/* pages. English remains the default from portfolio.json. Toggle is presentational only — SHAs, hosts, and evidence URLs stay language-invariant.",
+  "ui": {
+    "langEn": "EN",
+    "langEs": "ES",
+    "live": "EN VIVO",
+    "notShipped": "NO EMBARCADO",
+    "verified": "Verificado",
+    "evidence": "Evidencia",
+    "interview": "Preguntas de entrevista",
+    "docs": "Documentos",
+    "cloneCta": "Clonar y correr el free path",
+    "hostedCta": "Abrir demo hospedado"
+  },
+  "systems": {
+    "production-rag": {
+      "headline": "Recuperación construida para el momento en que se acaba la confianza.",
+      "pitch": "La mayoría de las demos de recuperación responden cualquier pregunta. Esta está diseñada alrededor del caso que le cuesta dinero a una empresa: el corpus no contiene la respuesta. Búsqueda densa y dispersa corren sobre la misma colección y se fusionan con reciprocal rank fusion; un cross-encoder reordena y degrada el orden en vez de la disponibilidad; la respuesta generada solo se acepta cuando cada marcador [n] resuelve a un bloque que estuvo en el prompt. Si no, el sistema se niega y dice por qué. Contráteme si necesita recuperación que un revisor pueda auditar línea por línea.",
+      "kicker": "P1 · RECUPERAR Y RESPONDER CON HONESTIDAD"
+    },
+    "agentic-rag-research": {
+      "headline": "Un agente que se detiene y puede decir qué regla lo detuvo.",
+      "pitch": "Un bucle planificar → recuperar → criticar donde el presupuesto vive en el estado y no en el prompt, de modo que la terminación es propiedad del programa y no un pedido al modelo. Cada corrida termina en un estado tipado y emite un trazo determinista. Contráteme si le han quemado agentes que corrieron hasta que alguien miró.",
+      "kicker": "P2 · ACTUAR CON HERRAMIENTAS BAJO PRESUPUESTO"
+    },
+    "multi-agent-orchestration": {
+      "headline": "Especialistas con presupuestos, no cosplay multi-agente.",
+      "pitch": "Orquestación con roles explícitos, handoffs acotados, modos degradados y una línea de tiempo auditable. Los especialistas del free path son fakes deterministas a propósito: se prueba enrutamiento y control, no calidad de respuesta ni uplift multi-modelo.",
+      "kicker": "P3 · COORDINAR ESPECIALISTAS"
+    },
+    "repomind": {
+      "headline": "Citas path:línea sobre fixtures, no magia sobre tu monorepo.",
+      "pitch": "Preguntas sobre código con chunking consciente de AST y citas path:start-end. El host público indexa solo snapshots comprometidos. Demuestra navegación y corrección de citas; no demuestra comprensión general de repositorios arbitrarios.",
+      "kicker": "P4 · ENTENDER CÓDIGO"
+    },
+    "ai-platform": {
+      "headline": "El borde del gateway, no un hosting disfrazado de los otros cuatro.",
+      "pitch": "Autenticación por API key, límites por clave, agregación de salud. En el free path público los upstreams están vacíos: el punto es decir unconfigured en vez de inventar cuatro servicios sanos. No ejecuta P1–P4 por usted.",
+      "kicker": "P5 · OPERAR EL BORDE"
+    }
+  }
+}
