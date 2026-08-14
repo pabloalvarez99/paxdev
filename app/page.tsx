@@ -128,8 +128,9 @@ export default function Home() {
               </h1>
 
               <p className="hero-lede">
-                I build retrieval, agents, and product infrastructure with the parts most demos
-                omit: budgets, citations, failure states, evaluation, and a path anyone can run.
+                Production-shaped LLM systems: hybrid retrieval, grounded generation, bounded
+                agents, multi-agent control, and the evaluation and ops seams most demos skip —
+                plus the product surfaces they ship on. Every public AI repo runs without a key.
               </p>
 
               <div className="hero-actions">

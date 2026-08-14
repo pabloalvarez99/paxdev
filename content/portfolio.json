@@ -2,17 +2,17 @@
   "site": {
     "name": "PAX / DEV",
     "owner": "Pablo Alvarez",
-    "role": "AI Systems & Product Engineer",
+    "role": "AI Engineer · LLM Systems · Product",
     "canonicalUrl": "https://paxdev.vercel.app",
     "githubUrl": "https://github.com/pabloalvarez99",
     "location": "Chile",
-    "lastVerified": "2026-08-13"
+    "lastVerified": "2026-08-14"
   },
   "proof": [
     {
-      "value": "5",
-      "label": "system roadmap",
-      "detail": "Two public systems, three explicit next layers"
+      "value": "4",
+      "label": "LIVE AI systems",
+      "detail": "RAG, research agent, multi-agent, code Q&A — all free-path"
     },
     {
       "value": "$0",
@@ -22,12 +22,12 @@
     {
       "value": "4",
       "label": "product surfaces",
-      "detail": "API, web, mobile, and desktop engineering"
+      "detail": "API, web, Android, and desktop engineering"
     },
     {
       "value": "CI",
       "label": "evidence first",
-      "detail": "Typed contracts, deterministic tests, honest boundaries"
+      "detail": "Typed contracts, deterministic tests, honest LIVE vs PLANNED"
     }
   ],
   "aiSystems": [
@@ -57,47 +57,63 @@
       "number": "02",
       "slug": "agentic-rag-research",
       "name": "Agentic Research",
-      "status": "IN PROGRESS",
-      "statusTone": "progress",
-      "phase": "M2 live · runtime next",
-      "summary": "A bounded plan → retrieve → critique research loop with explicit budgets, terminal states, cited synthesis, and deterministic execution traces.",
+      "status": "LIVE",
+      "statusTone": "live",
+      "phase": "v0.1.0 · M1–M6",
+      "summary": "A bounded plan → retrieve → critique research loop with explicit budgets, terminal states, cited synthesis, a free UI, and deterministic execution traces.",
       "outcome": "Act with tools under budget",
-      "stack": ["Python", "Pydantic", "FastAPI", "HTTPX", "Typed protocols"],
+      "stack": ["Python", "Pydantic", "FastAPI", "HTTPX", "Typed protocols", "HTMX"],
       "evidence": [
         "Step budget enforced in state",
-        "Fake and HTTP retrieval behind one port",
-        "Explicit stop reasons and evidence gaps",
-        "Byte-stable traces on the free path"
+        "Fake and optional P1 HTTP retrieval behind one port",
+        "Explicit stop reasons, notes tool, and evidence gaps",
+        "17/17 offline goldens and a trace UI — billed USD 0"
       ],
       "links": [
-        { "label": "Repository", "url": "https://github.com/pabloalvarez99/agentic-rag-research" }
+        { "label": "Repository", "url": "https://github.com/pabloalvarez99/agentic-rag-research" },
+        { "label": "v0.1.0", "url": "https://github.com/pabloalvarez99/agentic-rag-research/releases/tag/v0.1.0" }
       ]
     },
     {
       "number": "03",
       "slug": "multi-agent-orchestration",
       "name": "Multi-Agent Orchestration",
-      "status": "PLANNED",
-      "statusTone": "planned",
-      "phase": "Starts after P2 is solid",
-      "summary": "An orchestrator and specialist agents with explicit handoffs, global budgets, failure isolation, and auditable multi-agent timelines.",
+      "status": "LIVE",
+      "statusTone": "live",
+      "phase": "M4 live · release next",
+      "summary": "An orchestrator and Research/Critic/Writer specialists with explicit handoffs, global budgets, failure isolation, and auditable multi-agent timelines.",
       "outcome": "Coordinate specialists",
-      "stack": ["Agent protocols", "Handoff policy", "Trace timelines", "Failure isolation"],
-      "evidence": [],
-      "links": []
+      "stack": ["Agent protocols", "Handoff policy", "Trace timelines", "Failure isolation", "FastAPI"],
+      "evidence": [
+        "Writer-only finals and typed degraded outcomes",
+        "Global handoff ceiling and critic retry budget",
+        "Ordered JSON-safe traces without full prompts",
+        "12-task offline routing scorecard at USD 0"
+      ],
+      "links": [
+        { "label": "Repository", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration" },
+        { "label": "SHIP", "url": "https://github.com/pabloalvarez99/multi-agent-orchestration/blob/main/docs/SHIP.md" }
+      ]
     },
     {
       "number": "04",
       "slug": "repomind",
       "name": "RepoMind",
-      "status": "PLANNED",
-      "statusTone": "planned",
-      "phase": "Scoped · no product repo yet",
+      "status": "LIVE",
+      "statusTone": "live",
+      "phase": "M5 live · dogfood next",
       "summary": "Repository intelligence built around AST-aware chunks, symbol retrieval, fixture-backed evaluation, and precise path:line citations.",
       "outcome": "Understand codebases",
-      "stack": ["Python AST", "Code retrieval", "Path:line evidence", "Golden fixtures"],
-      "evidence": [],
-      "links": []
+      "stack": ["Python AST", "Code retrieval", "Path:line evidence", "Golden fixtures", "FastAPI"],
+      "evidence": [
+        "Gitignore-safe walk and AST class/function/method chunks",
+        "Deterministic lexical index with exact-symbol priority",
+        "Answers cite path:start-end or refuse with zero citations",
+        "14-question fixture gate — not a SOTA claim"
+      ],
+      "links": [
+        { "label": "Repository", "url": "https://github.com/pabloalvarez99/repomind" }
+      ]
     },
     {
       "number": "05",
@@ -164,28 +180,28 @@
       "index": "A",
       "title": "AI systems",
       "description": "Retrieval and agent behavior designed as inspectable systems, not prompt demos.",
-      "skills": ["Hybrid search", "RRF", "Reranking", "Grounding", "Citations", "Refusal", "Agent budgets", "Evaluation harnesses"],
+      "skills": ["Hybrid search", "BM25 / sparse", "RRF", "Cross-encoder rerank", "Grounding", "Citations", "Refusal", "Agent budgets", "Traces", "AST code Q&A", "Golden evals", "Scorecards"],
       "evidenceUrl": "https://github.com/pabloalvarez99/production-rag"
     },
     {
       "index": "B",
       "title": "Backend & platform",
       "description": "Typed APIs and operational seams across Python and Rust services.",
-      "skills": ["FastAPI", "Axum", "Pydantic", "OpenAPI", "Qdrant", "SurrealDB", "Docker", "Structured logging"],
+      "skills": ["FastAPI", "Axum", "Pydantic", "OpenAPI", "Qdrant", "SurrealDB", "Docker", "Structured logging", "Request IDs", "Fail-open design"],
       "evidenceUrl": "https://github.com/pabloalvarez99/pharma-server"
     },
     {
       "index": "C",
       "title": "Product surfaces",
       "description": "One engineering language per surface when that is the honest product trade-off.",
-      "skills": ["Next.js", "React", "TypeScript", "Kotlin", "Jetpack Compose", "Tauri", "PWA", "Vercel"],
+      "skills": ["Next.js", "React", "TypeScript", "Kotlin", "Jetpack Compose", "Tauri", "PWA", "Vercel", "HTMX", "Server-rendered UI"],
       "evidenceUrl": "https://github.com/pabloalvarez99/FarmaciaCompare"
     },
     {
       "index": "D",
       "title": "Delivery & trust",
       "description": "Quality gates, explicit failure modes, and evidence that survives outside the author's laptop.",
-      "skills": ["GitHub Actions", "Deterministic tests", "Security headers", "Secret hygiene", "ADRs", "Release engineering", "Offline-first", "Failure contracts"],
+      "skills": ["GitHub Actions", "Deterministic tests", "mypy / ruff", "Security headers", "Secret hygiene", "ADRs", "Release engineering", "Offline-first", "Failure contracts", "Empty-key CI"],
       "evidenceUrl": "https://github.com/pabloalvarez99"
     }
   ],
