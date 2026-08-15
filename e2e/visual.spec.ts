@@ -63,6 +63,23 @@ test("studio keeps P1 as clone card, never Ipsura iframe", async ({ page }) => {
   expect(body).toMatch(/DEMO-DAY|Filtering|clone/i);
 });
 
+test("studio embeds no host that refuses to be framed", async ({ page }) => {
+  // pax-ai-gateway sends X-Frame-Options: DENY. An iframe pointed at it is an empty
+  // rectangle and a console error for every reader, every time -- the page has to say that
+  // in words instead of rendering the frame and hoping.
+  await page.goto("/studio", { waitUntil: "domcontentloaded" });
+
+  const srcs = await page.locator("iframe").evaluateAll((frames) =>
+    frames.map((frame) => frame.getAttribute("src") ?? ""),
+  );
+  expect(srcs.some((src) => /pax-ai-gateway/.test(src))).toBe(false);
+  expect(srcs.length).toBeGreaterThan(0);
+
+  const section = page.locator("#ai-platform");
+  await expect(section.locator("iframe")).toHaveCount(0);
+  await expect(section).toContainText("X-Frame-Options");
+});
+
 test("interview hostnames are publishable vercel hosts", async ({ page }) => {
   await page.goto("/interview", { waitUntil: "domcontentloaded" });
   const html = await page.content();

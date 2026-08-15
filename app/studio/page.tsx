@@ -62,7 +62,9 @@ export default function StudioPage() {
               <ExternalLink href="https://github.com/pabloalvarez99/paxdev/blob/main/content/verified-urls.json">
                 content/verified-urls.json
               </ExternalLink>
-              . A third-party iframe may be blocked; the deep link is the primary CTA.
+              . Three of the four hosts allow framing and are embedded below; the AI Platform
+              gateway sends <code>X-Frame-Options: DENY</code>, so it is not. The deep link is
+              the primary CTA in every case.
             </p>
           </div>
         </section>
@@ -99,14 +101,23 @@ export default function StudioPage() {
                 </ol>
                 <p className="studio-iframe-honesty">{embed.iframeHonesty}</p>
 
-                <iframe
-                  className="studio-iframe"
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                  sandbox="allow-forms allow-scripts allow-same-origin allow-popups"
-                  src={embed.embedUrl}
-                  title={embed.embedTitle}
-                />
+                {/*
+                  A frame the host refuses is not a frame that might work: the gateway sends
+                  X-Frame-Options: DENY, so every reader gets the same empty rectangle and a
+                  console error, forever. Rendering it anyway and calling that "may be blocked
+                  on mobile" would be the exact species of overclaim this site is built against.
+                  So it is not rendered, and the sentence above says which header and why.
+                */}
+                {embed.framable ? (
+                  <iframe
+                    className="studio-iframe"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    sandbox="allow-forms allow-scripts allow-same-origin allow-popups"
+                    src={embed.embedUrl}
+                    title={embed.embedTitle}
+                  />
+                ) : null}
 
                 <div className="studio-detail">
                   <div>

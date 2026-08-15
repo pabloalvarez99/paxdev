@@ -195,6 +195,40 @@ if (live) {
       }
     }
   }
+
+  /*
+   * `framable` is a boolean somebody typed, and a header is something somebody else can change
+   * at any time. pax-ai-gateway already shipped an iframe that could never draw, and every
+   * offline suite passed because none of them requests the third-party host. So ask the hosts.
+   *
+   * Both directions are failures. A host that starts refusing frames leaves the studio
+   * rendering an empty rectangle under a sentence promising it works; a host that stops
+   * refusing leaves the page claiming a restriction that is no longer there. Neither is worse
+   * than the other -- both are the page saying something untrue about a machine it does not own.
+   */
+  for (const embed of content.studio?.embeds ?? []) {
+    try {
+      const res = await fetch(embed.embedUrl, { redirect: "follow" });
+      const xfo = res.headers.get("x-frame-options") ?? "";
+      const csp = res.headers.get("content-security-policy") ?? "";
+      const refuses =
+        /\b(deny|sameorigin)\b/i.test(xfo) || /frame-ancestors\s+'?none'?/i.test(csp);
+
+      if (refuses && embed.framable !== false) {
+        fail(
+          `${embed.slug} is marked framable but ${embed.embedUrl} refuses framing` +
+            `${xfo ? ` (X-Frame-Options: ${xfo})` : ` (CSP frame-ancestors)`}`,
+        );
+      }
+      if (!refuses && embed.framable === false) {
+        fail(
+          `${embed.slug} is marked not framable but ${embed.embedUrl} sends no framing header`,
+        );
+      }
+    } catch (err) {
+      fail(`framing check failed ${embed.embedUrl}: ${err.message}`);
+    }
+  }
 }
 
 if (failures.length) {

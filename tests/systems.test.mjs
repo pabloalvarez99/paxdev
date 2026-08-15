@@ -156,11 +156,34 @@ test("the studio embeds only hosted UIs, and keeps every unhosted system as a cl
         .some((capture) => capture.src === embed.captureSrc),
       `${embed.slug} captureSrc must match a capture the system already vendors`,
     );
-    assert.match(
-      embed.iframeHonesty,
-      /iframe may be blocked/i,
-      `${embed.slug} must state third-party iframe honesty`,
+    // The honesty line has to match what the host actually does, and the two cases are not
+    // the same claim. "May be blocked" is true of a host that sends no framing header and
+    // false -- overclaiming -- of one that sends X-Frame-Options: DENY, where the frame is
+    // not uncertain, it is guaranteed empty. A non-framable embed must say so, name the
+    // header, and not be rendered at all.
+    assert.equal(
+      typeof embed.framable,
+      "boolean",
+      `${embed.slug} must declare whether its host allows framing`,
     );
+    if (embed.framable) {
+      assert.match(
+        embed.iframeHonesty,
+        /can still be blocked/i,
+        `${embed.slug} must keep the third-party iframe caveat`,
+      );
+    } else {
+      assert.match(
+        embed.iframeHonesty,
+        /X-Frame-Options/i,
+        `${embed.slug} must name the header that makes the frame impossible`,
+      );
+      assert.doesNotMatch(
+        embed.iframeHonesty,
+        /may be blocked/i,
+        `${embed.slug} refuses framing outright; "may be blocked" understates it`,
+      );
+    }
     for (const link of embed.deepLinks) {
       const observed = byStatus.get(normalise(link.url));
       assert.notEqual(
