@@ -944,7 +944,8 @@
           "Confirm a typed refuse: empty citations and a stop reason, not a fluent invention."
         ],
         "captureSrc": "/agentic-research-run.png",
-        "iframeHonesty": "Third-party iframe may be blocked on mobile or by network policy. Use the deep link as the primary CTA."
+        "framable": true,
+        "iframeHonesty": "This host sends no framing header, so the embed below should render. A third-party iframe can still be blocked by a network policy or an extension; the deep link is the primary CTA either way."
       },
       {
         "slug": "multi-agent-orchestration",
@@ -971,7 +972,8 @@
           "Download the run: curl -s -X POST https://pax-orchestration.vercel.app/v1/tasks -H \"content-type: application/json\" -d '{\"task\":\"Audit retrieval risk\",\"budget\":{\"max_handoffs\":8}}' and save the JSON."
         ],
         "captureSrc": "/multi-agent-trace.png",
-        "iframeHonesty": "Third-party iframe may be blocked on mobile or by network policy. Use the deep link as the primary CTA."
+        "framable": true,
+        "iframeHonesty": "This host sends no framing header, so the embed below should render. A third-party iframe can still be blocked by a network policy or an extension; the deep link is the primary CTA either way."
       },
       {
         "slug": "repomind",
@@ -1003,7 +1005,8 @@
           "Ask a refusal question on the same host and confirm zero citations."
         ],
         "captureSrc": "/repomind-dogfood-hit.png",
-        "iframeHonesty": "Third-party iframe may be blocked on mobile or by network policy. The deep-linked /ask URL is the primary CTA."
+        "framable": true,
+        "iframeHonesty": "This host sends no framing header, so the embed below should render. A third-party iframe can still be blocked by a network policy or an extension; the deep-linked /ask URL is the primary CTA either way."
       },
       {
         "slug": "ai-platform",
@@ -1035,7 +1038,8 @@
           "curl -H \"X-API-Key: dev-local\" https://pax-ai-gateway.vercel.app/v1/platform/status and expect gateway up with four unconfigured upstreams."
         ],
         "captureSrc": "/ai-platform-status.png",
-        "iframeHonesty": "Third-party iframe may be blocked on mobile or by network policy. Use the deep link as the primary CTA."
+        "framable": false,
+        "iframeHonesty": "This gateway sends X-Frame-Options: DENY, so no browser will ever render it in a frame here — not a mobile quirk, a deliberate header. Nothing is embedded below; the deep link and the curl line are the whole product."
       }
     ],
     "cloneCards": [
