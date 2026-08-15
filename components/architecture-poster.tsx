@@ -12,34 +12,30 @@ export function ArchitecturePoster() {
   return (
     <div className="poster" role="img" aria-label={poster.subtitle}>
       <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg">
-        <rect width={width} height={height} fill="#07110f" />
+        <rect width={width} height={height} fill="#F7F4ED" />
         <text
           x="40"
           y="40"
-          fill="#7ef0d2"
+          fill="#6B6760"
           fontFamily="Consolas, 'SFMono-Regular', monospace"
           fontSize="13"
-          letterSpacing="4"
+          letterSpacing="2"
         >
-          ARCHITECTURE · FIVE-SYSTEM LADDER
+          Five-system ladder
         </text>
         <text
           x="40"
           y="68"
-          fill="#e8f5f0"
+          fill="#0B0B0A"
           fontFamily="Georgia, 'Times New Roman', serif"
           fontSize="28"
-          fontWeight="700"
+          fontWeight="500"
         >
           {poster.title}
         </text>
 
         {poster.layers.map((layer, index) => {
           const y = top + index * rowHeight;
-          const hosted = layer.chip === "HOSTED";
-          const chipFill = hosted ? "#12352c" : "#2a2218";
-          const chipStroke = hosted ? "#7ef0d2" : "#ffb56b";
-          const chipText = hosted ? "#7ef0d2" : "#ffb56b";
           return (
             <g key={layer.number}>
               <line
@@ -47,33 +43,33 @@ export function ArchitecturePoster() {
                 x2={width - 40}
                 y1={y}
                 y2={y}
-                stroke="#1c2e29"
+                stroke="#D8D2C6"
                 strokeWidth="1"
               />
               <text
                 x="40"
                 y={y + 32}
-                fill="#7ef0d2"
+                fill="#6B6760"
                 fontFamily="Consolas, 'SFMono-Regular', monospace"
                 fontSize="20"
-                fontWeight="700"
+                fontWeight="500"
               >
                 {layer.number}
               </text>
               <text
                 x="96"
                 y={y + 24}
-                fill="#e8f5f0"
+                fill="#0B0B0A"
                 fontFamily="Georgia, 'Times New Roman', serif"
                 fontSize="20"
-                fontWeight="700"
+                fontWeight="500"
               >
                 {layer.name}
               </text>
               <text
                 x="96"
                 y={y + 48}
-                fill="#9bb5ab"
+                fill="#6B6760"
                 fontFamily="system-ui, sans-serif"
                 fontSize="13"
               >
@@ -84,19 +80,18 @@ export function ArchitecturePoster() {
                 y={y + 18}
                 width="110"
                 height="28"
-                rx="4"
-                fill={chipFill}
-                stroke={chipStroke}
+                fill="#F7F4ED"
+                stroke="#1A1916"
                 strokeWidth="1"
               />
               <text
                 x={width - 95}
                 y={y + 37}
                 textAnchor="middle"
-                fill={chipText}
+                fill="#1A1916"
                 fontFamily="Consolas, 'SFMono-Regular', monospace"
                 fontSize="12"
-                letterSpacing="2"
+                letterSpacing="1"
               >
                 {layer.chip}
               </text>
@@ -107,7 +102,7 @@ export function ArchitecturePoster() {
         <text
           x="40"
           y={height - 24}
-          fill="#6f8a80"
+          fill="#6B6760"
           fontFamily="system-ui, sans-serif"
           fontSize="12"
         >

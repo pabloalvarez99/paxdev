@@ -28,7 +28,6 @@ export default function ChangelogPage() {
       <main id="main-content" className="changelog-page">
         <section className="section">
           <div className="container narrow">
-            <p className="section-kicker">RELEASE RADAR</p>
             <h1>What each system last shipped</h1>
             <p className="lede">
               Notes below are vendored from GitHub Releases into{" "}

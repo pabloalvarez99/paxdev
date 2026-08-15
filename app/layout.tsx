@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description:
-    "Production-shaped AI systems, offline-first products, and evidence-driven engineering by Pablo Alvarez.",
+    "Public AI systems with repositories, tests, and honest scope, by Pablo Alvarez.",
   applicationName: site.name,
   authors: [{ name: site.owner, url: site.githubUrl }],
   creator: site.owner,
@@ -36,15 +36,14 @@ export const metadata: Metadata = {
     url: "/",
     title: `${site.owner} — ${site.role}`,
     description:
-      "AI systems that show their work: grounded retrieval, bounded agents, measurable behavior, and honest scope.",
+      "AI systems that show their work: grounded retrieval, bounded agents, and honest scope.",
     siteName: site.name,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.owner} — ${site.role}`,
-    description:
-      "Production-shaped AI systems and product engineering, with public evidence behind every claim.",
+    description: "Public AI systems, hosted demos, and evidence behind every claim.",
   },
   robots: {
     index: true,
@@ -60,8 +59,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  colorScheme: "dark",
-  themeColor: "#07110f",
+  colorScheme: "light",
+  themeColor: "#F7F4ED",
   width: "device-width",
   initialScale: 1,
 };

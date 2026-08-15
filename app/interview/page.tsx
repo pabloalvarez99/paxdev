@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { ArchitecturePoster } from "@/components/architecture-poster";
-import { ArrowUpRightIcon, ShieldIcon, TerminalIcon } from "@/components/icons";
+import { ArrowUpRightIcon, TerminalIcon } from "@/components/icons";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { ExternalLink, Status } from "@/components/ui";
 import portfolio from "@/content/portfolio";
@@ -89,24 +89,20 @@ export default function InterviewPage() {
               <span aria-current="page">Interview kit</span>
             </nav>
 
-            <p className="section-kicker">45 MINUTES · DEMO-DAY RE-CUT</p>
+            <p className="section-kicker">45 minutes</p>
             <h1>{interviewKit.title}</h1>
             <p className="system-pitch">{interviewKit.intro}</p>
-
-            <div className="hero-note">
-              <ShieldIcon />
-              <span>
-                Verified {site.lastVerified}. Source script:{" "}
-                <ExternalLink href={interviewKit.source.url}>
-                  {interviewKit.source.label}
-                </ExternalLink>
-                . Hosted URLs on this page are the same ones in{" "}
-                <ExternalLink href="https://github.com/pabloalvarez99/paxdev/blob/main/content/verified-urls.json">
-                  content/verified-urls.json
-                </ExternalLink>
-                .
-              </span>
-            </div>
+            <p className="hero-note">
+              Verified {site.lastVerified}. Source script:{" "}
+              <ExternalLink href={interviewKit.source.url}>
+                {interviewKit.source.label}
+              </ExternalLink>
+              . Hosted URLs on this page are the same ones in{" "}
+              <ExternalLink href="https://github.com/pabloalvarez99/paxdev/blob/main/content/verified-urls.json">
+                content/verified-urls.json
+              </ExternalLink>
+              .
+            </p>
 
             <div className="kit-rules">
               {interviewKit.rules.map((rule) => (
@@ -209,19 +205,13 @@ export default function InterviewPage() {
           </div>
         </section>
 
-        <section className="cta-section">
-          <div className="container cta-card">
-            <p className="section-kicker">AFTER THE CALL</p>
-            <h2>Study pages and the studio keep the same contracts.</h2>
-            <div className="hero-actions">
-              <Link className="button button-light" href="/studio">
-                Open the demo studio
-                <ArrowUpRightIcon />
-              </Link>
-              <Link className="button button-secondary" href={aiSystems[0].route}>
-                Study the flagship
-              </Link>
-            </div>
+        <section className="section">
+          <div className="container">
+            <h2>After the call</h2>
+            <p className="text-links">
+              <Link href="/studio">Studio</Link>
+              <Link href={aiSystems[0].route}>Study the flagship</Link>
+            </p>
           </div>
         </section>
       </main>

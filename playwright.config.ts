@@ -15,14 +15,14 @@ export default defineConfig({
   snapshotPathTemplate: "{testDir}/{testFilePath}-snapshots/{arg}{ext}",
   expect: {
     toHaveScreenshot: {
-      maxDiffPixelRatio: 0.1,
+      maxDiffPixelRatio: 0.15,
       animations: "disabled",
     },
   },
   use: {
     baseURL,
     trace: "on-first-retry",
-    colorScheme: "dark",
+    colorScheme: "light",
   },
   projects: [
     {

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
-import { ArrowUpRightIcon, GithubIcon, ShieldIcon, TerminalIcon } from "@/components/icons";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { ExternalLink, Status } from "@/components/ui";
 import portfolio, { hostedSystems, verifiedUrls } from "@/content/portfolio";
@@ -10,9 +8,9 @@ import portfolio, { hostedSystems, verifiedUrls } from "@/content/portfolio";
 const { site, studio, aiSystems } = portfolio;
 
 export const metadata: Metadata = {
-  title: `Demo studio — ${site.name}`,
+  title: `Studio — ${site.name}`,
   description:
-    "The four hosted systems with three-step scripts, committed captures, deep links, and curl commands that were requested before they were published.",
+    "The four hosted systems as links, scripts, and curls. Production RAG stays clone-only.",
   alternates: { canonical: `${site.canonicalUrl}/studio` },
 };
 
@@ -53,37 +51,25 @@ export default function StudioPage() {
             <nav className="crumbs" aria-label="Breadcrumb">
               <Link href="/">Portfolio</Link>
               <span aria-hidden="true">/</span>
-              <span aria-current="page">Demo studio</span>
+              <span aria-current="page">Studio</span>
             </nav>
 
-            <p className="section-kicker">USE THE SYSTEMS, DO NOT TAKE MY WORD</p>
-            <h1>Four running systems, one page, no signup.</h1>
+            <h1>Four hosted systems. One clone.</h1>
             <p className="system-pitch">{studio.intro}</p>
-
-            <div className="hero-note">
-              <ShieldIcon />
-              <span>
-                Every URL on this page was requested on {site.lastVerified} and returned the status
-                printed beside it. The list lives in{" "}
-                <ExternalLink href="https://github.com/pabloalvarez99/paxdev/blob/main/content/verified-urls.json">
-                  content/verified-urls.json
-                </ExternalLink>{" "}
-                and a test fails if this page claims a host that file never reached. A third-party
-                iframe may be blocked; the deep link is the primary CTA on every card.
-              </span>
-            </div>
+            <p className="hero-note">
+              Every URL on this page was requested on {site.lastVerified} and returned the
+              status printed beside it. The list lives in{" "}
+              <ExternalLink href="https://github.com/pabloalvarez99/paxdev/blob/main/content/verified-urls.json">
+                content/verified-urls.json
+              </ExternalLink>
+              . A third-party iframe may be blocked; the deep link is the primary CTA.
+            </p>
           </div>
         </section>
 
         {studio.embeds.map((embed) => {
           const system = systemFor(embed.slug);
           const deepLink = primaryDeepLink(embed);
-          const capture =
-            system.capture.src === embed.captureSrc
-              ? system.capture
-              : system.secondaryCapture?.src === embed.captureSrc
-                ? system.secondaryCapture
-                : system.capture;
           return (
             <section className="section studio-embed" id={embed.slug} key={embed.slug}>
               <div className="container">
@@ -97,11 +83,8 @@ export default function StudioPage() {
                   </div>
                   <div className="studio-heading-side">
                     <Status tone="live">HOSTED</Status>
-                    <ExternalLink href={deepLink}>Open deep link (primary CTA)</ExternalLink>
-                    <Link className="button button-secondary button-small" href={system.route}>
-                      Study this system
-                      <ArrowUpRightIcon />
-                    </Link>
+                    <ExternalLink href={deepLink}>Open deep link</ExternalLink>
+                    <Link href={system.route}>Study this system</Link>
                     <ExternalLink href={embed.embedUrl}>Open host root</ExternalLink>
                   </div>
                 </div>
@@ -116,49 +99,14 @@ export default function StudioPage() {
                 </ol>
                 <p className="studio-iframe-honesty">{embed.iframeHonesty}</p>
 
-                <figure className="studio-capture product-frame">
-                  <div className="product-frame-bar">
-                    <div className="window-dots" aria-hidden="true">
-                      <i />
-                      <i />
-                      <i />
-                    </div>
-                    <span className="mono">capture · {system.phase}</span>
-                    <span className="frame-secure">COMMITTED</span>
-                  </div>
-                  <div className="product-screen">
-                    <Image
-                      alt={capture.alt}
-                      height={capture.height}
-                      src={embed.captureSrc}
-                      width={capture.width}
-                    />
-                  </div>
-                  <figcaption>
-                    {capture.caption}{" "}
-                    <ExternalLink href={capture.sourceUrl}>Source on GitHub</ExternalLink>
-                  </figcaption>
-                </figure>
-
-                <div className="studio-frame">
-                  <div className="product-frame-bar">
-                    <div className="window-dots" aria-hidden="true">
-                      <i />
-                      <i />
-                      <i />
-                    </div>
-                    <span className="mono">{embed.embedUrl.replace("https://", "")}</span>
-                    <span className="frame-secure">LIVE · 200</span>
-                  </div>
-                  <iframe
-                    className="studio-iframe"
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    sandbox="allow-forms allow-scripts allow-same-origin allow-popups"
-                    src={embed.embedUrl}
-                    title={embed.embedTitle}
-                  />
-                </div>
+                <iframe
+                  className="studio-iframe"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  sandbox="allow-forms allow-scripts allow-same-origin allow-popups"
+                  src={embed.embedUrl}
+                  title={embed.embedTitle}
+                />
 
                 <div className="studio-detail">
                   <div>
@@ -175,10 +123,7 @@ export default function StudioPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3>
-                      <TerminalIcon />
-                      From a terminal
-                    </h3>
+                    <h3>From a terminal</h3>
                     <pre>
                       <code>{embed.curl}</code>
                     </pre>
@@ -192,29 +137,22 @@ export default function StudioPage() {
 
         <section className="section studio-clone">
           <div className="container">
-            <div className="roadmap-heading">
-              <div>
-                <p className="section-kicker">NOT HOSTED, AND NOT PRETENDING TO BE</p>
-                <h3>One system still clones. It does not get a fake link.</h3>
-              </div>
-              <p>
-                Candidate hostnames for Production RAG were requested on {site.lastVerified} and
-                returned 404. They are recorded as absent so a future refresh has to observe a 200
-                before this card can become an embed. production-rag.vercel.app is another product
-                and is never cited.
-              </p>
-            </div>
+            <h2>Not hosted</h2>
+            <p className="roadmap-heading">
+              Candidate hostnames for Production RAG were requested on {site.lastVerified} and
+              returned 404. They stay absent until a refresh observes a 200. production-rag.vercel.app
+              is another product and is never cited as P1.
+            </p>
 
             <div className="clone-grid">
               {studio.cloneCards.map((card) => {
                 const system = systemFor(card.slug);
                 return (
                   <article className="clone-card" key={card.slug}>
-                    <div className="system-card-top">
-                      <span className="system-number">{system.number}</span>
-                      <Status tone="planned">CLONE ONLY</Status>
-                    </div>
-                    <h4>{system.name}</h4>
+                    <p className="item-meta">
+                      {system.number} · <Status tone="planned">CLONE ONLY</Status>
+                    </p>
+                    <h3>{system.name}</h3>
                     <p>{card.why}</p>
                     <pre>
                       <code>{card.command}</code>
@@ -222,37 +160,19 @@ export default function StudioPage() {
                     <p className="clone-absent mono">
                       {card.absentUrl.replace("https://", "")} → 404
                     </p>
-                    <div className="text-links">
+                    <p className="text-links">
                       <Link href={system.route}>Study this system</Link>
-                      <ExternalLink href={system.links[0].url}>
-                        <GithubIcon />
-                        Repository
-                      </ExternalLink>
+                      <ExternalLink href={system.links[0].url}>Repository</ExternalLink>
                       {"demoDayUrl" in card && card.demoDayUrl ? (
                         <ExternalLink href={card.demoDayUrl as string}>
                           DEMO-DAY (stream · Filtering · /evals)
                         </ExternalLink>
                       ) : null}
-                    </div>
+                    </p>
                   </article>
                 );
               })}
             </div>
-          </div>
-        </section>
-
-        <section className="cta-section">
-          <div className="container cta-card">
-            <p className="section-kicker">NEXT</p>
-            <h2>Clicking is the first pass. Reading is the second.</h2>
-            <p>
-              Each system has a page that states what it does not do, pins its captures to a
-              commit, and publishes the three questions I would want to be asked about it.
-            </p>
-            <Link className="button button-light" href={aiSystems[0].route}>
-              Study the flagship
-              <ArrowUpRightIcon />
-            </Link>
           </div>
         </section>
       </main>
@@ -261,4 +181,3 @@ export default function StudioPage() {
     </>
   );
 }
-

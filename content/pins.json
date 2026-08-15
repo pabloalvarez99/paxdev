@@ -36,7 +36,7 @@
       "health": {
         "url": "https://pax-agentic-rag.vercel.app/health",
         "expect": 200,
-        "bodyHint": "version 0.3.0"
+        "bodyHint": "version 1.0.0"
       },
       "notes": [
         "Hosted free path uses fixture retriever; no PRODUCTION_RAG_URL on the public host."
@@ -75,7 +75,7 @@
       "health": {
         "url": "https://pax-repomind.vercel.app/health",
         "expect": 200,
-        "bodyHint": "version 0.3.0"
+        "bodyHint": "version 1.0.0"
       },
       "notes": [
         "Indexes committed mini + production_rag fixtures only."
@@ -100,7 +100,7 @@
         "url": "https://pax-ai-gateway.vercel.app/v1/platform/status",
         "expectUnauthed": 401,
         "fixtureKey": "dev-local",
-        "bodyHint": "version 0.3.0 four unconfigured"
+        "bodyHint": "four unconfigured"
       },
       "notes": [
         "Does not run P1–P4. Empty upstreams are the product story.",

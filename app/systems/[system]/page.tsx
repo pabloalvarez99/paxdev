@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { SystemHeroI18n } from "@/components/system-hero-i18n";
 import { ExternalLink } from "@/components/ui";
-import portfolio, { systemBySegment, systemCaptures, systemSegment } from "@/content/portfolio";
+import portfolio, { systemBySegment, systemSegment } from "@/content/portfolio";
 
 const { site, aiSystems } = portfolio;
 
@@ -39,7 +39,7 @@ export default async function SystemPage({ params }: { params: Promise<Params> }
   }
 
   const { page } = system;
-  const captures = systemCaptures(system);
+  const capture = system.capture;
   const index = aiSystems.indexOf(system);
   const previous = aiSystems[index - 1];
   const next = aiSystems[index + 1];
@@ -70,45 +70,23 @@ export default async function SystemPage({ params }: { params: Promise<Params> }
 
         <section className="section system-captures">
           <div className="container">
-            <div className="roadmap-heading">
-              <div>
-                <p className="section-kicker">OFFICIAL CAPTURES</p>
-                <h3>Pinned to the commit, not to a branch that can move under them.</h3>
-              </div>
-              <p>
-                Each image is vendored from the source repository at the exact commit named in its
-                caption link, and the bytes were compared against the GitHub blob before publishing.
-              </p>
-            </div>
-
-            <div className="capture-pair">
-              {captures.map((capture) => (
-                <figure className="product-frame" key={capture.src}>
-                  <div className="product-frame-bar">
-                    <div className="window-dots" aria-hidden="true">
-                      <i />
-                      <i />
-                      <i />
-                    </div>
-                    <span>{system.slug}</span>
-                    <span className="frame-secure">{system.status}</span>
-                  </div>
-                  <div className="product-screen">
-                    <Image
-                      alt={capture.alt}
-                      height={capture.height}
-                      loading="lazy"
-                      sizes="(max-width: 900px) 100vw, 50vw"
-                      src={capture.src}
-                      width={capture.width}
-                    />
-                  </div>
-                  <figcaption>
-                    {capture.caption} <ExternalLink href={capture.sourceUrl}>Source file</ExternalLink>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
+            <h2>Capture</h2>
+            <p className="item-meta">
+              One image from the repository at the commit named in the caption.
+            </p>
+            <figure className="plain-capture">
+              <Image
+                alt={capture.alt}
+                height={capture.height}
+                loading="lazy"
+                sizes="(max-width: 900px) 100vw, 28rem"
+                src={capture.src}
+                width={capture.width}
+              />
+              <figcaption>
+                {capture.caption} <ExternalLink href={capture.sourceUrl}>Source file</ExternalLink>
+              </figcaption>
+            </figure>
           </div>
         </section>
 

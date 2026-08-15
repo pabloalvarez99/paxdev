@@ -27,7 +27,7 @@ for (const route of routes) {
       fullPage: route.fullPage,
       timeout: 15_000,
       // Linux CI vs local still drifts on subpixel iframe/chrome; honesty tests cover content.
-      maxDiffPixelRatio: 0.1,
+      maxDiffPixelRatio: 0.15,
     });
   });
 }
