@@ -21,6 +21,15 @@ Serif for everything a person reads, including the small capitals that used to b
 Consolas. Monospace survives only where it carries meaning a proportional face would
 destroy: commit SHAs, hostnames, curl lines, code.
 
+The export carrying the face is named `sourceSerif`, not `serif`. `next/font/local` names
+the generated `@font-face` after the binding it is assigned to, so `export const serif`
+would have produced `font-family: "serif"` — the CSS generic keyword, wearing quotes.
+Quoted, a browser still resolves it to Source Serif 4 and the page looks correct, which is
+exactly why the mistake is invisible: the moment anything downstream drops those quotes,
+the family falls back to whatever the system calls generic serif, with no error and a page
+that still reads as a serif face at a glance. `tests/craft.test.mjs` checks the export name
+against the list of CSS generic families so this cannot ship again.
+
 ### 2. One sheet of paper, in WebGL
 
 `components/paper-sheet.tsx`. A single subdivided plane under one raking light, rendered
@@ -34,6 +43,20 @@ whole thing lives in a band under the opening sentence and never sits behind typ
 The colours are the page colours: shade `#e6e0d3`, sheet `#f4f0e6`, lit `#fdfbf5`, against
 a `#f7f4ed` page. Turned off, the page loses a rectangle of very slightly warmer cream.
 That is the intended amount of loss.
+
+The canvas also needs its CSS size set, not only its drawing-buffer size.
+`renderer.setPixelRatio` scales the buffer so the sheet stays sharp on dense screens, but
+`renderer.setSize(width, height, false)` writes only the canvas's `width`/`height`
+attributes, and an element with no CSS size of its own lays out at its attribute size. The
+first version of this component called `setSize` with that third argument `false`, so on a
+2x screen the 384px frame (`.sheet-stage`'s `max-width: 24rem`) held a canvas whose
+attributes had already been doubled to 768px, cropped by `overflow: hidden` to one corner
+of the sheet. It looked perfect on the machine that built it: Playwright's default
+`deviceScaleFactor` is 1, where the attribute size and the CSS size are the same number, so
+no screenshot test ever saw the bug, and at 1x there genuinely was none to see. The fix is
+that third argument, `true`. `e2e/craft.spec.ts` now opens a context at
+`deviceScaleFactor: 2` and asserts the canvas fits inside `.sheet-stage`, so an ordinary
+laptop or phone screen is exactly what the regression would need to come back.
 
 **It does not prove anything about retrieval.** It is on this site because a bookbinder
 who ships Next.js should be able to light a sheet of paper, and for no other reason.
@@ -108,9 +131,18 @@ The renderer, geometry, material and canvas are disposed on unmount in every pat
 renders. It is therefore in its own async chunk, requested by no other route and by no
 reviewer who asked for reduced motion.
 
-`npm run check:bundle` reads `.next/app-build-manifest.json` after a build and fails if any
-route's chunk list mentions `three`, or if `/interview` gained weight it did not ask for.
-The rule is enforced by a script rather than by intent.
+`npm run check:bundle` enforces that by script rather than by intent. Next 16 with Turbopack
+emits no `app-build-manifest.json`, so the gate reads the prerendered HTML instead: it first
+finds which built chunks carry `three` by searching them for a string only `three` emits, then
+for every route collects the `/_next/static/**.js` files that route's document tells a browser
+to fetch, and fails if any of them is one of those chunks. No route may name a `three` chunk in
+its document — not even the home page, where the import is supposed to happen later, at
+runtime, from inside an effect. `/interview` is additionally required to have been prerendered
+at all, because a route that is missing proves nothing by passing.
+
+Two properties the manifest did not have: it measures what a browser will be told to fetch
+rather than what the build intended to ship, and it also fails when *no* chunk carries `three`,
+so the gate cannot start passing because the feature was deleted.
 
 ## Verifying the craft
 
@@ -119,5 +151,22 @@ npm run check        # lint · typecheck · unit · pins · urls · build · bun
 npm run test:e2e     # visual baselines + keyboard behaviour
 ```
 
-`e2e/keyboard.spec.ts` presses `2`, presses `?`, presses `Esc`, and opens jump with `/`,
+The visual baselines under `e2e/visual.spec.ts-snapshots/` are viewport screenshots, never
+full-page. A full-page shot of a page that is mostly text is really a height measurement,
+and text height moves with the host's font stack, hinting and scrollbar: baselines taken on
+the Windows machine that wrote this branch were 1372×17590, and the Linux runner produced
+1490×18397 from the same commit. Playwright rejects a comparison on size before
+`maxDiffPixelRatio` ever gets a say, so the tolerance never even applied. Baselines are
+generated inside the Playwright container CI reads from, pinned to the version in
+`package.json`:
+
+```
+docker run --rm -v "$PWD:/w" -v /w/node_modules -v /w/.next -w /w \
+  mcr.microsoft.com/playwright:v1.55.0-noble \
+  bash -lc "npm ci && npm run build && npx playwright test e2e/visual.spec.ts -u"
+```
+
+Baselines built outside that container, on any host OS, will not match what CI sees.
+
+`e2e/craft.spec.ts` presses `2`, presses `?`, presses `Esc`, and opens jump with `/`,
 because a keyboard map nobody exercises is a keyboard map that has already broken.
