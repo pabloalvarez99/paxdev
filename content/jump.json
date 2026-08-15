@@ -1,0 +1,89 @@
+{
+  "note": "Vocabulary for the jump box. A reviewer remembers a mechanism, not a product name: 'refuse' has to reach P1 even though the word is not in its title. Terms are lowercase, matched as substrings, and every term belongs to exactly one destination — tests/craft.test.mjs fails the build if a word starts pointing at two places.",
+  "systemTerms": {
+    "production-rag": [
+      "refuse",
+      "refusal",
+      "rrf",
+      "reciprocal rank fusion",
+      "hybrid retrieval",
+      "citation",
+      "qdrant",
+      "rerank",
+      "grounded",
+      "clone only",
+      "p1"
+    ],
+    "agentic-rag-research": [
+      "golden",
+      "critic",
+      "eval",
+      "scorecard",
+      "compare runs",
+      "p2"
+    ],
+    "multi-agent-orchestration": [
+      "budget",
+      "budget exhausted",
+      "handoff",
+      "orchestration",
+      "degraded",
+      "trace",
+      "p3"
+    ],
+    "repomind": [
+      "path:line",
+      "symbol",
+      "catalog",
+      "who calls",
+      "code search",
+      "p4"
+    ],
+    "ai-platform": [
+      "quota",
+      "gateway",
+      "upstream",
+      "unconfigured",
+      "audit log",
+      "p5"
+    ]
+  },
+  "pages": [
+    {
+      "label": "Home",
+      "href": "/",
+      "hint": "The five systems, in order",
+      "terms": ["start", "index", "front", "cover"]
+    },
+    {
+      "label": "Interview kit",
+      "href": "/interview",
+      "hint": "Forty-five minutes, minute by minute",
+      "terms": ["script", "demo day", "45", "beats", "poster"]
+    },
+    {
+      "label": "Reading copy",
+      "href": "/read",
+      "hint": "The same script as prose, set for print",
+      "terms": ["read", "prose", "print", "chapbook", "paper copy"]
+    },
+    {
+      "label": "Studio",
+      "href": "/studio",
+      "hint": "The hosted systems, embedded",
+      "terms": ["demo", "embed", "live", "probe"]
+    },
+    {
+      "label": "Changelog",
+      "href": "/changelog",
+      "hint": "Releases, in the order they shipped",
+      "terms": ["release", "version", "tag", "history"]
+    },
+    {
+      "label": "Case study",
+      "href": "/casestudy",
+      "hint": "How this site was built and what it refuses",
+      "terms": ["essay", "writeup", "how", "decisions"]
+    }
+  ]
+}
