@@ -3,6 +3,8 @@ import Link from "next/link";
 import { PaperSheet } from "@/components/paper-sheet";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { ExternalLink, Status } from "@/components/ui";
+import { totalClases } from "@/content/clases";
+import flota from "@/content/flota";
 import portfolio, { cloneOnlySystems, hostedSystems } from "@/content/portfolio";
 
 const { site, aiSystems, selectedWork, principles, capabilities } = portfolio;
@@ -30,11 +32,12 @@ export default function Home() {
         "@id": `${site.canonicalUrl}/#website`,
         name: site.name,
         url: site.canonicalUrl,
+        inLanguage: "es",
         creator: { "@id": `${site.canonicalUrl}/#person` },
       },
       {
         "@type": "ItemList",
-        name: "AI Engineering Systems",
+        name: "Sistemas de IA",
         itemListElement: aiSystems.map((system, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -52,7 +55,7 @@ export default function Home() {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        Ir al contenido
       </a>
 
       <script
@@ -67,48 +70,60 @@ export default function Home() {
       <main id="main-content">
         <section className="hero" id="top">
           <div className="container">
-            <h1>AI systems that show their work.</h1>
+            <h1>Sistemas de inteligencia artificial que se pueden abrir y revisar.</h1>
             <p className="hero-lede measure">
-              Five public AI systems. Four hosted. One clone-only. Every claim has a
-              repository, a test, or a running host.
+              Cinco sistemas construidos y publicados. Cuatro se abren en el navegador ahora
+              mismo, sin instalar nada y sin crear una cuenta. Cada afirmación de esta página
+              tiene detrás un repositorio de código abierto, una prueba automática o un
+              servidor funcionando.
             </p>
             <div className="hero-honesty measure">
               <p>
-                P1 Production RAG is clone-only. It is not hosted; hybrid retrieval needs a
-                local Qdrant, and production-rag.vercel.app is a different product that is never
-                linked here as P1.
+                El quinto, <strong>P1 Production RAG</strong>, sólo se puede clonar: no está
+                publicado en internet porque su motor de búsqueda necesita instalarse en una
+                máquina propia. Decirlo cuesta menos que inventar una demostración que se cae
+                en la reunión. Aclaración importante: <span className="mono">
+                  production-rag.vercel.app
+                </span>{" "}
+                es otro producto, de otra persona, y nunca se enlaza acá como si fuera este
+                sistema.
               </p>
               <p>
-                P5 AI Platform is hosted, and its own status page reports four unconfigured
-                upstreams.
+                <strong>P5 AI Platform</strong> sí está publicado, y su propia página de estado
+                informa cuatro conexiones sin configurar. Aparece así a propósito: el sistema
+                está hecho para decir la verdad sobre sí mismo, incluso cuando la verdad es
+                que algo todavía no está conectado.
               </p>
             </div>
             <p className="text-links">
-              <a href="#systems">Systems</a>
+              <a href="#metodo">Cómo trabajo</a>
+              <a href="#sistemas">Los sistemas</a>
+              <Link href="/clases">Clases</Link>
               <a href={site.githubUrl} target="_blank" rel="noreferrer">
                 GitHub
               </a>
             </p>
             <p className="hero-note">
-              No login. No data collection. Public evidence only. Press{" "}
+              Sin registro. Sin recolección de datos. Sólo evidencia pública. Se puede navegar
+              con el teclado:{" "}
               <button
-                aria-label="Open the keys legend"
+                aria-label="Abrir la guía de teclas"
                 className="legend-open"
                 data-legend-open
                 type="button"
               >
                 <kbd aria-hidden="true">?</kbd>
               </button>{" "}
-              for the keys.
+              abre la guía.
             </p>
 
             <PaperSheet />
           </div>
         </section>
 
-        <section className="section" id="open">
+        <section className="section" id="abiertos">
           <div className="container">
-            <h2>Open now</h2>
+            <h2>Se puede abrir ahora</h2>
             <ul className="open-list">
               {hosted.map((system) => (
                 <li key={system.slug}>
@@ -117,15 +132,13 @@ export default function Home() {
                   </h3>
                   <p className="item-meta">
                     <Status tone={system.statusTone}>{system.status}</Status>
-                    {" · hosted · "}
+                    {" · publicado · "}
                     <span className="mono">{hostLabel(system.hosted!.url)}</span>
-                    {" · "}
-                    {system.phase}
                   </p>
                   <p>{system.hosted!.note}</p>
                   <p className="text-links">
                     <ExternalLink href={system.hosted!.url}>{system.hosted!.label}</ExternalLink>
-                    <Link href={system.route}>Study</Link>
+                    <Link href={system.route}>Ver en detalle</Link>
                   </p>
                 </li>
               ))}
@@ -135,17 +148,16 @@ export default function Home() {
                     {system.number} {system.name}
                   </h3>
                   <p className="item-meta">
-                    <Status tone="planned">CLONE ONLY</Status>
-                    {" · not hosted · "}
-                    {system.phase}
+                    <Status tone="planned">SÓLO CLONAR</Status>
+                    {" · no publicado"}
                   </p>
                   <p>
-                    Hybrid retrieval needs local Qdrant. Clone the repository. Never treat
-                    another product&apos;s host as this flagship.
+                    Su motor de búsqueda necesita instalarse en una máquina propia, así que se
+                    entrega como código para clonar y correr, no como una dirección web.
                   </p>
                   <p className="text-links">
-                    <ExternalLink href={system.links[0].url}>Repository</ExternalLink>
-                    <Link href={system.route}>Study</Link>
+                    <ExternalLink href={system.links[0].url}>Repositorio</ExternalLink>
+                    <Link href={system.route}>Ver en detalle</Link>
                   </p>
                 </li>
               ))}
@@ -153,9 +165,109 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section" id="systems">
+        {/*
+          La sección que un lector no técnico entiende de inmediato y que ningún otro
+          portfolio tiene: no qué se construyó, sino a qué velocidad y con qué método.
+          Los números son medidos, y los límites de lo que miden van al lado de los
+          números, no en una nota al pie que nadie lee.
+        */}
+        <section className="section" id="metodo">
           <div className="container">
-            <h2>Systems</h2>
+            <h2>Cómo trabajo</h2>
+            <div className="measure">
+              <p>
+                Una persona sola, coordinando cuatro asistentes de inteligencia artificial
+                distintos que trabajan al mismo tiempo, cada uno sobre su propia copia del
+                código. Mientras uno escribe una función, otro corrige un error en otro
+                proyecto y un tercero documenta lo que acaba de decidirse. Es la forma de
+                trabajar de los equipos grandes —varias tareas avanzando en paralelo, sin
+                pisarse— hecha por una persona.
+              </p>
+              <p>
+                Lo que lo sostiene no es la velocidad: es el registro. Cada sesión termina
+                escribiendo qué se hizo, qué se decidió y qué quedó abierto. Por eso otro puede
+                entrar mañana y entender el porqué de cada cosa, en vez de heredar código sin
+                explicación.
+              </p>
+            </div>
+
+            <dl className="flota-cifras">
+              <div>
+                <dt>Sesiones de trabajo documentadas</dt>
+                <dd>{flota.cifras.sesiones}</dd>
+              </div>
+              <div>
+                <dt>Días</dt>
+                <dd>{flota.cifras.dias}</dd>
+              </div>
+              <div>
+                <dt>Promedio por día</dt>
+                <dd>{flota.cifras.promedioPorDia}</dd>
+              </div>
+              <div>
+                <dt>Asistentes de IA coordinados</dt>
+                <dd>{flota.agentes.length}</dd>
+              </div>
+              <div>
+                <dt>Decisiones archivadas con sus alternativas</dt>
+                <dd>{flota.cifras.decisiones}</dd>
+              </div>
+              <div>
+                <dt>Copias del código avanzando en paralelo</dt>
+                <dd>{flota.cifras.copiasParalelas}</dd>
+              </div>
+            </dl>
+
+            <p className="measure">
+              Repartidas así:{" "}
+              {flota.agentes.map((agente, index) => (
+                <span key={agente.nombre}>
+                  {index > 0 ? ", " : ""}
+                  {agente.nombre} {agente.sesiones}
+                </span>
+              ))}
+              . Entre el {flota.cifras.desde} y el {flota.cifras.hasta}.
+            </p>
+
+            <div className="measure flota-limites">
+              <p>
+                Qué no dicen estos números, para que nadie los lea de más:
+              </p>
+              <ul>
+                {flota.limites.map((limite) => (
+                  <li key={limite}>{limite}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="section" id="clases">
+          <div className="container measure">
+            <h2>Las clases</h2>
+            {/*
+              El número sale de contar los archivos, no de escribirlo acá. Un "veinte
+              capítulos" a mano sobrevive intacto al día en que queden dieciocho.
+            */}
+            <p>
+              {totalClases()} capítulos que explican, línea por línea, cómo está hecho cada uno
+              de los cinco sistemas. No son tutoriales de una librería de moda: son la lectura
+              del código propio, con las decisiones y los errores incluidos.
+            </p>
+            <p>
+              Sirven para dos cosas. Para quien quiera evaluar el nivel técnico sin leer un
+              repositorio entero. Y para quien quiera aprender: cada capítulo termina con
+              ejercicios.
+            </p>
+            <p className="text-links">
+              <Link href="/clases">Abrir el índice de clases</Link>
+            </p>
+          </div>
+        </section>
+
+        <section className="section" id="sistemas">
+          <div className="container">
+            <h2>Los cinco sistemas</h2>
             <ol className="systems-list">
               {aiSystems.map((system) => (
                 <li id={system.slug} key={system.slug}>
@@ -167,13 +279,11 @@ export default function Home() {
                   <p className="item-meta">
                     <Status tone={system.statusTone}>{system.status}</Status>
                     {" · "}
-                    {system.hosted ? "hosted" : "clone only"}
-                    {" · "}
-                    {system.phase}
+                    {system.hosted ? "publicado" : "sólo clonar"}
                   </p>
                   <p>{system.summary}</p>
                   <p className="text-links">
-                    <Link href={system.route}>Study</Link>
+                    <Link href={system.route}>Ver en detalle</Link>
                     {system.links.slice(0, 2).map((link) => (
                       <ExternalLink href={link.url} key={link.label}>
                         {link.label}
@@ -186,35 +296,40 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section" id="honesty">
+        <section className="section" id="honestidad">
           <div className="container measure">
-            <h2>Honesty</h2>
+            <h2>Lo que todavía no está</h2>
+            <p>
+              Un portfolio que sólo muestra lo que salió bien no se puede verificar. Éstas son
+              las tres cosas que a esta altura conviene decir en voz alta.
+            </p>
             <ul className="honesty-list">
               <li>
                 <p>
-                  P1 Production RAG is clone-only. It is not hosted. Hybrid retrieval needs
-                  local Qdrant.
+                  P1 Production RAG no está publicado en internet. Su motor de búsqueda
+                  necesita instalarse localmente.
                 </p>
               </li>
               <li>
                 <p>
-                  P5 AI Platform does not run P1–P4. Status shows four unconfigured
-                  upstreams.
+                  P5 AI Platform no ejecuta a los otros cuatro sistemas. Su página de estado
+                  informa cuatro conexiones sin configurar, y así es como debe leerse.
                 </p>
               </li>
               <li>
                 <p>
-                  production-rag.vercel.app is Ipsura, another product. It is never this
-                  flagship and is never linked as P1.
+                  <span className="mono">production-rag.vercel.app</span> es un producto
+                  distinto, de otra persona. Nunca se presenta acá como P1 ni se enlaza como
+                  tal.
                 </p>
               </li>
             </ul>
           </div>
         </section>
 
-        <section className="section" id="work">
+        <section className="section" id="trabajos">
           <div className="container">
-            <h2>Selected work</h2>
+            <h2>Otros trabajos</h2>
             <ul className="work-list">
               {selectedWork.map((project) => (
                 <li key={project.name}>
@@ -227,8 +342,10 @@ export default function Home() {
                   <p>{project.summary}</p>
                   <p className="work-note">{project.note}</p>
                   <p className="text-links">
-                    <ExternalLink href={project.repo}>Repository</ExternalLink>
-                    {project.demo ? <ExternalLink href={project.demo}>Live surface</ExternalLink> : null}
+                    <ExternalLink href={project.repo}>Repositorio</ExternalLink>
+                    {project.demo ? (
+                      <ExternalLink href={project.demo}>Verlo funcionando</ExternalLink>
+                    ) : null}
                   </p>
                 </li>
               ))}
@@ -236,9 +353,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section" id="principles">
+        <section className="section" id="principios">
           <div className="container measure">
-            <h2>Principles</h2>
+            <h2>Cómo decido</h2>
             <ul className="principles-plain">
               {principles.map((principle) => (
                 <li key={principle.number}>

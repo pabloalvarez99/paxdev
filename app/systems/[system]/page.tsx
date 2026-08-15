@@ -47,7 +47,7 @@ export default async function SystemPage({ params }: { params: Promise<Params> }
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        Ir al contenido
       </a>
 
       <SiteHeader />
@@ -70,9 +70,9 @@ export default async function SystemPage({ params }: { params: Promise<Params> }
 
         <section className="section system-captures">
           <div className="container">
-            <h2>Capture</h2>
+            <h2>Captura</h2>
             <p className="item-meta">
-              One image from the repository at the commit named in the caption.
+              Una imagen sacada del repositorio, en la versión exacta que dice el pie.
             </p>
             <figure className="plain-capture">
               <Image
@@ -84,7 +84,8 @@ export default async function SystemPage({ params }: { params: Promise<Params> }
                 width={capture.width}
               />
               <figcaption>
-                {capture.caption} <ExternalLink href={capture.sourceUrl}>Source file</ExternalLink>
+                {capture.caption}{" "}
+                <ExternalLink href={capture.sourceUrl}>Archivo de origen</ExternalLink>
               </figcaption>
             </figure>
           </div>
@@ -94,12 +95,12 @@ export default async function SystemPage({ params }: { params: Promise<Params> }
           <div className="container">
             <div className="roadmap-heading">
               <div>
-                <p className="section-kicker">INTERVIEW THIS SYSTEM</p>
-                <h3>Three questions worth asking, and the answers I would give.</h3>
+                <p className="section-kicker">PREGUNTAS SOBRE ESTE SISTEMA</p>
+                <h3>Tres preguntas que vale la pena hacer, con sus respuestas.</h3>
               </div>
               <p>
-                Published in advance, because a trade-off I can only defend when nobody has read it
-                first is not a trade-off I understand.
+                Publicadas de antemano. Una decisión que sólo se puede defender cuando nadie la
+                leyó antes es una decisión que no se entiende del todo.
               </p>
             </div>
 
@@ -121,12 +122,13 @@ export default async function SystemPage({ params }: { params: Promise<Params> }
           <div className="container">
             <div className="roadmap-heading">
               <div>
-                <p className="section-kicker">READ THE PRIMARY SOURCES</p>
-                <h3>Everything above is a summary of a file you can open.</h3>
+                <p className="section-kicker">LEER LAS FUENTES</p>
+                <h3>Todo lo de arriba resume un archivo que se puede abrir.</h3>
               </div>
               <p>
-                The case study explains why the system is shaped this way; SHIP is the LIVE and
-                not-shipped contract this page is derived from.
+                Los documentos explican por qué el sistema tiene esta forma, y cuál es el límite
+                entre lo que ya está publicado y lo que todavía no. Esta página se deriva de
+                ellos.
               </p>
             </div>
 
@@ -143,10 +145,10 @@ export default async function SystemPage({ params }: { params: Promise<Params> }
               ))}
             </ul>
 
-            <nav className="system-pager" aria-label="Other systems">
+            <nav className="system-pager" aria-label="Otros sistemas">
               {previous ? (
                 <Link href={previous.route}>
-                  <small>Previous</small>
+                  <small>Anterior</small>
                   {previous.name}
                 </Link>
               ) : (
@@ -154,7 +156,7 @@ export default async function SystemPage({ params }: { params: Promise<Params> }
               )}
               {next ? (
                 <Link className="system-pager-next" href={next.route}>
-                  <small>Next</small>
+                  <small>Siguiente</small>
                   {next.name}
                 </Link>
               ) : (

@@ -1,5 +1,5 @@
 {
-  "name": "paxdev",
+  "name": "pablofigueroa99dev",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,9 +10,11 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.mjs",
     "verify:urls": "node scripts/verify-urls.mjs",
-    "check": "npm run lint && npm run typecheck && npm test && npm run check:pins && npm run verify:urls -- --content-only && npm run build && npm run check:bundle",
+    "check": "npm run lint && npm run typecheck && npm test && npm run check:pins && npm run check:clases && npm run check:flota && npm run verify:urls -- --content-only && npm run build && npm run check:bundle",
     "check:pins": "node scripts/check-pins.mjs",
     "check:bundle": "node scripts/check-bundle.mjs",
+    "check:clases": "node scripts/check-clases.mjs",
+    "check:flota": "node scripts/check-flota.mjs",
     "test:e2e": "playwright test",
     "test:e2e:update": "playwright test --update-snapshots",
     "season:gate": "npm run check && npm run test:e2e"

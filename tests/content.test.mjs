@@ -110,7 +110,7 @@ test("prototype health boundary remains visible", () => {
 test("the anonymous landing has no credential or lead collection form", () => {
   assert.doesNotMatch(page, /<form\b/i);
   assert.doesNotMatch(page, /type=["'](?:email|password)["']/i);
-  assert.match(page, /No login\. No data collection\./);
+  assert.match(page, /Sin registro\. Sin recolección de datos\./);
 });
 
 test("security headers cover the static public surface", () => {
@@ -207,7 +207,11 @@ test("each system pins the main it claims inside its own evidence links", () => 
 });
 
 test("canonical metadata points to the intended production domain", () => {
-  assert.equal(content.site.canonicalUrl, "https://paxdev.vercel.app");
+  assert.equal(content.site.canonicalUrl, "https://pablofigueroa99dev.vercel.app");
+  // The site is signed Pablo Figueroa; the GitHub account that owns the five system
+  // repositories is pabloalvarez99. Both are true at once, and the link has to keep
+  // pointing at the account that actually holds the code being cited.
   assert.equal(content.site.githubUrl, "https://github.com/pabloalvarez99");
+  assert.equal(content.site.owner, "Pablo Figueroa");
   assert.match(content.site.lastVerified, /^\d{4}-\d{2}-\d{2}$/);
 });

@@ -19,12 +19,12 @@ const layout = read("app", "layout.tsx");
 const firstScreen = homePage.slice(0, homePage.indexOf("</section>"));
 
 test("the first screen states that P1 is clone-only", () => {
-  assert.match(firstScreen, /clone-only/i);
+  assert.match(firstScreen, /sólo se puede clonar/i);
   assert.match(firstScreen, /P1 Production RAG/);
 });
 
 test("the first screen states that P5 reports four unconfigured upstreams", () => {
-  assert.match(firstScreen, /four unconfigured/i);
+  assert.match(firstScreen, /cuatro conexiones sin configurar/i);
   assert.match(firstScreen, /P5 AI Platform/);
 });
 
@@ -35,8 +35,11 @@ test("production-rag.vercel.app is never presented as a system of this series", 
       assert.doesNotMatch(link.url, /production-rag\.vercel\.app/);
     }
   }
-  // Where it does appear, it appears as the disclaimer it is.
-  assert.match(firstScreen, /production-rag\.vercel\.app is a different product/);
+  // Where it does appear, it appears as the disclaimer it is. The name and the disclaimer
+  // sentence are split across a <span>, so a regex spanning both would fail on the JSX
+  // markup between them; each half is checked on its own instead.
+  assert.match(firstScreen, /production-rag\.vercel\.app/);
+  assert.match(firstScreen, /es otro producto, de otra persona/);
 });
 
 test("the jump vocabulary is lowercase and every term belongs to one destination", () => {
@@ -80,6 +83,7 @@ test("a reviewer who remembers the mechanism reaches the system", () => {
 test("every jump destination is a route this site publishes", () => {
   const routes = new Set([
     "/",
+    "/clases",
     "/interview",
     "/read",
     "/studio",
@@ -99,13 +103,31 @@ test("every jump destination is a route this site publishes", () => {
 });
 
 test("the legend documents every key that is bound", () => {
-  for (const key of ["1", "5", "g", "h", "i", "s", "?", "/", "Esc"]) {
+  for (const key of ["1", "5", "g", "c", "h", "i", "s", "?", "/", "Esc"]) {
     assert.ok(
       keyboardNav.includes(`<kbd>${key}</kbd>`),
       `the legend never shows ${key}, so nobody can discover it`,
     );
   }
-  assert.match(keyboardNav, /GOTO[^=]*=\s*\{\s*h:/, "g h must be bound");
+  // Asserting the literal shape of GOTO breaks the day a key is added in front of another,
+  // which says nothing about whether the shortcut works. Read the bound keys instead, and
+  // require that the legend shows each one.
+  const goto = /const GOTO[^=]*=\s*\{([^}]*)\}/.exec(keyboardNav);
+  assert.ok(goto, "GOTO must exist, or no two-key shortcut is bound at all");
+  const bound = [...goto[1].matchAll(/(\w+):\s*"([^"]+)"/g)].map(([, key, href]) => ({
+    key,
+    href,
+  }));
+  assert.ok(
+    bound.some((entry) => entry.key === "h" && entry.href === "/"),
+    "g h must reach the home page",
+  );
+  for (const entry of bound) {
+    assert.ok(
+      keyboardNav.includes(`<kbd>${entry.key}</kbd>`),
+      `g ${entry.key} goes to ${entry.href} but the legend never shows it`,
+    );
+  }
 });
 
 test("the legend carries a real off switch, so WCAG 2.1.4.1 stays satisfied", () => {
@@ -121,7 +143,7 @@ test("the legend carries a real off switch, so WCAG 2.1.4.1 stays satisfied", ()
   );
   assert.match(
     keyboardNav,
-    /Single-key shortcuts/,
+    /Atajos de una sola tecla/,
     "the control must say in words what it turns off",
   );
   assert.match(

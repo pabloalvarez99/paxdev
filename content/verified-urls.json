@@ -1,13 +1,20 @@
 {
   "note": "Every hosted URL this site publishes, with the status code observed by a real request. A URL that is not in this file must not appear as a hosted claim in content/portfolio.json. Refresh with `npm run verify:urls -- --write` and commit the diff; `npm run verify:urls` fails when content and this file disagree.",
-  "verifiedAt": "2026-08-14",
+  "verifiedAt": "2026-08-15",
   "checks": [
+    {
+      "url": "https://pablofigueroa99dev.vercel.app",
+      "method": "GET",
+      "expect": 200,
+      "observed": 200,
+      "note": "This site."
+    },
     {
       "url": "https://paxdev.vercel.app",
       "method": "GET",
       "expect": 200,
       "observed": 200,
-      "note": "This site."
+      "note": "The former address, kept alive because links to it were already shared. It is to become a 308 redirect to the current one; until that switch is made and measured, both the expectation and the observation stay 200. Writing 308 here before the redirect exists would be the exact lie this fixture is built to prevent."
     },
     {
       "url": "https://pax-agentic-rag.vercel.app",

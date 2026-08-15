@@ -31,8 +31,8 @@ test.describe("keys", () => {
 
     const legend = page.locator("dialog.legend");
     await expect(legend).toBeVisible();
-    await expect(legend).toContainText("How to turn the pages");
-    await expect(legend).toContainText("Chapters");
+    await expect(legend).toContainText("Cómo pasar las páginas");
+    await expect(legend).toContainText("Capítulos");
 
     await page.keyboard.press("Escape");
     await expect(legend).toBeHidden();
@@ -90,7 +90,7 @@ test.describe("keys", () => {
 test.describe("the off switch", () => {
   async function turnKeysOff(page: Page) {
     await page.keyboard.press("?");
-    const toggle = page.getByRole("checkbox", { name: "Single-key shortcuts" });
+    const toggle = page.getByRole("checkbox", { name: "Atajos de una sola tecla" });
     await expect(toggle).toBeChecked();
     await toggle.click();
     await expect(toggle).not.toBeChecked();
@@ -121,7 +121,7 @@ test.describe("the off switch", () => {
     await page.locator("[data-legend-open]").click();
     const legend = page.locator("dialog.legend");
     await expect(legend).toBeVisible();
-    await expect(legend).toContainText("Single-key shortcuts are off");
+    await expect(legend).toContainText("Los atajos de una sola tecla están desactivados");
   });
 
   test("turning the keys back on restores the chapter digit", async ({ page }) => {
@@ -130,7 +130,7 @@ test.describe("the off switch", () => {
 
     // The button just opened is now the only way back to the switch.
     await page.locator("[data-legend-open]").click();
-    const toggle = page.getByRole("checkbox", { name: "Single-key shortcuts" });
+    const toggle = page.getByRole("checkbox", { name: "Atajos de una sola tecla" });
     await expect(toggle).not.toBeChecked();
     await toggle.click();
     // Wait for the flip to actually land before driving more keys at it -- otherwise the
@@ -154,7 +154,7 @@ test.describe("the off switch", () => {
     await expect(page).toHaveURL(/\/$/);
 
     await page.locator("[data-legend-open]").click();
-    await expect(page.getByRole("checkbox", { name: "Single-key shortcuts" })).not.toBeChecked();
+    await expect(page.getByRole("checkbox", { name: "Atajos de una sola tecla" })).not.toBeChecked();
   });
 });
 
@@ -162,7 +162,7 @@ test.describe("the sheet", () => {
   test("is drawn when motion is welcome", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await expect(page.locator(".sheet canvas")).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator(".sheet figcaption")).toContainText("raking light");
+    await expect(page.locator(".sheet figcaption")).toContainText("luz rasante");
   });
 
   test("stays inside its box on a high-density screen", async ({ browser }) => {
@@ -193,7 +193,9 @@ test.describe("the sheet", () => {
     await expect(page.locator("canvas")).toHaveCount(0);
     await expect(page.locator(".sheet figcaption")).toHaveCount(0);
     await expect(page.locator(".sheet.is-live")).toHaveCount(0);
-    await expect(page.locator("h1")).toContainText("AI systems that show their work");
+    await expect(page.locator("h1")).toContainText(
+      "Sistemas de inteligencia artificial que se pueden abrir y revisar",
+    );
 
     await context.close();
   });

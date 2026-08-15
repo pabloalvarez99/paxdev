@@ -1,7 +1,7 @@
 {
   "note": "Machine-readable pin table for the five-system ladder. content/portfolio.json, docs/PORTFOLIO-SERIES.md, and the GitHub profile README must agree with this file. Refresh with scripts/check-pins.mjs --live after re-curling origin main and hosted health. Never invent a P1 host.",
-  "pinnedAt": "2026-08-14",
-  "source": "final pin pass re-curl origin main + live health 2026-08-14 (A2 site-v1.0)",
+  "pinnedAt": "2026-08-15",
+  "source": "re-curl origin main + live health 2026-08-15, during the Spanish rewrite and the move to pablofigueroa99dev.vercel.app. Every SHA below was confirmed against GitHub on that date; none moved.",
   "historicalShas": [
     {
       "sha": "4de0ac6",
@@ -126,7 +126,7 @@
     }
   ],
   "hiringSurfaces": {
-    "paxdev": "https://paxdev.vercel.app",
+    "site": "https://pablofigueroa99dev.vercel.app",
     "profile": "https://github.com/pabloalvarez99",
     "cannotPatchUser": true,
     "cannotRestoreReadmeStats": true,

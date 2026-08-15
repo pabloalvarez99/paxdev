@@ -1,0 +1,35 @@
+{
+  "nota": "Cifras del método de trabajo. Todas medidas, ninguna estimada. La procedencia importa: salen de un archivo de trabajo privado (un vault de notas), no de los repositorios públicos, así que un lector no puede verificarlas por su cuenta como sí puede verificar los cinco sistemas. Eso se dice en la página, no se esconde. scripts/check-flota.mjs las vuelve a medir cuando el vault está presente y falla si alguna se movió.",
+  "medidoEl": "2026-08-15",
+  "fuente": "C:\\obsidian-mind — vault de notas de trabajo, privado",
+  "comoSeMidio": {
+    "sesiones": "cantidad de archivos en work/sessions/, uno por sesión de trabajo cerrada",
+    "agentes": "prefijo del nombre de archivo, que identifica qué asistente llevó esa sesión",
+    "dias": "fechas distintas presentes en los nombres de archivo",
+    "decisiones": "archivos en work/decisions/",
+    "registros": "archivos en work/cli-logs/",
+    "copiasParalelas": "git worktree list sobre cada repositorio, restando el checkout principal"
+  },
+  "cifras": {
+    "sesiones": 243,
+    "dias": 16,
+    "desde": "2026-07-28",
+    "hasta": "2026-08-15",
+    "promedioPorDia": 15,
+    "decisiones": 26,
+    "registros": 105,
+    "copiasParalelas": 6,
+    "repositoriosConCopiasParalelas": 4
+  },
+  "agentes": [
+    { "nombre": "Grok", "sesiones": 84 },
+    { "nombre": "Codex", "sesiones": 79 },
+    { "nombre": "Claude", "sesiones": 74 },
+    { "nombre": "Kimi", "sesiones": 6 }
+  ],
+  "limites": [
+    "Las cifras miden trabajo documentado, no líneas de código ni valor entregado.",
+    "Una sesión puede durar diez minutos o cuatro horas. El número no distingue.",
+    "Salen de un archivo privado. Los cinco sistemas, en cambio, se pueden abrir y revisar."
+  ]
+}

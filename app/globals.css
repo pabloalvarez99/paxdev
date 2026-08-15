@@ -1012,6 +1012,121 @@ kbd {
   margin: 0;
 }
 
+/*
+ * Las cifras del método de trabajo.
+ *
+ * Una <dl>, no una grilla de tarjetas: cada cifra es un término y su definición, y el
+ * número no significa nada sin la etiqueta que lo nombra. Por eso la etiqueta va arriba
+ * y en el cuerpo del texto, no debajo en gris chico — el que lee tiene que entender qué
+ * se contó antes de ver cuánto dio.
+ *
+ * Los límites van en la misma sección, con el mismo tamaño de letra que todo lo demás.
+ * Una advertencia en letra chica es una advertencia que se decidió no dar.
+ */
+.flota-cifras {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0 2.5rem;
+  grid-template-columns: 1fr;
+  margin: 2rem 0 1.75rem;
+  padding: 0;
+}
+
+.flota-cifras > div {
+  align-items: baseline;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 0.7rem 0;
+}
+
+.flota-cifras dt {
+  color: var(--ink);
+  font-size: 0.97rem;
+}
+
+.flota-cifras dd {
+  font-size: 1.6rem;
+  font-variant-numeric: tabular-nums lining-nums;
+  line-height: 1;
+  margin: 0;
+}
+
+@media (min-width: 46rem) {
+  .flota-cifras {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.flota-limites {
+  border-left: 1px solid var(--line);
+  margin-top: 1.75rem;
+  padding-left: 1.15rem;
+}
+
+.flota-limites p,
+.flota-limites li {
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.55;
+}
+
+.flota-limites ul {
+  display: grid;
+  gap: 0.45rem;
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+}
+
+/* El índice de clases. Una lista de lecturas, no una grilla de tarjetas. */
+.clases-sistema + .clases-sistema {
+  margin-top: 3rem;
+}
+
+.clases-lista {
+  display: grid;
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.clases-lista > li {
+  border-top: 1px solid var(--line);
+}
+
+.clases-lista > li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.clases-lista a {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.15rem;
+  padding: 0.85rem 0;
+  text-decoration: none;
+}
+
+.clases-numero {
+  color: var(--muted);
+  flex: 0 0 5.5rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.clases-titulo {
+  border-bottom: 1px solid var(--line);
+  flex: 1 1 16rem;
+}
+
+.clases-lista a:hover .clases-titulo,
+.clases-lista a:focus-visible .clases-titulo {
+  border-color: var(--ink);
+}
+
 kbd {
   border: 1px solid var(--line);
   border-bottom-width: 2px;

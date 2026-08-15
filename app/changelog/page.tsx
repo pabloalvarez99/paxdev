@@ -10,9 +10,9 @@ import releases from "@/content/releases.json";
 const { site } = portfolio;
 
 export const metadata: Metadata = {
-  title: "Changelog",
+  title: "Versiones",
   description:
-    "Vendored GitHub release notes for the five AI systems on the ladder. Stale tags fail CI against content/pins.json.",
+    "Las notas de publicación de los cinco sistemas, copiadas de GitHub. Una etiqueta vieja hace fallar la verificación automática contra content/pins.json.",
   alternates: { canonical: `${site.canonicalUrl}/changelog` },
 };
 
@@ -22,22 +22,22 @@ export default function ChangelogPage() {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        Ir al contenido
       </a>
       <SiteHeader />
       <main id="main-content" className="changelog-page">
         <section className="section">
           <div className="container narrow">
-            <h1>What each system last shipped</h1>
+            <h1>Lo último que publicó cada sistema</h1>
             <p className="lede">
-              Notes below are vendored from GitHub Releases into{" "}
-              <code className="mono">content/releases.json</code> (fetched{" "}
-              {releases.fetchedAt}). Each tag must match{" "}
-              <code className="mono">content/pins.json</code>. A stale fixture fails the unit
-              test — not a human re-reading the page.
+              Las notas de abajo se copiaron de las publicaciones de GitHub a{" "}
+              <code className="mono">content/releases.json</code> (traídas el{" "}
+              {releases.fetchedAt}). Cada etiqueta tiene que coincidir con{" "}
+              <code className="mono">content/pins.json</code>. Si una queda vieja, falla una
+              prueba automática: no depende de que una persona se acuerde de releer la página.
             </p>
             <p className="meta mono">
-              Site pins verified {site.lastVerified} · pin table {pins.pinnedAt}
+              Verificado el {site.lastVerified} · tabla de versiones {pins.pinnedAt}
             </p>
           </div>
         </section>
@@ -58,13 +58,13 @@ export default function ChangelogPage() {
                         <Status tone="live">{rel.tag}</Status>
                       </h2>
                       <p className="meta mono">
-                        published {rel.publishedAt?.slice(0, 10) ?? "—"}
-                        {pin ? ` · pin main ${pin.main} · ${pin.mode}` : ""}
+                        publicado {rel.publishedAt?.slice(0, 10) ?? "—"}
+                        {pin ? ` · main ${pin.main} · ${pin.mode}` : ""}
                       </p>
                     </div>
-                    <ExternalLink href={rel.htmlUrl}>GitHub release</ExternalLink>
+                    <ExternalLink href={rel.htmlUrl}>Ver en GitHub</ExternalLink>
                   </div>
-                  <pre className="changelog-body">{rel.body || "(empty release body)"}</pre>
+                  <pre className="changelog-body">{rel.body || "(nota de publicación vacía)"}</pre>
                 </article>
               );
             })}
@@ -74,9 +74,9 @@ export default function ChangelogPage() {
         <section className="section">
           <div className="container narrow">
             <p>
-              <Link href="/">← Portfolio</Link>
+              <Link href="/">← Volver al inicio</Link>
               {" · "}
-              <Link href="/interview">Interview kit</Link>
+              <Link href="/interview">Guion de entrevista</Link>
             </p>
           </div>
         </section>

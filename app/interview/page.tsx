@@ -10,9 +10,9 @@ import portfolio from "@/content/portfolio";
 const { site, interviewKit, aiSystems } = portfolio;
 
 export const metadata: Metadata = {
-  title: `Interview kit — ${site.name}`,
+  title: `Kit de entrevista — ${site.name}`,
   description:
-    "Forty-five minute demo-day script with minute marks, exact clicks and curls, and an architecture poster with honest HOSTED vs CLONE chips.",
+    "Guion de demo de cuarenta y cinco minutos, con marcas de minuto, el clic o comando exacto en cada paso, y un póster de arquitectura con etiquetas honestas: HOSTED o CLONE.",
   alternates: { canonical: `${site.canonicalUrl}/interview` },
 };
 
@@ -29,7 +29,7 @@ function StepBody({
     return (
       <div>
         <p className="script-do-label">
-          <TerminalIcon /> CURL / CLONE
+          <TerminalIcon /> TERMINAL
         </p>
         <pre>
           <code>{step.value}</code>
@@ -42,7 +42,7 @@ function StepBody({
   if (step.kind === "ask") {
     return (
       <div>
-        <p className="script-do-label">ASK</p>
+        <p className="script-do-label">PREGUNTAR</p>
         <p>
           <strong>{step.value}</strong>
         </p>
@@ -55,7 +55,7 @@ function StepBody({
   const internal = href.startsWith("/");
   return (
     <div>
-      <p className="script-do-label">OPEN</p>
+      <p className="script-do-label">ABRIR</p>
       <p>
         {internal ? (
           <Link href={href}>
@@ -75,7 +75,7 @@ export default function InterviewPage() {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        Ir al contenido
       </a>
 
       <SiteHeader />
@@ -83,21 +83,21 @@ export default function InterviewPage() {
       <main id="main-content" className="interview-page">
         <section className="section kit-hero">
           <div className="container">
-            <nav className="crumbs" aria-label="Breadcrumb">
-              <Link href="/">Portfolio</Link>
+            <nav className="crumbs" aria-label="Ruta de navegación">
+              <Link href="/">Portafolio</Link>
               <span aria-hidden="true">/</span>
-              <span aria-current="page">Interview kit</span>
+              <span aria-current="page">Kit de entrevista</span>
             </nav>
 
-            <p className="section-kicker">45 minutes</p>
+            <p className="section-kicker">45 minutos</p>
             <h1>{interviewKit.title}</h1>
             <p className="system-pitch">{interviewKit.intro}</p>
             <p className="hero-note">
-              Verified {site.lastVerified}. Source script:{" "}
+              Verificado el {site.lastVerified}. Guion original:{" "}
               <ExternalLink href={interviewKit.source.url}>
                 {interviewKit.source.label}
               </ExternalLink>
-              . Hosted URLs on this page are the same ones in{" "}
+              . Las URLs publicadas en esta página son las mismas que están en{" "}
               <ExternalLink href="https://github.com/pabloalvarez99/paxdev/blob/main/content/verified-urls.json">
                 content/verified-urls.json
               </ExternalLink>
@@ -127,12 +127,16 @@ export default function InterviewPage() {
           <div className="container">
             <div className="roadmap-heading">
               <div>
-                <p className="section-kicker">ARCHITECTURE POSTER</p>
-                <h3>Exact type. Honest chips. No image-model garble.</h3>
+                <p className="section-kicker">PÓSTER DE ARQUITECTURA</p>
+                <h3>
+                  Tipografía exacta. Etiquetas honestas. Sin el texto borroso que generan los
+                  modelos de imagen.
+                </h3>
               </div>
               <p>
-                HOSTED means a URL we curled returned the claimed status on {site.lastVerified}.
-                CLONE means no such URL exists for that system.
+                HOSTED significa que pedimos una URL y devolvió el estado indicado el{" "}
+                {site.lastVerified}. CLONE significa que ese sistema todavía no tiene una URL
+                así.
               </p>
             </div>
             <ArchitecturePoster />
@@ -143,8 +147,11 @@ export default function InterviewPage() {
           <div className="container">
             <div className="roadmap-heading">
               <div>
-                <p className="section-kicker">THE SCRIPT</p>
-                <h3>Minute marks, exact click or curl, and the sentence I volunteer first.</h3>
+                <p className="section-kicker">EL GUION</p>
+                <h3>
+                  Marcas de minuto, el clic o comando exacto, y la frase que digo primero, antes
+                  de que la pidan.
+                </h3>
               </div>
             </div>
 
@@ -172,7 +179,7 @@ export default function InterviewPage() {
                       ))}
                     </div>
                     <p className="script-watch">
-                      <strong>Watch for:</strong> {beat.watch}
+                      <strong>Qué observar:</strong> {beat.watch}
                     </p>
                   </div>
                 </li>
@@ -185,8 +192,8 @@ export default function InterviewPage() {
           <div className="container">
             <div className="roadmap-heading">
               <div>
-                <p className="section-kicker">CLOSE</p>
-                <h3>Three sentences that end the call without inventing a claim.</h3>
+                <p className="section-kicker">CIERRE</p>
+                <h3>Tres frases que terminan la llamada sin inventar nada.</h3>
               </div>
             </div>
             <ol className="interview-list">
@@ -207,10 +214,10 @@ export default function InterviewPage() {
 
         <section className="section">
           <div className="container">
-            <h2>After the call</h2>
+            <h2>Después de la llamada</h2>
             <p className="text-links">
-              <Link href="/studio">Studio</Link>
-              <Link href={aiSystems[0].route}>Study the flagship</Link>
+              <Link href="/studio">Estudio</Link>
+              <Link href={aiSystems[0].route}>Ver el sistema insignia</Link>
             </p>
           </div>
         </section>

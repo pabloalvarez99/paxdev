@@ -13,7 +13,7 @@ import {
 import { rankTargets, type JumpTarget } from "@/content/jump-rank";
 
 /** `g` then one of these. Two keys, the way a reader turns to a part of a book. */
-const GOTO: Record<string, string> = { h: "/", i: "/interview", s: "/studio" };
+const GOTO: Record<string, string> = { c: "/clases", h: "/", i: "/interview", s: "/studio" };
 
 /** How long `g` waits for its second key before it goes back to meaning nothing. */
 const CHORD_MS = 1200;
@@ -270,8 +270,8 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
         ref={legendRef}
       >
         <div className="sheet-dialog-page">
-          <p className="section-kicker">Keys</p>
-          <h2 id="legend-title">How to turn the pages</h2>
+          <p className="section-kicker">Teclas</p>
+          <h2 id="legend-title">Cómo pasar las páginas</h2>
 
           <div className="legend-toggle">
             <label htmlFor="keys-toggle">
@@ -281,9 +281,9 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
                 onChange={(event) => writeKeysEnabled(event.target.checked)}
                 type="checkbox"
               />
-              Single-key shortcuts
+              Atajos de una sola tecla
             </label>
-            <span className="legend-toggle-state">{keysEnabled ? "On" : "Off"}</span>
+            <span className="legend-toggle-state">{keysEnabled ? "Activados" : "Desactivados"}</span>
           </div>
 
           <dl className="legend-keys">
@@ -291,48 +291,54 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
               <dt>
                 <kbd>1</kbd>–<kbd>5</kbd>
               </dt>
-              <dd>Open a chapter</dd>
+              <dd>Abrir un capítulo</dd>
             </div>
             <div>
               <dt>
                 <kbd>g</kbd> <kbd>h</kbd>
               </dt>
-              <dd>Home</dd>
+              <dd>Ir a inicio</dd>
+            </div>
+            <div>
+              <dt>
+                <kbd>g</kbd> <kbd>c</kbd>
+              </dt>
+              <dd>Ir a las clases</dd>
             </div>
             <div>
               <dt>
                 <kbd>g</kbd> <kbd>i</kbd>
               </dt>
-              <dd>Interview kit</dd>
+              <dd>Ir a la entrevista</dd>
             </div>
             <div>
               <dt>
                 <kbd>g</kbd> <kbd>s</kbd>
               </dt>
-              <dd>Studio</dd>
+              <dd>Ir al estudio</dd>
             </div>
             <div>
               <dt>
-                <kbd>/</kbd> or <kbd>Ctrl</kbd>
+                <kbd>/</kbd> o <kbd>Ctrl</kbd>
                 <kbd>K</kbd>
               </dt>
-              <dd>Jump: type a word, not a command</dd>
+              <dd>Saltar: una palabra, no un comando</dd>
             </div>
             <div>
               <dt>
                 <kbd>?</kbd>
               </dt>
-              <dd>This page</dd>
+              <dd>Esta ayuda</dd>
             </div>
             <div>
               <dt>
                 <kbd>Esc</kbd>
               </dt>
-              <dd>Close it again</dd>
+              <dd>Cerrar</dd>
             </div>
           </dl>
 
-          <p className="section-kicker legend-contents">Chapters</p>
+          <p className="section-kicker legend-contents">Capítulos</p>
           <ol className="legend-chapters">
             {chapters.map((chapter) => (
               <li key={chapter.href}>
@@ -348,13 +354,14 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
           <p className="legend-note">
             {keysEnabled ? (
               <>
-                Keys sleep while a field has focus, so typing a <kbd>g</kbd> into the jump box
-                types a g.
+                Las teclas se desactivan mientras hay un campo de texto enfocado: escribir una{" "}
+                <kbd>g</kbd> en el buscador escribe una g.
               </>
             ) : (
               <>
-                Single-key shortcuts are off. <kbd>Ctrl</kbd>
-                <kbd>K</kbd> still opens Jump -- it is a modifier chord, not a character key.
+                Los atajos de una sola tecla están desactivados. <kbd>Ctrl</kbd>
+                <kbd>K</kbd> igual abre Saltar -- es una combinación con tecla modificadora, no
+                una tecla de carácter.
               </>
             )}
           </p>
@@ -372,7 +379,7 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
       >
         <div className="sheet-dialog-page">
           <label className="section-kicker" htmlFor="jump-input" id="jump-title">
-            Jump
+            Saltar
           </label>
           <input
             aria-activedescendant={results[active] ? `jump-option-${active}` : undefined}
@@ -387,7 +394,7 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
               setCursor(0);
             }}
             onKeyDown={onQueryKeyDown}
-            placeholder="refuse · budget · path:line · RRF"
+            placeholder="rechazar · presupuesto · clases · RRF"
             ref={inputRef}
             role="combobox"
             spellCheck={false}
@@ -418,7 +425,7 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
             ))}
             {results.length === 0 ? (
               <li className="jump-empty">
-                Nothing on this site is called that. <kbd>Esc</kbd> to go back.
+                Nada en este sitio se llama así. <kbd>Esc</kbd> para volver.
               </li>
             ) : null}
           </ul>

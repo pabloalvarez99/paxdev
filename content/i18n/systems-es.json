@@ -3,14 +3,14 @@
   "ui": {
     "langEn": "EN",
     "langEs": "ES",
-    "live": "EN VIVO",
-    "notShipped": "NO EMBARCADO",
+    "live": "PUBLICADO",
+    "notShipped": "TODAVÍA NO",
     "verified": "Verificado",
     "evidence": "Evidencia",
     "interview": "Preguntas de entrevista",
     "docs": "Documentos",
-    "cloneCta": "Clonar y correr el free path",
-    "hostedCta": "Abrir demo hospedado"
+    "cloneCta": "Clonar y correr sin costo",
+    "hostedCta": "Abrir el sistema publicado"
   },
   "systems": {
     "production-rag": {

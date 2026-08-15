@@ -12,10 +12,10 @@ export function SiteHeader({ home = false }: { home?: boolean }) {
           {site.owner}
         </Link>
 
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href={home ? "#systems" : "/#systems"}>Systems</a>
-          <Link href="/interview">Interview</Link>
-          <Link href="/studio">Studio</Link>
+        <nav className="desktop-nav" aria-label="Navegación principal">
+          <a href={home ? "#sistemas" : "/#sistemas"}>Sistemas</a>
+          <Link href="/clases">Clases</Link>
+          <Link href="/studio">Estudio</Link>
           <a href={site.githubUrl} target="_blank" rel="noreferrer">
             GitHub
           </a>
@@ -29,20 +29,22 @@ export function SiteFooter({ home = false }: { home?: boolean }) {
   return (
     <footer className="site-footer">
       <div className="container footer-plain">
-        <nav className="footer-links" aria-label="Footer">
-          <Link href={home ? "#top" : "/"}>Home</Link>
-          <a href={home ? "#systems" : "/#systems"}>Systems</a>
-          <Link href="/interview">Interview</Link>
-          <Link href="/read">Reading copy</Link>
-          <Link href="/studio">Studio</Link>
-          <Link href="/changelog">Changelog</Link>
-          <Link href="/casestudy">Case study</Link>
+        <nav className="footer-links" aria-label="Pie de página">
+          <Link href={home ? "#top" : "/"}>Inicio</Link>
+          <a href={home ? "#sistemas" : "/#sistemas"}>Sistemas</a>
+          <Link href="/clases">Clases</Link>
+          <Link href="/interview">Entrevista</Link>
+          <Link href="/read">Versión de lectura</Link>
+          <Link href="/studio">Estudio</Link>
+          <Link href="/changelog">Historial de cambios</Link>
+          <Link href="/casestudy">Caso de estudio</Link>
           <a href={site.githubUrl} target="_blank" rel="noreferrer">
             GitHub
           </a>
         </nav>
         <p className="mono">
-          Verified {site.lastVerified} · No login · No tracking · No credential forms
+          Verificado el {site.lastVerified} · Sin inicio de sesión · Sin seguimiento · Sin
+          formularios de credenciales
         </p>
       </div>
     </footer>

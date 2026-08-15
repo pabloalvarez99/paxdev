@@ -8,9 +8,9 @@ import portfolio from "@/content/portfolio";
 const { site } = portfolio;
 
 export const metadata: Metadata = {
-  title: "Case study — why this portfolio is built this way",
+  title: "Caso de estudio — por qué este sitio está hecho así",
   description:
-    "Why pins drift, why GitHub profile APIs 403, why stats cards stay gone, and how the anti-rot pipeline works.",
+    "El documento técnico de ingeniería del sitio: por qué las versiones se desactualizan, qué permisos niega la API de GitHub, y cómo funcionan las verificaciones que impiden que la página envejezca en silencio. Está en inglés.",
   alternates: { canonical: `${site.canonicalUrl}/casestudy` },
 };
 
@@ -113,10 +113,25 @@ export default function CaseStudyPage() {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        Ir al contenido
       </a>
       <SiteHeader />
       <main id="main-content" className="casestudy-page">
+        {/*
+          Esta página no traduce su fuente: muestra tal cual el documento de ingeniería
+          que vive en el repositorio, en inglés. Traducirlo acá crearía dos versiones del
+          mismo texto, y la del sitio se quedaría vieja la primera vez que alguien edite
+          la del repositorio. Se avisa arriba y se deja el documento como está.
+        */}
+        <section className="section">
+          <div className="container narrow">
+            <p className="hero-note">
+              Documento técnico de ingeniería, en inglés. Es la fuente real que está en el
+              repositorio: se muestra sin traducir para que no existan dos versiones que se
+              contradigan. El resto del sitio está en español.
+            </p>
+          </div>
+        </section>
         <article
           className="section container narrow casestudy-prose"
           dangerouslySetInnerHTML={{ __html: html }}

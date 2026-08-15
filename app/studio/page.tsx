@@ -8,9 +8,9 @@ import portfolio, { hostedSystems, verifiedUrls } from "@/content/portfolio";
 const { site, studio, aiSystems } = portfolio;
 
 export const metadata: Metadata = {
-  title: `Studio — ${site.name}`,
+  title: `Estudio — ${site.name}`,
   description:
-    "The four hosted systems as links, scripts, and curls. Production RAG stays clone-only.",
+    "Los cuatro sistemas publicados, con enlaces, guiones y comandos curl. Production RAG sigue siendo solo para clonar.",
   alternates: { canonical: `${site.canonicalUrl}/studio` },
 };
 
@@ -40,7 +40,7 @@ export default function StudioPage() {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        Ir al contenido
       </a>
 
       <SiteHeader />
@@ -48,23 +48,23 @@ export default function StudioPage() {
       <main id="main-content" className="studio-page">
         <section className="section studio-hero">
           <div className="container">
-            <nav className="crumbs" aria-label="Breadcrumb">
-              <Link href="/">Portfolio</Link>
+            <nav className="crumbs" aria-label="Ruta de navegación">
+              <Link href="/">Inicio</Link>
               <span aria-hidden="true">/</span>
-              <span aria-current="page">Studio</span>
+              <span aria-current="page">Estudio</span>
             </nav>
 
-            <h1>Four hosted systems. One clone.</h1>
+            <h1>Cuatro sistemas publicados. Uno para clonar.</h1>
             <p className="system-pitch">{studio.intro}</p>
             <p className="hero-note">
-              Every URL on this page was requested on {site.lastVerified} and returned the
-              status printed beside it. The list lives in{" "}
+              Cada dirección de esta página se pidió el {site.lastVerified} y devolvió el código
+              que aparece al lado. La lista completa está en{" "}
               <ExternalLink href="https://github.com/pabloalvarez99/paxdev/blob/main/content/verified-urls.json">
                 content/verified-urls.json
               </ExternalLink>
-              . Three of the four hosts allow framing and are embedded below; the AI Platform
-              gateway sends <code>X-Frame-Options: DENY</code>, so it is not. The deep link is
-              the primary CTA in every case.
+              . Tres de los cuatro servidores permiten mostrarse dentro de esta página y están
+              incrustados abajo; el de AI Platform envía <code>X-Frame-Options: DENY</code>, así
+              que no. En todos los casos, el enlace directo es la vía principal.
             </p>
           </div>
         </section>
@@ -85,13 +85,13 @@ export default function StudioPage() {
                   </div>
                   <div className="studio-heading-side">
                     <Status tone="live">HOSTED</Status>
-                    <ExternalLink href={deepLink}>Open deep link</ExternalLink>
-                    <Link href={system.route}>Study this system</Link>
-                    <ExternalLink href={embed.embedUrl}>Open host root</ExternalLink>
+                    <ExternalLink href={deepLink}>Abrir enlace directo</ExternalLink>
+                    <Link href={system.route}>Ver este sistema</Link>
+                    <ExternalLink href={embed.embedUrl}>Abrir el servidor</ExternalLink>
                   </div>
                 </div>
 
-                <ol className="studio-script" aria-label={`Three-step script for ${system.name}`}>
+                <ol className="studio-script" aria-label={`Guion de tres pasos para ${system.name}`}>
                   {embed.script.map((step, index) => (
                     <li key={`${embed.slug}-step-${index}`}>
                       <span className="studio-script-n">{String(index + 1).padStart(2, "0")}</span>
@@ -121,7 +121,7 @@ export default function StudioPage() {
 
                 <div className="studio-detail">
                   <div>
-                    <h3>Requests that were actually made</h3>
+                    <h3>Pedidos que se hicieron de verdad</h3>
                     <ul className="probe-list">
                       {embed.deepLinks.map((link) => (
                         <li key={link.url}>
@@ -134,7 +134,7 @@ export default function StudioPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3>From a terminal</h3>
+                    <h3>Desde una terminal</h3>
                     <pre>
                       <code>{embed.curl}</code>
                     </pre>
@@ -148,11 +148,11 @@ export default function StudioPage() {
 
         <section className="section studio-clone">
           <div className="container">
-            <h2>Not hosted</h2>
+            <h2>No publicado</h2>
             <p className="roadmap-heading">
-              Candidate hostnames for Production RAG were requested on {site.lastVerified} and
-              returned 404. They stay absent until a refresh observes a 200. production-rag.vercel.app
-              is another product and is never cited as P1.
+              Las direcciones candidatas para Production RAG se pidieron el {site.lastVerified} y
+              devolvieron 404. Se quedan afuera hasta que una nueva medición observe un 200.
+              production-rag.vercel.app es otro producto y nunca se lo cita como P1.
             </p>
 
             <div className="clone-grid">
@@ -172,8 +172,8 @@ export default function StudioPage() {
                       {card.absentUrl.replace("https://", "")} → 404
                     </p>
                     <p className="text-links">
-                      <Link href={system.route}>Study this system</Link>
-                      <ExternalLink href={system.links[0].url}>Repository</ExternalLink>
+                      <Link href={system.route}>Ver este sistema</Link>
+                      <ExternalLink href={system.links[0].url}>Repositorio</ExternalLink>
                       {"demoDayUrl" in card && card.demoDayUrl ? (
                         <ExternalLink href={card.demoDayUrl as string}>
                           DEMO-DAY (stream · Filtering · /evals)

@@ -1,11 +1,17 @@
-# PAX / DEV
+# Pablo Figueroa
 
 [![CI](https://github.com/pabloalvarez99/paxdev/actions/workflows/ci.yml/badge.svg)](https://github.com/pabloalvarez99/paxdev/actions/workflows/ci.yml)
 
-The public engineering portfolio of Pablo Alvarez: production-shaped AI systems, selected
-product work, and a capability map linked to public evidence.
+The public engineering portfolio of Pablo Figueroa: five AI systems, selected product work, and
+a capability map linked to public evidence. The site reads in Spanish; the repository, the code
+and these docs stay in English.
 
-**Production:** <https://paxdev.vercel.app>
+**Production:** <https://pablofigueroa99dev.vercel.app>
+
+The repository is still named `paxdev` and so is the git remote. Renaming it would break every
+short SHA, badge URL and worktree path recorded across the vault and these docs, which is a
+large cost for a cosmetic gain. The site's public name and the repository's name are allowed to
+differ.
 
 ## What this site does
 

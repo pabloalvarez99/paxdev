@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { clasesPorSistema } from "@/content/clases";
 import portfolio from "@/content/portfolio";
 
 const { site, aiSystems } = portfolio;
@@ -44,11 +45,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${site.canonicalUrl}/clases`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     ...aiSystems.map((system) => ({
       url: `${site.canonicalUrl}${system.route}`,
       lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
+    // Cada capítulo es una página propia y se lee sola. Listarlas una por una no es
+    // inflar el sitemap: es la diferencia entre veinte textos indexables y un índice.
+    ...clasesPorSistema().flatMap((sistema) =>
+      sistema.clases.map((clase) => ({
+        url: `${site.canonicalUrl}${clase.href}`,
+        lastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      })),
+    ),
   ];
 }

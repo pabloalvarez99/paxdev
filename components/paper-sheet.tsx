@@ -325,8 +325,8 @@ export function PaperSheet() {
       <div aria-hidden="true" className="sheet-stage" ref={hostRef} />
       {live ? (
         <figcaption>
-          One sheet, one raking light. It stops when the tab is hidden, and never loads at all
-          if you asked for less motion.
+          Una hoja, una luz rasante. Se detiene cuando la pestaña queda oculta, y no llega a
+          cargar si el sistema pide menos movimiento.
         </figcaption>
       ) : null}
     </figure>

@@ -7,9 +7,9 @@ import portfolio from "@/content/portfolio";
 const { site, interviewKit, aiSystems } = portfolio;
 
 export const metadata: Metadata = {
-  title: `Reading copy — ${site.name}`,
+  title: `Versión de lectura — ${site.name}`,
   description:
-    "The forty-five minute interview script set as continuous prose, one column, made to be printed and folded.",
+    "El guion de la entrevista de cuarenta y cinco minutos, en prosa continua, a una columna, pensado para imprimir y doblar.",
   alternates: { canonical: `${site.canonicalUrl}/read` },
 };
 
@@ -34,7 +34,7 @@ function StepProse({ step }: { step: Step }) {
   if (step.kind === "ask") {
     return (
       <p>
-        Ask <em>{step.value}</em> {step.note}
+        Preguntar <em>{step.value}</em> {step.note}
       </p>
     );
   }
@@ -43,7 +43,7 @@ function StepProse({ step }: { step: Step }) {
   const internal = href.startsWith("/");
   return (
     <p>
-      Open{" "}
+      Abrir{" "}
       {internal ? (
         <Link href={href}>{step.value}</Link>
       ) : (
@@ -60,27 +60,27 @@ export default function ReadPage() {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        Ir al contenido
       </a>
 
       <SiteHeader />
 
       <main className="read-page" id="main-content">
-        <nav className="crumbs" aria-label="Breadcrumb">
-          <Link href="/">Portfolio</Link>
+        <nav className="crumbs" aria-label="Ruta de navegación">
+          <Link href="/">Portafolio</Link>
           <span aria-hidden="true">/</span>
-          <Link href="/interview">Interview kit</Link>
+          <Link href="/interview">Kit de entrevista</Link>
           <span aria-hidden="true">/</span>
-          <span aria-current="page">Reading copy</span>
+          <span aria-current="page">Versión de lectura</span>
         </nav>
 
-        <p className="section-kicker">Reading copy</p>
+        <p className="section-kicker">Versión de lectura</p>
         <h1>{interviewKit.title}</h1>
         <p className="read-lede">{interviewKit.intro}</p>
 
         <section className="read-part">
-          <p className="read-running">The rules of the room</p>
-          <h2>What holds for every beat</h2>
+          <p className="read-running">Las reglas de la sala</p>
+          <h2>Lo que vale para cada tramo</h2>
           {interviewKit.rules.map((rule) => (
             <p key={rule.title}>
               <strong>{rule.title}.</strong> {rule.body}
@@ -96,20 +96,20 @@ export default function ReadPage() {
         {interviewKit.beats.map((beat) => (
           <section className="read-part" key={beat.clock + beat.system}>
             <p className="read-running">
-              Minute {beat.clock} · {systemName(beat.system)} · {beat.mode} · main {beat.sha}
+              Minuto {beat.clock} · {systemName(beat.system)} · {beat.mode} · main {beat.sha}
             </p>
             <h2>{beat.title}</h2>
             <p>{beat.say}</p>
             {beat.steps.map((step, index) => (
               <StepProse key={`${beat.system}-${index}`} step={step} />
             ))}
-            <p className="read-aside">Watch for: {beat.watch}</p>
+            <p className="read-aside">Qué observar: {beat.watch}</p>
           </section>
         ))}
 
         <section className="read-part">
-          <p className="read-running">Close</p>
-          <h2>Three sentences that end the call</h2>
+          <p className="read-running">Cierre</p>
+          <h2>Tres frases que terminan la llamada</h2>
           {interviewKit.close.map((line) => (
             <p key={line}>{line}</p>
           ))}
@@ -117,12 +117,13 @@ export default function ReadPage() {
         </section>
 
         <p className="read-colophon">
-          Verified {site.lastVerified}. The original script is{" "}
+          Verificado el {site.lastVerified}. El guion original es{" "}
           <a href={interviewKit.source.url} rel="noreferrer" target="_blank">
             {interviewKit.source.label}
           </a>
-          . The same material with its status chips, poster and code blocks is on the{" "}
-          <Link href="/interview">interview kit</Link> page. Set in Source Serif 4.
+          . El mismo material, con sus etiquetas de estado, el póster y los bloques de código,
+          está en la página del{" "}
+          <Link href="/interview">kit de entrevista</Link>. Compuesto en Source Serif 4.
         </p>
       </main>
 

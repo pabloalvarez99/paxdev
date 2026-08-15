@@ -2,9 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "PAX / DEV — Pablo Alvarez",
-    short_name: "PAX / DEV",
-    description: "AI systems and product engineering with public evidence behind every claim.",
+    name: "Pablo Figueroa",
+    short_name: "Pablo Figueroa",
+    description:
+      "Sistemas de inteligencia artificial que funcionan y se pueden abrir ahora mismo, con evidencia pública detrás de cada afirmación.",
     start_url: "/",
     display: "standalone",
     background_color: "#F7F4ED",

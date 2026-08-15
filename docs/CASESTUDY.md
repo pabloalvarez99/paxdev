@@ -1,6 +1,6 @@
 # Case study — paxdev hiring surface
 
-**Product:** [paxdev.vercel.app](https://paxdev.vercel.app) · source [pabloalvarez99/paxdev](https://github.com/pabloalvarez99/paxdev)  
+**Product:** [pablofigueroa99dev.vercel.app](https://pablofigueroa99dev.vercel.app) (formerly `paxdev.vercel.app`, now a 308 redirect) · source [pabloalvarez99/paxdev](https://github.com/pabloalvarez99/paxdev)  
 **Companion:** GitHub profile README [pabloalvarez99/pabloalvarez99](https://github.com/pabloalvarez99/pabloalvarez99)  
 **Season:** site v1.0.0 campaign (90 days) · owner A2 (these two repos only)
 

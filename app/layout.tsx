@@ -16,21 +16,20 @@ export const metadata: Metadata = {
     default: `${site.owner} — ${site.role}`,
     template: `%s — ${site.name}`,
   },
-  description:
-    "Public AI systems with repositories, tests, and honest scope, by Pablo Alvarez.",
+  description: `Sistemas de inteligencia artificial públicos, con repositorio, pruebas automáticas y alcance honesto, hechos por ${site.owner}.`,
   applicationName: site.name,
   authors: [{ name: site.owner, url: site.githubUrl }],
   creator: site.owner,
   publisher: site.owner,
   keywords: [
-    "AI Engineer",
-    "LLM Engineer",
+    "Ingeniero de IA",
+    "Ingeniería de sistemas LLM",
     "RAG",
-    "Agentic AI",
+    "Agentes de IA",
     "FastAPI",
     "Rust",
     "Next.js",
-    "Product Engineering",
+    "Ingeniería de producto",
     "Chile",
   ],
   alternates: { canonical: "/" },
@@ -39,14 +38,15 @@ export const metadata: Metadata = {
     url: "/",
     title: `${site.owner} — ${site.role}`,
     description:
-      "AI systems that show their work: grounded retrieval, bounded agents, and honest scope.",
+      "Sistemas de inteligencia artificial que muestran cómo funcionan: respuestas basadas en documentos reales, agentes con límites definidos, y alcance explicado con honestidad.",
     siteName: site.name,
-    locale: "en_US",
+    locale: "es_419",
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.owner} — ${site.role}`,
-    description: "Public AI systems, hosted demos, and evidence behind every claim.",
+    description:
+      "Sistemas de inteligencia artificial públicos, demostraciones activas, y evidencia detrás de cada afirmación.",
   },
   robots: {
     index: true,
@@ -70,7 +70,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html className={sourceSerif.variable} lang="en">
+    <html className={sourceSerif.variable} lang="es">
       <body>
         {children}
         {/* The keyboard map is the same on every page, so it is bound once, here. */}
