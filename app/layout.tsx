@@ -5,7 +5,7 @@ import { KeyboardNav } from "@/components/keyboard-nav";
 import { jumpTargets } from "@/content/jump";
 import portfolio from "@/content/portfolio";
 
-import { serif } from "./fonts";
+import { sourceSerif } from "./fonts";
 import "./globals.css";
 
 const { site } = portfolio;
@@ -70,7 +70,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html className={serif.variable} lang="en">
+    <html className={sourceSerif.variable} lang="en">
       <body>
         {children}
         {/* The keyboard map is the same on every page, so it is bound once, here. */}

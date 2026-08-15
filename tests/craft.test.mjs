@@ -12,6 +12,8 @@ const homePage = read("app", "page.tsx");
 const keyboardNav = read("components", "keyboard-nav.tsx");
 const paperSheet = read("components", "paper-sheet.tsx");
 const craftDoc = read("docs", "CRAFT.md");
+const fonts = read("app", "fonts.ts");
+const layout = read("app", "layout.tsx");
 
 /** Everything above the first section break on the home page: what a stranger sees first. */
 const firstScreen = homePage.slice(0, homePage.indexOf("</section>"));
@@ -140,6 +142,31 @@ test("the sheet keeps all four of the switches that take it away", () => {
   assert.match(paperSheet, /IntersectionObserver/, "a scrolled-away sheet must stop");
   assert.match(paperSheet, /return; \/\/ No WebGL context/, "WebGL must fail open");
   assert.match(paperSheet, /renderer\.dispose\(\)/, "the context must be released");
+});
+
+test("the self-hosted face is not named after a CSS generic", () => {
+  // next/font derives the @font-face family from the export name, so `export const serif`
+  // emits `font-family: "serif"` -- the generic keyword wearing quotes. It renders correctly
+  // until something drops the quotes, and then the page silently uses whatever the system
+  // calls serif while every other test still passes.
+  const generics = [
+    "serif",
+    "sans-serif",
+    "monospace",
+    "cursive",
+    "fantasy",
+    "system-ui",
+    "ui-serif",
+  ];
+  const exported = [...fonts.matchAll(/export const (\w+) = localFont\(/g)].map((m) => m[1]);
+  assert.ok(exported.length > 0, "app/fonts.ts must export at least one face");
+  for (const name of exported) {
+    assert.ok(
+      !generics.includes(name),
+      `app/fonts.ts exports "${name}", which next/font turns into the CSS generic of the same name`,
+    );
+  }
+  assert.match(layout, /sourceSerif\.variable/, "the layout must carry the face's variable");
 });
 
 test("the craft document exists and names what it refuses", () => {
