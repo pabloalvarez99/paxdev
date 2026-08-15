@@ -33,6 +33,7 @@ export function SiteFooter({ home = false }: { home?: boolean }) {
           <Link href={home ? "#top" : "/"}>Home</Link>
           <a href={home ? "#systems" : "/#systems"}>Systems</a>
           <Link href="/interview">Interview</Link>
+          <Link href="/read">Reading copy</Link>
           <Link href="/studio">Studio</Link>
           <Link href="/changelog">Changelog</Link>
           <Link href="/casestudy">Case study</Link>
