@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { PaperSheet } from "@/components/paper-sheet";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { ExternalLink, Status } from "@/components/ui";
 import portfolio, { cloneOnlySystems, hostedSystems } from "@/content/portfolio";
@@ -71,13 +72,29 @@ export default function Home() {
               Five public AI systems. Four hosted. One clone-only. Every claim has a
               repository, a test, or a running host.
             </p>
+            <div className="hero-honesty measure">
+              <p>
+                P1 Production RAG is clone-only. It is not hosted; hybrid retrieval needs a
+                local Qdrant, and production-rag.vercel.app is a different product that is never
+                linked here as P1.
+              </p>
+              <p>
+                P5 AI Platform is hosted, and its own status page reports four unconfigured
+                upstreams.
+              </p>
+            </div>
             <p className="text-links">
               <a href="#systems">Systems</a>
               <a href={site.githubUrl} target="_blank" rel="noreferrer">
                 GitHub
               </a>
             </p>
-            <p className="hero-note">No login. No data collection. Public evidence only.</p>
+            <p className="hero-note">
+              No login. No data collection. Public evidence only. Press{" "}
+              <kbd>?</kbd> for the keys.
+            </p>
+
+            <PaperSheet />
           </div>
         </section>
 
