@@ -191,7 +191,12 @@ export function PaperSheet() {
       let height = stageHeightFor(width);
 
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-      renderer.setSize(width, height, false);
+      // The third argument must stay true: with it false three sets only the width/height
+      // attributes, which the pixel ratio has already multiplied, and a canvas with no CSS size
+      // lays out at its attribute size. On a 2x screen that is a 768px canvas in a 384px box
+      // with overflow hidden -- a quarter of the sheet. Playwright defaults to a scale factor
+      // of 1, so no screenshot test can see this; e2e/craft.spec.ts forces 2.
+      renderer.setSize(width, height, true);
       renderer.setClearAlpha(0);
       renderer.domElement.setAttribute("aria-hidden", "true");
       host.appendChild(renderer.domElement);
@@ -230,7 +235,7 @@ export function PaperSheet() {
         height = stageHeightFor(width);
         const aspect = width / height;
 
-        renderer.setSize(width, height, false);
+        renderer.setSize(width, height, true);
         camera.left = -aspect;
         camera.right = aspect;
         camera.updateProjectionMatrix();

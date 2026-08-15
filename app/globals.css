@@ -1029,6 +1029,13 @@ kbd {
   overflow: hidden;
 }
 
+/* Belt as well as braces: the renderer sets these, and the sheet is cropped if it ever stops. */
+.sheet-stage canvas {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
 .sheet-stage canvas {
   display: block;
 }

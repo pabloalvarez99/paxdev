@@ -80,14 +80,21 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
       const key = event.key;
       const command = event.metaKey || event.ctrlKey;
 
+      // Inside a panel, the panel's own handlers and the dialog's Esc are in charge. This runs
+      // before Ctrl/Cmd+K on purpose: on macOS Ctrl+K is the system binding for "delete to end
+      // of line", so taking it inside a field would eat an edit the reader meant to make -- and
+      // the legend promises the keys sleep while a field has focus.
+      if (panel !== null || inEditableField(event.target) || event.altKey) {
+        return;
+      }
+
       if (command && key.toLowerCase() === "k") {
         event.preventDefault();
         openJump();
         return;
       }
 
-      // Inside a panel, the panel's own handlers and the dialog's Esc are in charge.
-      if (panel !== null || inEditableField(event.target) || command || event.altKey) {
+      if (command) {
         return;
       }
 

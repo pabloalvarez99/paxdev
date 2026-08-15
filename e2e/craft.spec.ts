@@ -67,6 +67,25 @@ test.describe("the sheet", () => {
     await expect(page.locator(".sheet figcaption")).toContainText("raking light");
   });
 
+  test("stays inside its box on a high-density screen", async ({ browser }) => {
+    // The default scale factor is 1, where a canvas sized only by its attributes happens to
+    // look right. Most laptops and every phone are 2 or 3, and that is where a renderer that
+    // skips the CSS size overflows its frame and shows a corner of the sheet.
+    const context = await browser.newContext({ deviceScaleFactor: 2 });
+    const page = await context.newPage();
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.locator(".sheet canvas").waitFor({ state: "visible", timeout: 20_000 });
+
+    const fits = await page.evaluate(() => {
+      const canvas = document.querySelector(".sheet canvas")!.getBoundingClientRect();
+      const stage = document.querySelector(".sheet-stage")!.getBoundingClientRect();
+      return canvas.width <= stage.width + 1 && canvas.height <= stage.height + 1;
+    });
+    expect(fits).toBe(true);
+
+    await context.close();
+  });
+
   test("never loads under reduced motion, and leaves no hole", async ({ browser }) => {
     const context = await browser.newContext({ reducedMotion: "reduce" });
     const page = await context.newPage();

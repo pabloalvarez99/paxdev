@@ -20,7 +20,12 @@ const nextDir = join(root, ".next");
 const appDir = join(nextDir, "server", "app");
 const chunkDir = join(nextDir, "static", "chunks");
 
-/** A string three emits and nothing else on this site would. */
+/**
+ * A string three emits and nothing else on this site would. It is an internal warning prefix,
+ * not API, so a three upgrade that rewords or strips it will make this gate fail loudly with
+ * "no chunk contains ..." even though nothing is actually wrong. That is the intended direction
+ * of the failure -- if the marker ever needs changing, change it here and say why in the commit.
+ */
 const THREE_MARKER = "THREE.WebGLRenderer";
 
 let failed = false;
@@ -59,9 +64,16 @@ if (threeChunks.size === 0) {
   fail(`no chunk contains ${THREE_MARKER}: the paper sheet is not in this build`);
 }
 
-const pages = walk(appDir, (name) => name.endsWith(".html")).filter(
-  (file) => !/_global-error|_not-found/.test(file),
-);
+// Guarded like the chunk walk above: a changed Next output layout should report what is
+// missing, not throw a stack trace at whoever ran the build.
+let pages;
+try {
+  pages = walk(appDir, (name) => name.endsWith(".html")).filter(
+    (file) => !/_global-error|_not-found/.test(file),
+  );
+} catch {
+  pages = [];
+}
 
 if (pages.length === 0) {
   fail("no prerendered HTML under .next/server/app");
