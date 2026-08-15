@@ -2,13 +2,24 @@ import { expect, test } from "@playwright/test";
 
 /**
  * Visual regression for the three hiring surfaces.
- * Baselines live in e2e/visual.spec.ts-snapshots/ (linux CI + local via path template).
- * Update with: npm run build && npx playwright test --update-snapshots
+ *
+ * Viewport, never fullPage. A full-page shot of a page made of text is really a
+ * height-measuring device, and text height moves with the host's fonts and hinting: the
+ * same commit rendered 17590px tall on one Linux box and 18397px on another, which
+ * Playwright rejects on size before maxDiffPixelRatio ever applies. The viewport shot
+ * still catches the regressions this gate exists for — type, colour, layout above the
+ * fold — and what is below it is covered by tests/*.test.mjs and e2e/craft.spec.ts.
+ *
+ * Baselines live in e2e/visual.spec.ts-snapshots/, one set for every OS, so generate them
+ * the way CI will read them:
+ *   docker run --rm -v "$PWD:/w" -v /w/node_modules -v /w/.next -w /w \
+ *     mcr.microsoft.com/playwright:v1.55.0-noble \
+ *     bash -lc "npm ci && npm run build && npx playwright test e2e/visual.spec.ts -u"
  */
 const routes = [
-  { path: "/", name: "home", fullPage: true },
-  { path: "/studio", name: "studio", fullPage: false },
-  { path: "/interview", name: "interview", fullPage: true },
+  { path: "/", name: "home" },
+  { path: "/studio", name: "studio" },
+  { path: "/interview", name: "interview" },
 ] as const;
 
 /**
@@ -27,12 +38,11 @@ for (const route of routes) {
         iframe{visibility:hidden !important; min-height:480px !important}
       `,
     });
-    // Let layout settle once; iframes are hidden so full-page height stays stable.
+    // Let layout settle once; iframes are hidden so nothing reflows under the shot.
     await page.waitForTimeout(300);
     await expect(page).toHaveScreenshot(`${route.name}-${testInfo.project.name}.png`, {
-      fullPage: route.fullPage,
       timeout: 15_000,
-      // Linux CI vs local still drifts on subpixel iframe/chrome; honesty tests cover content.
+      // Hinting and subpixel drift between hosts; honesty tests cover the content itself.
       maxDiffPixelRatio: 0.15,
     });
   });
