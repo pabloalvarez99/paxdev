@@ -201,6 +201,21 @@ kbd {
   line-height: 1.55;
 }
 
+/* The keyless route into the legend: a real button that keeps the sentence's kbd look. */
+.legend-open {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+.legend-open:hover kbd,
+.legend-open:focus-visible kbd {
+  background: var(--paper-raised);
+}
+
 .hero-actions,
 .text-links {
   display: flex;
@@ -1076,6 +1091,30 @@ kbd {
   margin: 0 0 1.5rem;
 }
 
+.legend-toggle {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin: 0 0 1.5rem;
+  padding: 0.9rem 0;
+}
+
+.legend-toggle label {
+  align-items: center;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.legend-toggle-state {
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .legend-keys {
   display: grid;
   margin: 0 0 1.75rem;
@@ -1150,24 +1189,20 @@ kbd {
   padding: 0;
 }
 
-.jump-list button {
+/* The option itself is the interactive target -- no nested button, so a single real focus
+   stays on #jump-input and aria-activedescendant keeps the combobox's virtual-focus model. */
+.jump-list li[role="option"] {
   align-items: baseline;
-  background: transparent;
-  border: 0;
   border-top: 1px solid var(--line);
-  color: inherit;
   cursor: pointer;
   display: grid;
-  font: inherit;
   gap: 0.9rem;
   grid-template-columns: 2.1rem minmax(0, 1fr);
   padding: 0.5rem 0.4rem;
-  text-align: left;
-  width: 100%;
 }
 
-.jump-list .is-current button,
-.jump-list button:hover {
+.jump-list li[role="option"].is-current,
+.jump-list li[role="option"]:hover {
   background: var(--paper-raised);
 }
 

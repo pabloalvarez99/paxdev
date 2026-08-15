@@ -91,7 +91,15 @@ export default function Home() {
             </p>
             <p className="hero-note">
               No login. No data collection. Public evidence only. Press{" "}
-              <kbd>?</kbd> for the keys.
+              <button
+                aria-label="Open the keys legend"
+                className="legend-open"
+                data-legend-open
+                type="button"
+              >
+                <kbd aria-hidden="true">?</kbd>
+              </button>{" "}
+              for the keys.
             </p>
 
             <PaperSheet />

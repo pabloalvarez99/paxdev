@@ -1,7 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 
 import { rankTargets, type JumpTarget } from "@/content/jump-rank";
 
@@ -10,6 +17,55 @@ const GOTO: Record<string, string> = { h: "/", i: "/interview", s: "/studio" };
 
 /** How long `g` waits for its second key before it goes back to meaning nothing. */
 const CHORD_MS = 1200;
+
+/**
+ * WCAG 2.1.4.1 Character Key Shortcuts: a single-character shortcut must be possible to turn
+ * off, remap, or scope to a focused component. Guarding form fields satisfies none of the
+ * three -- dictation still fires stray characters at a page that has no field focused. This is
+ * the "turn it off" branch, persisted so the choice survives a reload.
+ */
+const KEYS_STORAGE_KEY = "paxdev:keys";
+/** Same-tab notice: the `storage` event only reaches *other* tabs/windows. */
+const KEYS_CHANGE_EVENT = "paxdev:keys-change";
+
+function readKeysEnabled(): boolean {
+  try {
+    return window.localStorage.getItem(KEYS_STORAGE_KEY) !== "off";
+  } catch {
+    // Private browsing or a disabled store can throw on read. Fail open, the same default
+    // a first-time visitor gets.
+    return true;
+  }
+}
+
+/** The server never sees localStorage, so it always renders the same default the reader gets
+ * before ever touching the setting -- no client/server text mismatch to reconcile. */
+function getKeysEnabledServerSnapshot(): boolean {
+  return true;
+}
+
+function subscribeKeysEnabled(onStoreChange: () => void): () => void {
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(KEYS_CHANGE_EVENT, onStoreChange);
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(KEYS_CHANGE_EVENT, onStoreChange);
+  };
+}
+
+function writeKeysEnabled(next: boolean): void {
+  try {
+    if (next) {
+      window.localStorage.removeItem(KEYS_STORAGE_KEY);
+    } else {
+      window.localStorage.setItem(KEYS_STORAGE_KEY, "off");
+    }
+  } catch {
+    // The toggle still applies for this tab via the dispatch below; it just will not
+    // survive a reload if storage itself refused the write.
+  }
+  window.dispatchEvent(new Event(KEYS_CHANGE_EVENT));
+}
 
 type Panel = "legend" | "jump" | null;
 
@@ -29,6 +85,14 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
   const [panel, setPanel] = useState<Panel>(null);
   const [query, setQuery] = useState("");
   const [cursor, setCursor] = useState(0);
+  // Reads localStorage through React's own external-store hook rather than a `useEffect` that
+  // calls `setState`: the server has no localStorage, so `useSyncExternalStore` renders the
+  // server snapshot first and swaps in the real value right after hydration, with no mismatch.
+  const keysEnabled = useSyncExternalStore(
+    subscribeKeysEnabled,
+    readKeysEnabled,
+    getKeysEnabledServerSnapshot,
+  );
 
   const legendRef = useRef<HTMLDialogElement>(null);
   const jumpRef = useRef<HTMLDialogElement>(null);
@@ -98,6 +162,14 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
         return;
       }
 
+      // WCAG 2.1.4.1: every binding past this point is a bare character key, so it must
+      // honour the off switch. Ctrl/Cmd+K is a modifier chord, not a character key, and is
+      // handled above -- it keeps working either way.
+      if (!keysEnabled) {
+        chordArmed.current = false;
+        return;
+      }
+
       if (chordArmed.current && GOTO[key.toLowerCase()]) {
         event.preventDefault();
         chordArmed.current = false;
@@ -137,7 +209,23 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
 
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [chapters, go, openJump, panel]);
+  }, [chapters, go, openJump, panel, keysEnabled]);
+
+  // Turning the keys off must not strand a reader outside the legend that turns them back on.
+  // `app/page.tsx` is a server component and renders the hero's `?` as a plain button carrying
+  // `data-legend-open`; this is the one client-side listener that gives it a job. Delegated on
+  // `document`, so it keeps working regardless of what else renders that attribute later.
+  useEffect(() => {
+    function onClick(event: MouseEvent) {
+      const target = event.target;
+      if (target instanceof Element && target.closest("[data-legend-open]")) {
+        setPanel("legend");
+      }
+    }
+
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
 
   // A flag on the document so a test — or a reader with a console open — can tell when the
   // keys are actually live, rather than guessing at hydration.
@@ -184,6 +272,19 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
         <div className="sheet-dialog-page">
           <p className="section-kicker">Keys</p>
           <h2 id="legend-title">How to turn the pages</h2>
+
+          <div className="legend-toggle">
+            <label htmlFor="keys-toggle">
+              <input
+                checked={keysEnabled}
+                id="keys-toggle"
+                onChange={(event) => writeKeysEnabled(event.target.checked)}
+                type="checkbox"
+              />
+              Single-key shortcuts
+            </label>
+            <span className="legend-toggle-state">{keysEnabled ? "On" : "Off"}</span>
+          </div>
 
           <dl className="legend-keys">
             <div>
@@ -245,8 +346,17 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
           </ol>
 
           <p className="legend-note">
-            Keys sleep while a field has focus, so typing a <kbd>g</kbd> into the jump box types a
-            g.
+            {keysEnabled ? (
+              <>
+                Keys sleep while a field has focus, so typing a <kbd>g</kbd> into the jump box
+                types a g.
+              </>
+            ) : (
+              <>
+                Single-key shortcuts are off. <kbd>Ctrl</kbd>
+                <kbd>K</kbd> still opens Jump -- it is a modifier chord, not a character key.
+              </>
+            )}
           </p>
         </div>
       </dialog>
@@ -292,19 +402,18 @@ export function KeyboardNav({ targets }: { targets: JumpTarget[] }) {
                 className={index === active ? "is-current" : undefined}
                 id={`jump-option-${index}`}
                 key={target.href}
+                onClick={() => go(target.href)}
                 role="option"
               >
-                <button onClick={() => go(target.href)} type="button">
-                  {target.chapter ? (
-                    <kbd>{target.chapter}</kbd>
-                  ) : (
-                    <span className="jump-dot">·</span>
-                  )}
-                  <span>
-                    <span className="jump-label">{target.label}</span>
-                    <small>{target.hint}</small>
-                  </span>
-                </button>
+                {target.chapter ? (
+                  <kbd>{target.chapter}</kbd>
+                ) : (
+                  <span className="jump-dot">·</span>
+                )}
+                <span>
+                  <span className="jump-label">{target.label}</span>
+                  <small>{target.hint}</small>
+                </span>
               </li>
             ))}
             {results.length === 0 ? (

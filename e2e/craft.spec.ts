@@ -51,12 +51,110 @@ test.describe("keys", () => {
     await expect(page).toHaveURL(/\/systems\/multi-agent$/);
   });
 
+  test("jump keeps a single real focus -- Tab does not land on an option", async ({ page }) => {
+    await openWithKeys(page);
+    await page.keyboard.press("/");
+
+    const input = page.locator("#jump-input");
+    await expect(input).toBeFocused();
+    await input.fill("budget");
+    await expect(page.locator("#jump-list li[role='option']").first()).toBeVisible();
+
+    // The options are not in the tab sequence in this pattern; aria-activedescendant on the
+    // input is what marks the active one. Before the fix, each option wrapped a real <button>,
+    // so Tab landed inside #jump-list. Whether the browser's modal focus trap then keeps focus
+    // on the input or drops it to the document is an implementation detail -- what must never
+    // happen again is focus landing on an option.
+    await page.keyboard.press("Tab");
+    const focusedInsideOptions = await page.evaluate(
+      () => document.activeElement?.closest("#jump-list") != null,
+    );
+    expect(focusedInsideOptions).toBe(false);
+  });
+
   test("keys sleep while a field has focus", async ({ page }) => {
     await openWithKeys(page);
     await page.keyboard.press("/");
     await page.keyboard.type("g");
     await expect(page.locator("#jump-input")).toHaveValue("g");
     await expect(page).toHaveURL(/\/$/);
+  });
+});
+
+/**
+ * WCAG 2.1.4.1 Character Key Shortcuts, the "turn it off" branch. The keys start on for a
+ * fresh visitor (a fresh browser context here means empty localStorage), so every test opens
+ * the legend with `?` once while the keys are still live, then flips the switch through the
+ * real checkbox -- the same control a reader would use.
+ */
+test.describe("the off switch", () => {
+  async function turnKeysOff(page: Page) {
+    await page.keyboard.press("?");
+    const toggle = page.getByRole("checkbox", { name: "Single-key shortcuts" });
+    await expect(toggle).toBeChecked();
+    await toggle.click();
+    await expect(toggle).not.toBeChecked();
+    await page.keyboard.press("Escape");
+    await expect(page.locator("dialog.legend")).toBeHidden();
+  }
+
+  test("off stops a chapter digit from navigating", async ({ page }) => {
+    await openWithKeys(page);
+    await turnKeysOff(page);
+
+    await page.keyboard.press("2");
+    await expect(page).toHaveURL(/\/$/);
+  });
+
+  test("off stops ? from opening the legend", async ({ page }) => {
+    await openWithKeys(page);
+    await turnKeysOff(page);
+
+    await page.keyboard.press("?");
+    await expect(page.locator("dialog.legend")).toBeHidden();
+  });
+
+  test("the hero button still opens the legend when the keys are off", async ({ page }) => {
+    await openWithKeys(page);
+    await turnKeysOff(page);
+
+    await page.locator("[data-legend-open]").click();
+    const legend = page.locator("dialog.legend");
+    await expect(legend).toBeVisible();
+    await expect(legend).toContainText("Single-key shortcuts are off");
+  });
+
+  test("turning the keys back on restores the chapter digit", async ({ page }) => {
+    await openWithKeys(page);
+    await turnKeysOff(page);
+
+    // The button just opened is now the only way back to the switch.
+    await page.locator("[data-legend-open]").click();
+    const toggle = page.getByRole("checkbox", { name: "Single-key shortcuts" });
+    await expect(toggle).not.toBeChecked();
+    await toggle.click();
+    // Wait for the flip to actually land before driving more keys at it -- otherwise the
+    // keydown listener can still be mid re-attach with the stale, disabled closure.
+    await expect(toggle).toBeChecked();
+    await page.keyboard.press("Escape");
+    await expect(page.locator("dialog.legend")).toBeHidden();
+
+    await page.keyboard.press("2");
+    await expect(page).toHaveURL(/\/systems\/agentic-rag-research$/);
+  });
+
+  test("the off choice survives a reload", async ({ page }) => {
+    await openWithKeys(page);
+    await turnKeysOff(page);
+
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await page.waitForSelector("html[data-keys='ready']", { timeout: 20_000 });
+
+    await page.keyboard.press("2");
+    await expect(page).toHaveURL(/\/$/);
+
+    await page.locator("[data-legend-open]").click();
+    await expect(page.getByRole("checkbox", { name: "Single-key shortcuts" })).not.toBeChecked();
   });
 });
 

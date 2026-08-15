@@ -108,6 +108,45 @@ test("the legend documents every key that is bound", () => {
   assert.match(keyboardNav, /GOTO[^=]*=\s*\{\s*h:/, "g h must be bound");
 });
 
+test("the legend carries a real off switch, so WCAG 2.1.4.1 stays satisfied", () => {
+  assert.match(
+    keyboardNav,
+    /paxdev:keys/,
+    "the on/off choice must persist under a stable, named storage key",
+  );
+  assert.match(
+    keyboardNav,
+    /type="checkbox"/,
+    "the off switch must be a real checkbox, not a styled div a screen reader cannot use",
+  );
+  assert.match(
+    keyboardNav,
+    /Single-key shortcuts/,
+    "the control must say in words what it turns off",
+  );
+  assert.match(
+    keyboardNav,
+    /checked=\{keysEnabled\}/,
+    "the checkbox must reflect state, not just imply it through styling",
+  );
+});
+
+test("turning the keys off still leaves a keyless door into the legend", () => {
+  assert.ok(
+    keyboardNav.includes("data-legend-open"),
+    "keyboard-nav.tsx must listen for a keyless way to open the legend",
+  );
+  assert.ok(
+    homePage.includes("data-legend-open"),
+    "the hero must render the element that opens the legend without pressing a key",
+  );
+  assert.match(
+    homePage,
+    /<button[^>]*data-legend-open[^>]*>/,
+    "the keyless route must be a real button, not text styled to look like one",
+  );
+});
+
 test("three is loaded dynamically, from one component, and never imported statically", () => {
   const sources = [];
   const collect = (dir) => {
