@@ -9,6 +9,8 @@
   --content-width: 40rem;
   --radius: 0;
   --shadow: none;
+  --serif: var(--font-serif), "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  --mono: Consolas, "SFMono-Regular", ui-monospace, monospace;
 }
 
 * {
@@ -18,6 +20,7 @@
 html {
   background: var(--paper);
   color-scheme: light;
+  hanging-punctuation: first last;
   scroll-behavior: smooth;
   scroll-padding-top: 1.5rem;
 }
@@ -25,13 +28,18 @@ html {
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: "Segoe UI", system-ui, sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.65;
+  font-family: var(--serif);
+  font-size: 1.075rem;
+  font-variant-ligatures: common-ligatures contextual;
+  line-height: 1.62;
   margin: 0;
   min-width: 320px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 ::selection {
@@ -80,16 +88,18 @@ h2,
 h3,
 h4 {
   color: var(--ink-strong);
-  font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  font-family: var(--serif);
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   line-height: 1.15;
+  text-wrap: balance;
 }
 
 .mono,
 code,
-pre {
-  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+pre,
+kbd {
+  font-family: var(--mono);
 }
 
 .skip-link {
@@ -136,7 +146,7 @@ pre {
 
 .brand {
   color: var(--ink-strong);
-  font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  font-family: var(--serif);
   font-size: 1.15rem;
   text-decoration: none;
 }
@@ -191,6 +201,21 @@ pre {
   line-height: 1.55;
 }
 
+/* The keyless route into the legend: a real button that keeps the sentence's kbd look. */
+.legend-open {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+.legend-open:hover kbd,
+.legend-open:focus-visible kbd {
+  background: var(--paper-raised);
+}
+
 .hero-actions,
 .text-links {
   display: flex;
@@ -212,13 +237,18 @@ pre {
   border-top: 1px solid var(--line);
 }
 
+/*
+ * Small capitals in the text face, letterspaced by hand. Monospace survives only where it
+ * carries meaning a proportional face would destroy: SHAs, hosts, status codes, curl lines.
+ */
 .section-kicker,
 .eyebrow {
   color: var(--muted);
-  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.85rem;
+  font-family: var(--serif);
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.9rem;
+  text-transform: uppercase;
 }
 
 .section h2,
@@ -278,9 +308,9 @@ pre {
 
 .status {
   color: var(--muted);
-  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  font-family: var(--serif);
   font-size: 0.78rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
@@ -485,9 +515,11 @@ pre {
 
 .cta-strip-kind {
   color: var(--muted);
-  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
-  font-size: 0.78rem;
+  font-family: var(--serif);
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
   margin: 0 0 0.75rem;
+  text-transform: uppercase;
 }
 
 .cta-strip p:last-child {
@@ -502,7 +534,7 @@ pre {
 }
 
 .contract-column h2 {
-  font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  font-family: var(--serif);
   font-size: 1.15rem;
   letter-spacing: -0.02em;
   margin: 0 0 0.75rem;
@@ -566,8 +598,9 @@ pre {
 
 .interview-index {
   color: var(--muted);
-  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  font-family: var(--serif);
   font-size: 0.85rem;
+  letter-spacing: 0.08em;
 }
 
 .interview-list h4 {
@@ -668,8 +701,9 @@ pre {
 
 .studio-script-n {
   color: var(--muted);
-  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
-  font-size: 0.8rem;
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
 }
 
 .studio-iframe-honesty {
@@ -712,7 +746,7 @@ pre {
 
 .probe-code {
   color: var(--muted);
-  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  font-family: var(--mono);
   font-size: 0.78rem;
 }
 
@@ -795,7 +829,7 @@ pre {
 
 .script-clock {
   color: var(--ink-strong);
-  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
+  font-family: var(--mono);
   font-size: 0.95rem;
 }
 
@@ -827,9 +861,11 @@ pre {
 
 .script-do-label {
   color: var(--muted);
-  font-family: Consolas, "SFMono-Regular", ui-monospace, monospace;
-  font-size: 0.75rem;
+  font-family: var(--serif);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
   margin: 0 0 0.25rem;
+  text-transform: uppercase;
 }
 
 .script-do a {
@@ -960,6 +996,299 @@ pre {
   max-width: var(--content-width);
 }
 
+/* The two claims most easily inflated, set before a reader has to scroll for them. */
+.hero-honesty {
+  border-left: 1px solid var(--line);
+  display: grid;
+  gap: 0.55rem;
+  margin: 0 0 1.5rem;
+  padding-left: 1.15rem;
+}
+
+.hero-honesty p {
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+kbd {
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  color: var(--ink);
+  display: inline-block;
+  font-size: 0.78em;
+  line-height: 1;
+  min-width: 1.5em;
+  padding: 0.3em 0.35em;
+  text-align: center;
+}
+
+/*
+ * The sheet. Height is zero until the canvas is actually running, so a browser without
+ * WebGL, or a reader who asked for less motion, gets type with no hole where a canvas
+ * would have been.
+ */
+.sheet {
+  margin: 0;
+}
+
+.sheet.is-live {
+  margin: 2.75rem 0 0;
+}
+
+.sheet-stage {
+  height: 0;
+  line-height: 0;
+  max-width: 24rem;
+  overflow: hidden;
+}
+
+/* Belt as well as braces: the renderer sets these, and the sheet is cropped if it ever stops. */
+.sheet-stage canvas {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.sheet-stage canvas {
+  display: block;
+}
+
+.sheet figcaption {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  margin-top: 0.9rem;
+  max-width: 34rem;
+}
+
+/* Legend and jump: two pages of the same book, laid over it. */
+.sheet-dialog {
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  margin: 8vh auto;
+  max-height: 84dvh;
+  padding: 0;
+  width: min(34rem, calc(100vw - 2rem));
+}
+
+.sheet-dialog::backdrop {
+  background: rgb(26 25 22 / 30%);
+}
+
+.sheet-dialog-page {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  max-height: 84dvh;
+  overflow-y: auto;
+  padding: 2rem 2rem 1.75rem;
+}
+
+.sheet-dialog h2 {
+  font-size: 1.45rem;
+  margin: 0 0 1.5rem;
+}
+
+.legend-toggle {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin: 0 0 1.5rem;
+  padding: 0.9rem 0;
+}
+
+.legend-toggle label {
+  align-items: center;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.legend-toggle-state {
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.legend-keys {
+  display: grid;
+  margin: 0 0 1.75rem;
+}
+
+.legend-keys > div {
+  align-items: baseline;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  padding: 0.55rem 0;
+}
+
+.legend-keys dt,
+.legend-keys dd {
+  margin: 0;
+}
+
+.legend-keys dd {
+  color: var(--muted);
+}
+
+.legend-chapters {
+  display: grid;
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.legend-chapters li {
+  align-items: baseline;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: 2.1rem minmax(0, 1fr);
+  padding: 0.5rem 0;
+}
+
+.legend-chapters small,
+.jump-list small {
+  color: var(--muted);
+  display: block;
+  font-size: 0.85rem;
+}
+
+.legend-note {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+  padding-top: 0.9rem;
+}
+
+.jump-input {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1.15rem;
+  margin: 0 0 1.25rem;
+  padding: 0.55rem 0.7rem;
+  width: 100%;
+}
+
+.jump-list {
+  display: grid;
+  list-style: none;
+  margin: 0;
+  max-height: 46dvh;
+  overflow-y: auto;
+  padding: 0;
+}
+
+/* The option itself is the interactive target -- no nested button, so a single real focus
+   stays on #jump-input and aria-activedescendant keeps the combobox's virtual-focus model. */
+.jump-list li[role="option"] {
+  align-items: baseline;
+  border-top: 1px solid var(--line);
+  cursor: pointer;
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: 2.1rem minmax(0, 1fr);
+  padding: 0.5rem 0.4rem;
+}
+
+.jump-list li[role="option"].is-current,
+.jump-list li[role="option"]:hover {
+  background: var(--paper-raised);
+}
+
+.jump-dot {
+  color: var(--muted);
+  text-align: center;
+}
+
+.jump-empty {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  padding-top: 0.8rem;
+}
+
+/* The reading copy: one column, no chips, meant to be folded. */
+.read-page {
+  margin: 0 auto;
+  max-width: 34rem;
+  padding: 3.5rem 1.75rem 5rem;
+}
+
+.read-page h1 {
+  font-size: clamp(2rem, 5vw, 2.7rem);
+  margin: 0 0 1.25rem;
+}
+
+.read-lede {
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+}
+
+.read-lede::first-letter {
+  float: left;
+  font-size: 3.1em;
+  line-height: 0.82;
+  padding: 0.04em 0.08em 0 0;
+}
+
+.read-part {
+  margin-top: 3rem;
+}
+
+.read-part h2 {
+  font-size: 1.35rem;
+  margin: 0 0 0.9rem;
+}
+
+.read-running {
+  color: var(--muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  margin: 0 0 0.6rem;
+  text-transform: uppercase;
+}
+
+.read-part p {
+  margin: 0;
+  orphans: 3;
+  widows: 3;
+}
+
+.read-part p + p {
+  text-indent: 1.4em;
+}
+
+.read-aside {
+  color: var(--muted);
+  font-style: italic;
+  text-indent: 0 !important;
+}
+
+.read-command {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+  text-indent: 0 !important;
+}
+
+.read-colophon {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 3.5rem;
+  padding-top: 1rem;
+}
+
 @media (min-width: 760px) {
   .script-beat {
     grid-template-columns: 7.5rem minmax(0, 1fr);
@@ -1010,6 +1339,14 @@ pre {
   }
 }
 
+/*
+ * The chapbook. Printing is not an afterthought here: a reviewer who prints /read should get
+ * a folded reading copy, with the URLs written out because paper cannot be clicked.
+ */
+@page {
+  margin: 22mm 20mm;
+}
+
 @media print {
   .skip-link,
   .site-header,
@@ -1017,7 +1354,11 @@ pre {
   .github-link,
   .desktop-nav,
   .cta-section,
+  .crumbs,
   .hero-actions,
+  .sheet,
+  .sheet-dialog,
+  .studio-iframe,
   .button {
     display: none !important;
   }
@@ -1025,22 +1366,68 @@ pre {
   html,
   body,
   .interview-page,
+  .read-page,
   .section,
   .container {
-    background: var(--paper) !important;
-    color: var(--ink) !important;
+    background: #fff !important;
+    color: #000 !important;
     box-shadow: none !important;
   }
 
-  .interview-page a {
-    color: var(--ink) !important;
-    text-decoration: underline;
+  body {
+    font-size: 10.5pt;
+    line-height: 1.5;
   }
 
+  .read-page,
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: none;
+  }
+
+  /* A printed link that does not say where it goes is a dead end. */
+  .read-part a[href^="http"]::after,
+  .interview-page a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    overflow-wrap: anywhere;
+    word-break: break-all;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .read-part,
   .script-beat,
   .kit-rules,
-  .poster {
+  .poster,
+  figure {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  .read-part {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .read-part:first-of-type {
+    break-before: auto;
+    page-break-before: auto;
   }
 }

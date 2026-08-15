@@ -1,8 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
+import { KeyboardNav } from "@/components/keyboard-nav";
+import { jumpTargets } from "@/content/jump";
 import portfolio from "@/content/portfolio";
 
+import { sourceSerif } from "./fonts";
 import "./globals.css";
 
 const { site } = portfolio;
@@ -67,8 +70,12 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html className={sourceSerif.variable} lang="en">
+      <body>
+        {children}
+        {/* The keyboard map is the same on every page, so it is bound once, here. */}
+        <KeyboardNav targets={jumpTargets} />
+      </body>
     </html>
   );
 }

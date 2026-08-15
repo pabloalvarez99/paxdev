@@ -27,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${site.canonicalUrl}/read`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: `${site.canonicalUrl}/changelog`,
       lastModified,
       changeFrequency: "weekly",
