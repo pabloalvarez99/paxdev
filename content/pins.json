@@ -2,6 +2,23 @@
   "note": "Machine-readable pin table for the five-system ladder. content/portfolio.json, docs/PORTFOLIO-SERIES.md, and the GitHub profile README must agree with this file. Refresh with scripts/check-pins.mjs --live after re-curling origin main and hosted health. Never invent a P1 host.",
   "pinnedAt": "2026-08-14",
   "source": "final pin pass re-curl origin main + live health 2026-08-14 (A2 site-v1.0)",
+  "historicalShas": [
+    {
+      "sha": "4de0ac6",
+      "repo": "pabloalvarez99/repomind",
+      "why": "P4 interview rationale says the catalog started deciding which ids are valid AFTER this commit. That is a claim about when a behaviour arrived, not about what main is today, so it stays put even as main moves on. Everything else that cited 4de0ac6 as current state was corrected to 24ece08."
+    },
+    {
+      "sha": "2fd74c7",
+      "repo": "pabloalvarez99/ai-platform",
+      "why": "P5 rationale names the red window the site deliberately waited through rather than pinning a commit whose CI was failing. Naming it is the point; it is history, not a current claim."
+    },
+    {
+      "sha": "eba1e22",
+      "repo": "pabloalvarez99/ai-platform",
+      "why": "P5 rationale names the earlier Vercel pin it moved off. Same reason as 2fd74c7: the sentence is about what the site used to say."
+    }
+  ],
   "systems": [
     {
       "id": "P1",
@@ -66,8 +83,8 @@
       "id": "P4",
       "slug": "repomind",
       "repo": "pabloalvarez99/repomind",
-      "main": "099ac8a",
-      "mainFull": "099ac8a495f11ca582a64ff9347ab7578e5e9442",
+      "main": "24ece08",
+      "mainFull": "24ece0859f262278464bbb7e59f71d7783d8573a",
       "release": "v1.0.0",
       "releaseTagTarget": "099ac8a",
       "mode": "HOSTED",

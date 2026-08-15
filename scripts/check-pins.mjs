@@ -101,6 +101,50 @@ for (const pin of pins.systems) {
   }
 }
 
+/*
+ * Every commit-shaped string anywhere in the published content must be one this file knows
+ * about. The checks above only reach `phase` and `interviewKit.beats[].sha`, so a SHA written
+ * into prose -- a capability bullet, a CTA note, an interview rationale -- drifted silently:
+ * P4 carried 4de0ac6 through twelve commits of its own repo and nothing failed, because
+ * nothing was looking. A reader cannot tell a current SHA from a stale one by looking at it,
+ * which is exactly why it has to be machine-checked.
+ *
+ * A SHA that genuinely refers to a past moment ("after X, the catalog decides...") belongs in
+ * historicalShas in pins.json, with a reason. That makes keeping one a decision someone wrote
+ * down, rather than an omission nobody noticed.
+ */
+const knownShas = new Set();
+for (const pin of pins.systems) {
+  knownShas.add(pin.main);
+  knownShas.add(pin.mainFull);
+  if (pin.releaseTagTarget) knownShas.add(pin.releaseTagTarget);
+}
+for (const entry of pins.historicalShas ?? []) {
+  knownShas.add(entry.sha);
+}
+
+const shaLike = /\b[0-9a-f]{7,40}\b/g;
+const seen = new Map();
+for (const [label, blob] of [
+  ["portfolio.json", JSON.stringify(content)],
+  ["verified-urls.json", JSON.stringify(verified)],
+]) {
+  for (const match of blob.match(shaLike) ?? []) {
+    // Hex-only words that are not commits: colours, hashes of assets, ids.
+    if (/^\d+$/.test(match)) continue;
+    if (knownShas.has(match)) continue;
+    if ([...knownShas].some((known) => known.startsWith(match) || match.startsWith(known))) {
+      continue;
+    }
+    seen.set(match, label);
+  }
+}
+for (const [sha, label] of seen) {
+  fail(
+    `${label} cites ${sha}, which is neither a pinned SHA nor listed in pins.historicalShas`,
+  );
+}
+
 // Poster subtitle must name all five short SHAs
 const poster = content.architecturePoster?.subtitle ?? "";
 for (const pin of pins.systems) {

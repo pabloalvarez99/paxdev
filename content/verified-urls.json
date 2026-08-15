@@ -133,7 +133,7 @@
       "method": "GET",
       "expect": 200,
       "observed": 200,
-      "note": "Interview/studio primary P4 hit on main 099ac8a."
+      "note": "Interview/studio primary P4 hit on main 24ece08."
     }
   ],
   "absent": [
