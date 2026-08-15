@@ -38,7 +38,7 @@
       "status": "LIVE",
       "statusTone": "live",
       "phase": "v1.0.0 · main 3b54d85 · CI green",
-      "summary": "A production-shaped retrieval system that combines dense and sparse search, reranks candidates, and returns grounded answers with resolvable citations—or refuses.",
+      "summary": "Dense and sparse search over one collection, fused and reranked, answered with citations that resolve — or refused, with the reason stated.",
       "outcome": "Retrieve and answer honestly",
       "stack": [
         "Python",
