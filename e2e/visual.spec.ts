@@ -11,6 +11,12 @@ const routes = [
   { path: "/interview", name: "interview", fullPage: true },
 ] as const;
 
+/**
+ * Baselines are taken under reduced motion, so the home page is type alone and the sheet
+ * cannot make a screenshot flap. e2e/craft.spec.ts is what proves the canvas draws at all.
+ */
+test.use({ contextOptions: { reducedMotion: "reduce" } });
+
 for (const route of routes) {
   test(`visual ${route.name}`, async ({ page }, testInfo) => {
     await page.goto(route.path, { waitUntil: "domcontentloaded" });
