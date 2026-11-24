@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Pablo Alvarez — AI Systems & Product Engineer";
+export const alt = "Pablo Figueroa Álvarez — AI Systems & Product Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -19,7 +19,7 @@ export default function OpenGraphImage() {
         width: "100%",
       }}
     >
-      <span style={{ fontSize: 28, letterSpacing: 1 }}>Pablo Alvarez</span>
+      <span style={{ fontSize: 28, letterSpacing: 1 }}>Pablo Figueroa Álvarez</span>
       <div style={{ display: "flex", flexDirection: "column", gap: 18, maxWidth: 920 }}>
         <span style={{ fontSize: 72, letterSpacing: -2, lineHeight: 1.05 }}>
           AI systems that show their work.

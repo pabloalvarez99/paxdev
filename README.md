@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/pabloalvarez99/paxdev/actions/workflows/ci.yml/badge.svg)](https://github.com/pabloalvarez99/paxdev/actions/workflows/ci.yml)
 
-The public engineering portfolio of Pablo Alvarez: production-shaped AI systems, selected
+The public engineering portfolio of Pablo Figueroa Álvarez: production-shaped AI systems, selected
 product work, and a capability map linked to public evidence.
 
 **Production:** <https://paxdev.vercel.app>
