@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "PAX / DEV — Pablo Alvarez",
+    name: "PAX / DEV — Pablo Figueroa Álvarez",
     short_name: "PAX / DEV",
     description: "AI systems and product engineering with public evidence behind every claim.",
     start_url: "/",

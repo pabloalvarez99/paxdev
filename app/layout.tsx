@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description:
-    "Public AI systems with repositories, tests, and honest scope, by Pablo Alvarez.",
+    "Public AI systems with repositories, tests, and honest scope, by Pablo Figueroa Álvarez.",
   applicationName: site.name,
   authors: [{ name: site.owner, url: site.githubUrl }],
   creator: site.owner,
